@@ -1,9 +1,6 @@
 """"""""""""""""""""""""""""""
 "基本設定
-" ref: http://lambdalisue.hatenablog.com/entry/2013/06/23/071344
 """""""""""""""""""""""""""
-" シンタックスハイライト
-"set t_ut= "http://goo.gl/4DErGe
 syntax on
 "undoファイルの作成
 set undofile
@@ -60,56 +57,6 @@ set clipboard=unnamed
 "画面分割の際に新しいウィンドウを右側に開く
 set splitright
 
-""""""""""""""""""""""""""""""
-" コンパイル関係
-""""""""""""""""""""""""""""""
-"command! PYTHON call s:PYTHON()
-command! JAVA call s:JAVAC()
-
-"nmap <F12> :PYTHON<CR>
-nmap <C-j> :JAVA<CR>
-
-"function! s:PYTHON()
-"		:w
-"		!python %
-"endfunction
-function! s:JAVAC()
-	:w
-	!javac % 
-	!java %:r
-endfunction
-
-"command! CLANG call s:CLANG()
-"command! GRAPHVIZ call s:GRAPHVIZ()
-"command! TEX call s:TEX()
-"command! SUBTEX call s:TEX_WITH_RES()
-"nmap <F10> :JAVA<CR>
-"nmap <C-F10> :GRAPHVIZ<CR>
-"nmap <C-F11> :TEX<CR>
-"nmap <A-F11> :SUBTEX<CR>
-"nmap <C-F12> :CLANG<CR>
-
-"function! s:GRAPHVIZ()
-"	:w
-"	!dot -T svg % -o %:r.svg
-"endfunction
-"
-"function! s:TEX()
-"	:w
-"	"!$HOME/sh/pdfplatex %
-"	call system('$HOME/sh/pdfplatex '.bufname("%").' > error.log')
-"endfunction
-
-"function! s:EXP()
-"	:w
-"	:QuickRun c/gcc
-"endfunction
-
-"function! s:CLANG()
-"	:w
-"	:!clang % -o %:r.out -lm
-"	:!./%:r.out
-"endfunction
 """"""""""
 " dein.vim
 """"""""""
@@ -137,11 +84,10 @@ filetype indent on
 syntax on
 
 "QuickRun.vimの設定
-"千葉大学三年情報画像実験画像処理用に-ljpegオプションを付ける
 "cmdopt" : \"-framework GLUT -framework OpenGL"
 let g:quickrun_config = {
 \   "c/gcc" : {
-    \   "cmdopt" : "-Wall -lm -ljpeg"
+    \   "cmdopt" : "-Wall -lm -std=c99"
 \   },
 \   "cpp/g++" : {
 \       "cmdopt" : "-std=c++11"
