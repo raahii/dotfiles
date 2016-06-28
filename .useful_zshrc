@@ -13,8 +13,8 @@ SAVEHIST=1000
  
 # プロンプト
 # 1行表示
-SUSHI=$'\U1F363 '
-PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.$SUSHI) "
+DELIM=$'\U1F37A '
+PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
 #PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.$) "
 PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
 SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"

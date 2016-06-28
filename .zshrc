@@ -61,4 +61,4 @@ plugins=(git)
 # License : MIT
 # http://mollifier.mit-license.org/
 #--------------------------------------------------------- 
-. ./useful_zshrc
+. $HOME/.useful_zshrc
