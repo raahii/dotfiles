@@ -10,14 +10,15 @@ case ${OSTYPE} in
     # for my laptop(macOS)
     #----------------------
     darwin*)
-        export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:$HOME/.nodebrew/current/bin"
-        export PYTHONPATH="/Library/Python/2.7/site-packages"
+        export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:$HOME/.nodebrew/current/bin:/usr/local/texlive/2016/bin/x86_64-darwin:/usr/texbin"
+        export PYTHONPATH="/Library/Python/2.7/site-packages:/usr/local/lib/python2.7/site-packages"
         export SHELL=/usr/local/bin/zsh
         export XDG_CONFIG_HOME=$HOME/.config
         export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
         export HOMEBREW_NO_ANALYTICS=1
-
-        export PATH="$HOME/.pyenv/bin:$PATH"# pyenv for Mac OS X
+        export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+        export PYENV_ROOT=${HOME}/.pyenv
+        export PATH=${PYENV_ROOT}/bin:$PATH
         eval "$(pyenv init -)"
 
         #zshを再起動
@@ -28,11 +29,15 @@ case ${OSTYPE} in
         alias yomiage="pbpaste | say"
         # sudo の後のコマンドでエイリアスを有効にする
         alias sudo='sudo '
-        alias pwdc='pwd | pbcopy'
         #rmtrash
         alias rm='rmtrash'
+        # pwd copy
+        alias pwdc='pwd | pbcopy'
+        # igcc
+        alias igcc='/usr/local/lib/c-REPL/igcc'
+        
         #MacVim
-        alias mvim='env_LANG=ja_JP.UTF-8 /Application/MacVim.app/Contents/MacOS/MacVim "$@"'
+        #alias mvim='env_LANG=ja_JP.UTF-8 /Application/MacVim.app/Contents/MacOS/MacVim "$@"'
 
         # bookmark
         hash -d School=$HOME/Desktop/School
@@ -52,6 +57,7 @@ esac
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
+alias vi='vim'
 
 # plugin setting
 plugins=(git)

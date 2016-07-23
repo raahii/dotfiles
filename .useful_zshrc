@@ -13,7 +13,8 @@ SAVEHIST=1000
  
 # プロンプト
 # 1行表示
-DELIM=$'\U1F37A '
+#DELIM=$'🗼 '
+DELIM=$'🍣 '
 PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
 #PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.$) "
 PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"

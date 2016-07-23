@@ -1,7 +1,12 @@
 """"""""""""""""""""""""""""""
 "基本設定
+" ref: http://lambdalisue.hatenablog.com/entry/2013/06/23/071344
 """""""""""""""""""""""""""
+" シンタックスハイライト
 syntax on
+"カラーテーマ
+set background=dark
+colorscheme gruvbox
 "undoファイルの作成
 set undofile
 set undodir=~/.vim/undofiles
@@ -52,10 +57,25 @@ set matchpairs& matchpairs+=<:>
 " ESCを二回押すことでハイライトを消す
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
 ""クリップボード設定
-set clipboard=unnamed
-"set clipboard=unnamedplus
+if has('mac')
+    set clipboard=unnamed
+else
+    set clipboard=unnamedplus
+endif
+
 "画面分割の際に新しいウィンドウを右側に開く
 set splitright
+"fold
+set foldmethod=marker
+
+""""""""""""""""""""""""""""""
+" コンパイル関係
+""""""""""""""""""""""""""""""
+command! TEX call s:TEX()
+nmap <C-F12> :TEX<CR>
+function! s:TEX()
+	:quickrun tex
+endfunction
 
 """"""""""
 " dein.vim
@@ -78,19 +98,29 @@ call dein#add('Shougo/vimproc')
 call dein#add('othree/html5.vim')
 call dein#add('hail2u/vim-css3-syntax')
 call dein#add('jelera/vim-javascript-syntax')
+call dein#add('scrooloose/nerdtree')
+call dein#add('junegunn/vim-easy-align')
+"call dein#add('itchyny/lightline.vim')
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
 
 "QuickRun.vimの設定
-"cmdopt" : \"-framework GLUT -framework OpenGL"
+let c_opt = "-std=c99 -lm -ljpeg -framework GLUT -framework OpenGL -Wno-deprecated"
+let cpp_opt = "-std=c++11"
+
 let g:quickrun_config = {
 \   "c/gcc" : {
-    \   "cmdopt" : "-Wall -lm -std=c99"
+\       "cmdopt" : c_opt
 \   },
 \   "cpp/g++" : {
-\       "cmdopt" : "-std=c++11"
+\       "cmdopt" : cpp_opt
+\   },
+\   "tex" : {
+\       'command' : 'latexmk',
+\       'hook/cd/directory': '%S:h',
+\       'exec': '%c %s'
 \   },
 \   "_" : {
 \       "runner"    : 'vimproc',
@@ -98,7 +128,7 @@ let g:quickrun_config = {
 \       "outputter" : 'error',
 \       "outputter/error/success" : "buffer",
 \       "outputter/error/error"   : "quickfix",
-\       "outputter/buffer/split"  : "vertical",
+\       "outputter/buffer/split"  : ":45vs",
 \       "outputter/buffer/close_on_empty" : 1
 \   }
 \ }
@@ -106,13 +136,14 @@ let g:quickrun_config = {
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 "<C-c> でquickrunを停止
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
-"
+
 " バッファ一覧
 noremap <C-P> :Unite buffer<CR>
 " ファイル一覧
 noremap <C-N> :Unite -buffer-name=file file<CR>
 " 最近使ったファイルの一覧
 noremap <C-Z> :Unite file_mru<CR>
-
+" NERDTree
+noremap <C-n> :NERDTreeToggle<CR>
 " Required:
 filetype plugin indent on
