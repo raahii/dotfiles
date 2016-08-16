@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""
 "基本設定
-" ref: http://lambdalisue.hatenablog.com/entry/2013/06/23/071344
 """""""""""""""""""""""""""
+"{{{
 " シンタックスハイライト
 syntax on
 "カラーテーマ
@@ -67,46 +67,76 @@ endif
 set splitright
 "fold
 set foldmethod=marker
+"}}}
 
 """"""""""""""""""""""""""""""
 " コンパイル関係
 """"""""""""""""""""""""""""""
+"{{{
 command! TEX call s:TEX()
 nmap <C-F12> :TEX<CR>
 function! s:TEX()
 	:quickrun tex
 endfunction
+"}}}
+
+""""""""""""""""""""
+" matchit.vim
+""""""""""""""""""""
+"{{{
+source $VIMRUNTIME/macros/matchit.vim
+"}}}
 
 """"""""""
 " dein.vim
 """"""""""
+"{{{
 if &compatible
   set nocompatible
 endif
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call dein#begin(expand('~/.vim/dein'))
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/neomru.vim')
-call dein#add('plasticboy/vim-markdown')
-call dein#add('kannokanno/previm')
-call dein#add('tyru/open-browser.vim')
-call dein#add('tpope/vim-surround')
-call dein#add('thinca/vim-quickrun')
-call dein#add('Shougo/vimproc')
-call dein#add('othree/html5.vim')
-call dein#add('hail2u/vim-css3-syntax')
-call dein#add('jelera/vim-javascript-syntax')
-call dein#add('scrooloose/nerdtree')
-call dein#add('junegunn/vim-easy-align')
-"call dein#add('itchyny/lightline.vim')
+call dein#begin(expand('~/.vim/dein')) 
+call dein#add('Shougo/dein.vim')          " dein自体をdeinで管理
+call dein#add('Shougo/neomru.vim')        " a unite dependency
+call dein#add('Shougo/unite.vim')         " unite
+call dein#add('plasticboy/vim-markdown')  " markdown用
+call dein#add('kannokanno/previm')        " markdown用
+call dein#add('tyru/open-browser.vim')    " markdown用
+call dein#add('tpope/vim-surround')       " 括弧の柔軟な操作
+call dein#add('thinca/vim-quickrun')      " コンパイル
+call dein#add('Shougo/vimproc')           " 非同期実行
+call dein#add('scrooloose/nerdtree')      " ディレクトリ情報を見れる
+call dein#add('junegunn/vim-easy-align')  " アラインメント
+call dein#add('scrooloose/syntastic.git') " シンタックスチェッカー
+call dein#add('mattn/emmet-vim')          " htmlコーディングを効率化
+call dein#add('vim-scripts/YankRing.vim') " 過去のヤンクを参照
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
+"}}}
 
-"QuickRun.vimの設定
+""""""""""""""""""""
+" Unite-vim
+""""""""""""""""""""
+"{{{
+" バッファ一覧
+noremap <C-P> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+" 最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
+" NERDTree
+noremap <C-n> :NERDTreeToggle<CR>
+" Required:
+filetype plugin indent on
+"}}}
+
+""""""""""""""""""""
+" QuickRun.vimの設定
+""""""""""""""""""""
+"{{{
 let c_opt = "-std=c99 -lm -ljpeg -framework GLUT -framework OpenGL -Wno-deprecated"
 let cpp_opt = "-std=c++11"
 
@@ -116,6 +146,9 @@ let g:quickrun_config = {
 \   },
 \   "cpp/g++" : {
 \       "cmdopt" : cpp_opt
+\   },
+\   "python": {
+\       "outputter/buffer/split"  : ":vs",
 \   },
 \   "tex" : {
 \       'command' : 'latexmk',
@@ -136,14 +169,48 @@ let g:quickrun_config = {
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 "<C-c> でquickrunを停止
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+"}}}
 
-" バッファ一覧
-noremap <C-P> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>
-" 最近使ったファイルの一覧
-noremap <C-Z> :Unite file_mru<CR>
-" NERDTree
-noremap <C-n> :NERDTreeToggle<CR>
-" Required:
-filetype plugin indent on
+""""""""""""""""""""
+" Syntastic
+""""""""""""""""""""
+"{{{
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_mode_map = {
+    \ 'mode': 'passive',
+    \ 'active_filetypes': ['html', 'css', 'javascript'],
+    \ 'passive_filetypes': []
+\}
+" 'passive_filetypes': ['vim', 'nerdtree', 'python']
+"augroup AutoSyntastic
+"    autocmd!
+"    autocmd InsertLeave,TextChanged * call s:syntastic() 
+"augroup END
+"function! s:syntastic()
+"    w
+"    SyntasticCheck
+"endfunction
+"}}}
+
+""""""""""""""""""""
+" vim-easy-align
+""""""""""""""""""""
+"{{{
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+"}}}
+
+""""""""""""""""""""
+" Emmet-vim
+""""""""""""""""""""
+"{{{
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+"}}}

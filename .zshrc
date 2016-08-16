@@ -20,6 +20,7 @@ case ${OSTYPE} in
         export PYENV_ROOT=${HOME}/.pyenv
         export PATH=${PYENV_ROOT}/bin:$PATH
         eval "$(pyenv init -)"
+        export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
         #zshを再起動
         alias relogin='exec $SHELL -l'
