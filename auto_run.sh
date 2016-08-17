@@ -1,9 +1,18 @@
 #!/bin/bash
-#まだ機能しない
-#require:
-#   - wget or git
+set -e
 
-# OS判定してOSごとに別の処理を行う（予定）
+#--------------------------------------------------
+# TODO: 
+# - ダウンロードした不要なファイルの削除
+# - 今何をやっているかわかるような出力
+# - その他のOS用の実装
+#   (CentOSは仕方なくソースコードからvimをインスト
+#   ールしたが、各OSのパッケージ管理システムを使え
+#   ばもう少しましになるはず )
+#--------------------------------------------------
+
+# OS判定
+# この後OSごとに別の処理を行う（予定）
 if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
@@ -16,7 +25,7 @@ else
     exit 1
 fi
 
-#install vim 7.3 to enable clipboard :)
+# vim7.3を+clipboardで使えるようにインストール
 if [ ! "$(which vim)" ]; then
     echo -e "\n-----------------[ installing vim ]-----------------\n"
     if [ "$OS" == 'redhat' ]; then
@@ -36,7 +45,12 @@ if [ ! "$(which vim)" ]; then
     fi
 fi
 
-#install zsh :)
+# dein.vim install
+mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
+wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh $HOME/.vim/dein/
+
+# zshをインストール
 echo -e "\n-----------------[ installing zsh ]-----------------\n"
 if [ "$OS" == 'redhat' ]; then
     sudo yum install -y zsh #本体インストール
@@ -45,11 +59,6 @@ if [ "$OS" == 'redhat' ]; then
 fi
 
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-
-# dein.vim install
-mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
-wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-sh ./installer.sh $HOME/.vim/dein/
 
 # deploy
 rm $HOME/.zshrc $HOME/.vimrc
