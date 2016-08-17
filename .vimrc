@@ -94,9 +94,9 @@ source $VIMRUNTIME/macros/matchit.vim
 if &compatible
   set nocompatible
 endif
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call dein#begin(expand('~/.vim/dein')) 
+call dein#begin(expand('$HOME/.vim/dein')) 
 call dein#add('Shougo/dein.vim')          " dein自体をdeinで管理
 call dein#add('Shougo/neomru.vim')        " a unite dependency
 call dein#add('Shougo/unite.vim')         " unite

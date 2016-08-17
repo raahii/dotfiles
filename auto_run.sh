@@ -35,3 +35,27 @@ if [ ! "$(which vim)" ]; then
         sudo make install
     fi
 fi
+
+#install zsh :)
+echo -e "\n-----------------[ installing zsh ]-----------------\n"
+if [ "$OS" == 'redhat' ]; then
+    sudo yum install -y zsh #本体インストール
+    echo -e "\nchsh needs your system password-"
+    chsh -s /bin/zsh
+fi
+
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+# dein.vim install
+mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
+wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+sh ./installer.sh $HOME/.vim/dein/
+
+# deploy
+rm $HOME/.zshrc $HOME/.vimrc
+ln -s "$HOME/dotfiles/.vimrc" "$HOME/.vimrc"
+ln -s "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
+ln -s "$HOME/dotfiles/.useful_zshrc" "$HOME/.useful_zshrc"
+exec $SHELL -l
+
+echo "-------- Please reload your machine :) ----------"
