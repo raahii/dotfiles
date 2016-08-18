@@ -54,6 +54,7 @@ fi
 
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
+echo -e "\n-----------------[ deploying ]-----------------\n"
 # deploy
 if [ -e $HOME/.zshrc ]; then
     rm $HOME/.zshrc 
@@ -72,11 +73,11 @@ ln -s "$HOME/dotfiles/.vimrc" "$HOME/.vimrc"
 ln -s "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
 ln -s "$HOME/dotfiles/.useful_zshrc" "$HOME/.useful_zshrc"
 ln -s "$HOME/dotfiles/.vim" "$HOME/.vim"
-exec $SHELL -l
 
-# dein.vim install
+echo -e "\n-----------------[ install dein.vim ]-----------------\n"
+# install dein.vim
 mkdir -p $HOME/.vim/dein/repos/github.com/Shougo/dein.vim
 wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
 sh ./installer.sh $HOME/.vim/dein/
 
-echo "-------- Finished! Please reload your machine :) ----------"
+echo -e "\n-----[ Finished! Please reload your machine :) ]--------\n"
