@@ -44,11 +44,6 @@ if [ ! "$(which vim)" ]; then
     fi
 fi
 
-# dein.vim install
-mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
-wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
-sh ./installer.sh $HOME/.vim/dein/
-
 # zshをインストール
 echo -e "\n-----------------[ installing zsh ]-----------------\n"
 if [ "$OS" == 'redhat' ]; then
@@ -66,10 +61,22 @@ fi
 if [ -e $HOME/.vimrc ]; then
     rm $HOME/.vimrc 
 fi
+if [ -e $HOME/.useful_zshrc ]; then
+    rm $HOME/.useful_zshrc 
+fi
+if [ -e $HOME/.vim ]; then
+    rm -r $HOME/.vim
+fi
 
 ln -s "$HOME/dotfiles/.vimrc" "$HOME/.vimrc"
 ln -s "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
 ln -s "$HOME/dotfiles/.useful_zshrc" "$HOME/.useful_zshrc"
+ln -s "$HOME/dotfiles/.vim" "$HOME/.vim"
 exec $SHELL -l
 
-echo "-------- Please reload your machine :) ----------"
+# dein.vim install
+mkdir -p $HOME/.vim/dein/repos/github.com/Shougo/dein.vim
+wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
+sh ./installer.sh $HOME/.vim/dein/
+
+echo "-------- Finished! Please reload your machine :) ----------"
