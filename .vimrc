@@ -16,10 +16,10 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set fenc=utf-8
 "タブ幅の設定
-set tabstop=4
+set tabstop=2
 set autoindent
-set expandtab
-set shiftwidth=4
+"set expandtab
+set shiftwidth=2
 "swpファイルを作らない
 set noswapfile
 " スクロールする時に下が見えるようにする
