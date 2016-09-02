@@ -18,7 +18,7 @@ set fenc=utf-8
 "タブ幅の設定
 set tabstop=2
 set autoindent
-"set expandtab
+set expandtab
 set shiftwidth=2
 "swpファイルを作らない
 set noswapfile
@@ -116,6 +116,9 @@ filetype plugin indent on     " required!
 filetype indent on
 syntax on
 "}}}
+"# exなど、特定がvimのコマンドと勘違いされるのに対処
+"http://s25r.blogspot.jp/2010/01/blog-post.html
+autocmd FileType make set modelines=0
 
 """"""""""""""""""""
 " Unite-vim

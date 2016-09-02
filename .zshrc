@@ -10,16 +10,18 @@ case ${OSTYPE} in
     # for my laptop(macOS)
     #----------------------
     darwin*)
-        export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/bin:$HOME/.nodebrew/current/bin:/usr/local/texlive/2016/bin/x86_64-darwin:/usr/texbin"
-        export PYTHONPATH="/Library/Python/2.7/site-packages:/usr/local/lib/python2.7/site-packages"
+        export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.nodebrew/current/bin:/usr/local/texlive/2016/bin/x86_64-darwin:/usr/texbin"
+        #export PYTHONPATH="/Library/Python/2.7/site-packages:/usr/local/lib/python2.7/site-packages"
         export SHELL=/usr/local/bin/zsh
         export XDG_CONFIG_HOME=$HOME/.config
         export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
         export HOMEBREW_NO_ANALYTICS=1
         export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-        export PYENV_ROOT=${HOME}/.pyenv
+        export PYENV_ROOT=/usr/local/var/pyenv
         export PATH=${PYENV_ROOT}/bin:$PATH
         eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)"
+        export PATH="$PYENV_ROOT/versions/anaconda3-2.5.0/bin:$PATH"
         export HOMEBREW_CASK_OPTS="--appdir=/Applications"
         export EDITOR=vim
 
