@@ -67,6 +67,8 @@ endif
 set splitright
 "fold
 set foldmethod=marker
+"インデントのある長い行の折り返しの見た目が美しくなる
+set breakindent
 "}}}
 
 """"""""""""""""""""""""""""""
@@ -110,15 +112,20 @@ call dein#add('scrooloose/nerdtree')      " ディレクトリ情報を見れる
 call dein#add('junegunn/vim-easy-align')  " アラインメント
 call dein#add('scrooloose/syntastic.git') " シンタックスチェッカー
 call dein#add('mattn/emmet-vim')          " htmlコーディングを効率化
-call dein#add('vim-scripts/YankRing.vim') " 過去のヤンクを参照
+" call dein#add('vim-scripts/YankRing.vim') " 過去のヤンクを参照
+call dein#add('tpope/vim-fugitive')       " vimとgitが手を組む絵
+call dein#add('elzr/vim-json')            " jsonを綺麗に表示
+call dein#add('Shougo/neocomplete.vim')   " 候補
+call dein#add('Konfekt/FastFold')
+call dein#add('Konfekt/FoldText')         " neocompleteでエラーがでるため追加
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
-"}}}
 "# exなど、特定がvimのコマンドと勘違いされるのに対処
 "http://s25r.blogspot.jp/2010/01/blog-post.html
 autocmd FileType make set modelines=0
+"}}}
 
 """"""""""""""""""""
 " Unite-vim
@@ -149,9 +156,6 @@ let g:quickrun_config = {
 \   },
 \   "cpp/g++" : {
 \       "cmdopt" : cpp_opt
-\   },
-\   "python": {
-\       "outputter/buffer/split"  : ":vs",
 \   },
 \   "tex" : {
 \       'command' : 'latexmk',
@@ -216,4 +220,29 @@ nmap ga <Plug>(EasyAlign)
 "{{{
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
+"}}}
+
+""""""""""""""""""""
+" git
+""""""""""""""""""""
+"{{{
+" Statuslineの設定
+"set laststatus=1
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P 
+"}}}
+
+""""""""""""""""""""
+" NeoComplete
+""""""""""""""""""""
+"{{{
+" neocomplete用設定
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_ignore_case = 1
+let g:neocomplete#enable_smart_case = 1
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns._ = '\h\w*'
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "}}}

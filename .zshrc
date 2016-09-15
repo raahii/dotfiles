@@ -21,7 +21,7 @@ case ${OSTYPE} in
         export PATH=${PYENV_ROOT}/bin:$PATH
         eval "$(pyenv init -)"
         eval "$(pyenv virtualenv-init -)"
-        export PATH="$PYENV_ROOT/versions/anaconda3-2.5.0/bin:$PATH"
+        export PATH="$PATH:$PYENV_ROOT/versions/anaconda3-2.5.0/bin"
         export HOMEBREW_CASK_OPTS="--appdir=/Applications"
         export EDITOR=vim
 
@@ -46,6 +46,9 @@ case ${OSTYPE} in
         alias yomiage="pbpaste | say"
         # igcc
         alias igcc='/usr/local/lib/c-REPL/igcc'
+        # tree with color and not encode misconversion
+        alias tree='tree -NC'
+
 
         
         #MacVim
