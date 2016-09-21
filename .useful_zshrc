@@ -8,16 +8,18 @@ colors
  
 # ヒストリの設定
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
- 
+HISTSIZE=100000
+SAVEHIST=100000
+HISTTIMEFORMAT='%Y-%m-%dT%T%z ' # history にコマンド実行時刻を記録する
+
 # プロンプト
 # 1行表示
 #DELIM=$'🍺 '
 DELIM=$'🍣 '
 #DELIM=$'⚽ '
 PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
-#PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.$) "
+#PROMPT="[%n@%m %~]%(!.#.$) "
+##PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.$) "
 PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
 SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
 RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
@@ -53,6 +55,14 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
  
+#入力途中の履歴補完を有効化する
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
+#入力途中の履歴補完
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
  
 ########################################
 # vcs_info
@@ -115,17 +125,3 @@ setopt RM_STAR_SILENT
 
 # ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
 bindkey '^R' history-incremental-pattern-search-backward
- 
-########################################
-# OS 別の設定
-#case ${OSTYPE} in
-#    darwin*)
-#        #Mac用の設定
-#        export CLICOLOR=1
-#        alias ls='ls -G -F'
-#        ;;
-#    linux*)
-#        #Linux用の設定
-#        alias ls='ls -F --color=auto'
-#        ;;
-#esac

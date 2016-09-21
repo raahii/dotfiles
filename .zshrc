@@ -10,7 +10,7 @@ case ${OSTYPE} in
     # for my laptop(macOS)
     #----------------------
     darwin*)
-        export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.nodebrew/current/bin:/usr/local/texlive/2016/bin/x86_64-darwin:/usr/texbin"
+        export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.nodebrew/current/bin:/usr/local/texlive/2016/bin/x86_64-darwin:/usr/texbin:$HOME/sh"
         #export PYTHONPATH="/Library/Python/2.7/site-packages:/usr/local/lib/python2.7/site-packages"
         export SHELL=/usr/local/bin/zsh
         export XDG_CONFIG_HOME=$HOME/.config
@@ -49,8 +49,18 @@ case ${OSTYPE} in
         # tree with color and not encode misconversion
         alias tree='tree -NC'
 
+        #cdしたらlsする
+        cd()
+        {
+          builtin cd "$@" && ls -FG
+        }
 
-        
+        #git commitしたら自分を鼓舞する
+        mycommit()
+        {
+          git commit "$@" 1>&2 && python /Users/naka/Desktop/github/small-codes/play-with-imgcat/fetch_image.py awesome | imgcat
+        }
+
         #MacVim
         #alias mvim='env_LANG=ja_JP.UTF-8 /Application/MacVim.app/Contents/MacOS/MacVim "$@"'
 
@@ -75,6 +85,10 @@ alias mkdir='mkdir -p'
 
 #shellを再起動
 alias relogin='exec $SHELL -l'
+alias r='relogin'
+
+#補完リストが多いときに尋ねない
+LISTMAX=1000
 
 # plugin setting
 plugins=(git)
