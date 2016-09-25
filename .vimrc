@@ -86,7 +86,7 @@ endfunction
 " matchit.vim
 """"""""""""""""""""
 "{{{
-source $VIMRUNTIME/macros/matchit.vim
+"source $VIMRUNTIME/macros/matchit.vim
 "}}}
 
 """"""""""

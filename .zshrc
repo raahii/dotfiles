@@ -1,3 +1,4 @@
+# zmodload zsh/zprof && zprof # zsh起動時間計測
 # oh-my-zsh setting
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -23,6 +24,8 @@ case ${OSTYPE} in
         eval "$(pyenv virtualenv-init -)"
         export PATH="$PATH:$PYENV_ROOT/versions/anaconda3-2.5.0/bin"
         export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+        export PATH="$HOME/.rbenv/bin:$PATH"
+        eval "$(rbenv init -)"
         export EDITOR=vim
 
         # 2016 atWare internship
@@ -39,7 +42,7 @@ case ${OSTYPE} in
         # rmtrash
         alias rm='rmtrash'
         # seal vi
-        alias vi='vim'
+        alias vi='nvim'
         # pwd copy
         alias pwdc='pwd | pbcopy'
         # yomiage
@@ -48,6 +51,9 @@ case ${OSTYPE} in
         alias igcc='/usr/local/lib/c-REPL/igcc'
         # tree with color and not encode misconversion
         alias tree='tree -NC'
+        # vim typo
+        alias im='vim'
+        alias bim='vim'
 
         #cdしたらlsする
         cd()
@@ -58,7 +64,7 @@ case ${OSTYPE} in
         #git commitしたら自分を鼓舞する
         mycommit()
         {
-          git commit "$@" 1>&2 && python /Users/naka/Desktop/github/small-codes/play-with-imgcat/fetch_image.py awesome | imgcat
+          git commit "$@" 1>&2 && python /Users/naka/Desktop/github/small-codes/play-with-imgcat/fetch_image.py LGTM | imgcat
         }
 
         #MacVim
@@ -98,3 +104,7 @@ plugins=(git)
 #  License : MIT (http://mollifier.mit-license.org/)
 #--------------------------------------------------------- 
 . $HOME/.useful_zshrc
+
+#if (which zprof > /dev/null) ;then
+#  zprof | less
+#fi
