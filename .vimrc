@@ -69,6 +69,10 @@ set splitright
 set foldmethod=marker
 "インデントのある長い行の折り返しの見た目が美しくなる
 set breakindent
+" neocompleteで補完はできるのであえてvimのネイティブ補完の
+" ショートカットを潰す。そろそろタブ機能を使いこなしたい！
+nnoremap <C-n> gt
+nnoremap <C-p> gT
 "}}}
 
 """"""""""""""""""""""""""""""
@@ -132,13 +136,14 @@ autocmd FileType make set modelines=0
 """"""""""""""""""""
 "{{{
 " バッファ一覧
-noremap <C-P> :Unite buffer<CR>
+"noremap <C-P> :Unite buffer<CR>
 " ファイル一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>
+"noremap <C-N> :Unite -buffer-name=file file<CR>
+
 " 最近使ったファイルの一覧
-noremap <C-Z> :Unite file_mru<CR>
+noremap <C-z> :Unite file_mru<CR>
 " NERDTree
-noremap <C-n> :NERDTreeToggle<CR>
+noremap <C-e> :NERDTreeToggle<CR>
 " Required:
 filetype plugin indent on
 "}}}

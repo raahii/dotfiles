@@ -64,7 +64,7 @@ case ${OSTYPE} in
         #git commitしたら自分を鼓舞する
         mycommit()
         {
-          git commit "$@" 1>&2 && python /Users/naka/Desktop/github/small-codes/play-with-imgcat/fetch_image.py LGTM | imgcat
+          git commit "$@" 1>&2 && python /Users/naka/Desktop/github/small-codes/play-with-imgcat/fetch_image.py Cartman | imgcat
         }
 
         #MacVim
