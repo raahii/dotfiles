@@ -54,6 +54,8 @@ case ${OSTYPE} in
         # vim typo
         alias im='vim'
         alias bim='vim'
+        # ウィンドウ情報を回復してvimを開始
+        alias vis="vim -S $HOME/.session.vim"
 
         #cdしたらlsする
         cd()
@@ -64,7 +66,7 @@ case ${OSTYPE} in
         #git commitしたら自分を鼓舞する
         mycommit()
         {
-          git commit "$@" 1>&2 && python /Users/naka/Desktop/github/small-codes/play-with-imgcat/fetch_image.py Cartman | imgcat
+          git commit "$@" 1>&2 && python /Users/naka/Desktop/github/small-codes/play-with-imgcat/fetch_image.py Cartman cute\ cat pikachu LGTM | imgcat
         }
 
         #MacVim
