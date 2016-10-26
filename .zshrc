@@ -28,8 +28,6 @@ case ${OSTYPE} in
         eval "$(rbenv init -)"
         export EDITOR=vim
 
-        # sudo の後のコマンドでエイリアスを有効にする
-        alias sudo='sudo -E '
         # update
         alias update='brew update && brew upgrade'
         # rmtrash
@@ -107,6 +105,8 @@ alias r='relogin'
 # find word
 alias findword='find . -type f -print0 | xargs -0 grep -i $1'
 
+# sudo の後のコマンドでエイリアスを有効にする
+alias sudo='sudo -E '
 
 #補完リストが多いときに尋ねない
 LISTMAX=1000
