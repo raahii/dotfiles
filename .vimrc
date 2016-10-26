@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""
 "基本設定
-"""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
 "{{{
 " シンタックスハイライト
 syntax on
@@ -76,7 +76,9 @@ nnoremap <C-p> gT
 imap { {}<LEFT>
 imap [ []<LEFT>
 imap ( ()<LEFT>
-""""""""""""""""""""""""""""""
+
+" markdownの折りたたみなし
+let g:vim_markdown_folding_disabled=1
 "}}}
 
 """"""""""""""""""""""""""""""
@@ -94,7 +96,7 @@ endfunction
 " matchit.vim
 """"""""""""""""""""
 "{{{
-"source $VIMRUNTIME/macros/matchit.vim
+source $VIMRUNTIME/macros/matchit.vim
 "}}}
 
 """"""""""
@@ -122,7 +124,7 @@ call dein#add('junegunn/vim-easy-align')  " アラインメント
 call dein#add('mattn/emmet-vim')          " htmlコーディングを効率化
 " call dein#add('vim-scripts/YankRing.vim') " 過去のヤンクを参照
 "call dein#add('tpope/vim-fugitive')       " vimとgitが手を組む絵
-"call dein#add('elzr/vim-json')            " jsonを綺麗に表示
+call dein#add('elzr/vim-json')            " jsonを綺麗に表示
 call dein#add('Shougo/neocomplete.vim')   " 候補
 call dein#add('Konfekt/FastFold')
 call dein#add('Konfekt/FoldText')         " neocompleteでエラーがでるため追加
@@ -130,6 +132,7 @@ call dein#add('tpope/vim-rails' )         " Rails向けのコマンドを提供�
 call dein#add('tpope/vim-endwise')        " Ruby向けにendを自動挿入してくれる
 call dein#add('tomtom/tcomment_vim')      " コメントON/OFFを手軽に実行
 "call dein#add('Shougo/vimshell.vim')      " vimからshellをより手軽に
+"call dein#add('NigoroJr/rsense')          " Rubyにおける強力な補完
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
@@ -137,6 +140,7 @@ syntax on
 "# 文書内の"ex"などの単語がvimのコマンドと勘違いされることに対処
 "http://s25r.blogspot.jp/2010/01/blog-post.html
 autocmd FileType make set modelines=0
+
 "}}}
 
 """"""""""""""""""""
@@ -231,8 +235,8 @@ nmap ga <Plug>(EasyAlign)
 " Emmet-vim
 """"""""""""""""""""
 "{{{
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,erb EmmetInstall
+" let g:user_emmet_install_global = 0
+" autocmd FileType html,css,erb EmmetInstall
 "}}}
 
 """"""""""""""""""""
@@ -258,4 +262,27 @@ endif
 let g:neocomplete#keyword_patterns._ = '\h\w*'
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+"}}}
+
+""""""""""""""""""""
+" vim-json
+""""""""""""""""""""
+"{{{
+let g:vim_json_syntax_conceal = 0
+"}}}
+
+"""""""""""""""""""
+" rsense
+"""""""""""""""""""
+"{{{
+" NeoBundle 'marcus/rsense' :helpが正常動作しない (執筆時点)
+" NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
+"     \ 'autoload' : { 'insert' : 1, 'filetype' : 'ruby', } }
+" 補完の設定
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"   let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+"
+" let g:rsenseUseOmniFunc = 1
 "}}}

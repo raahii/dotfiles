@@ -28,13 +28,6 @@ case ${OSTYPE} in
         eval "$(rbenv init -)"
         export EDITOR=vim
 
-        # 2016 atWare internship
-        export CATALINA_HOME="${HOME}/tomcat"
-        # export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home"
-        export M3_HOME=/usr/local/maven
-        M3=$M3_HOME/bin
-        export PATH=$M3:$PATH
-
         # sudo の後のコマンドでエイリアスを有効にする
         alias sudo='sudo -E '
         # update
@@ -95,6 +88,10 @@ alias mkdir='mkdir -p'
 alias relogin='exec $SHELL -l'
 alias r='relogin'
 
+# find word
+alias findword='find . -type f -print0 | xargs -0 grep -i $1'
+
+
 #補完リストが多いときに尋ねない
 LISTMAX=1000
 
@@ -106,6 +103,8 @@ plugins=(git)
 #  License : MIT (http://mollifier.mit-license.org/)
 #--------------------------------------------------------- 
 . $HOME/.useful_zshrc
+
+. $HOME/.secret_zshrc
 
 #if (which zprof > /dev/null) ;then
 #  zprof | less
