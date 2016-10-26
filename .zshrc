@@ -69,6 +69,16 @@ case ${OSTYPE} in
         hash -d School=$HOME/Desktop/School
         hash -d github=$HOME/Desktop/github
 
+        #DELIM=$'🍺 '
+        DELIM=$'🍣 '
+        #DELIM=$'⚽ '
+        PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
+        PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
+        SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
+        RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
+
+        . $HOME/.secret_zshrc
+
         ;;
     #----------------------
     # other machine
@@ -76,6 +86,12 @@ case ${OSTYPE} in
     linux*)
         #for linux
         alias update='sudo apt-get update && sudo apt-get upgrade'
+
+        DELIM=$'🌍 '
+        PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
+        PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
+        SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
+        RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
         ;;
 esac
 
@@ -104,7 +120,6 @@ plugins=(git)
 #--------------------------------------------------------- 
 . $HOME/.useful_zshrc
 
-. $HOME/.secret_zshrc
 
 #if (which zprof > /dev/null) ;then
 #  zprof | less

@@ -14,18 +14,18 @@ HISTTIMEFORMAT='%Y-%m-%dT%T%z ' # history にコマンド実行時刻を記録�
 
 # プロンプト
 # 1行表示
-#DELIM=$'🍺 '
-DELIM=$'🍣 '
-#DELIM=$'⚽ '
-PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
-#PROMPT="[%n@%m %~]%(!.#.$) "
-##PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.$) "
-PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
-SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
-RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
-# 2行表示
-#PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
-#%# "
+# #DELIM=$'🍺 '
+# DELIM=$'🍣 '
+# #DELIM=$'⚽ '
+# PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
+# #PROMPT="[%n@%m %~]%(!.#.$) "
+# ##PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.$) "
+# PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
+# SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
+# RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
+# # 2行表示
+# #PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
+# #%# "
  
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style

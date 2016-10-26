@@ -76,8 +76,10 @@ ln -s "$HOME/dotfiles/.vim" "$HOME/.vim"
 
 echo -e "\n-----------------[ install dein.vim ]-----------------\n"
 # install dein.vim
-mkdir -p $HOME/.vim/dein/repos/github.com/Shougo/dein.vim
+mkdir -p $HOME/.vim/dein
+cd $HOME/.vim/dein/
 wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
 sh ./installer.sh $HOME/.vim/dein/
+cd $HOME
 
 echo -e "\n-----[ Finished! Please reload your machine :) ]--------\n"

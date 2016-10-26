@@ -137,6 +137,12 @@ call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
 "# 文書内の"ex"などの単語がvimのコマンドと勘違いされることに対処
 "http://s25r.blogspot.jp/2010/01/blog-post.html
 autocmd FileType make set modelines=0
