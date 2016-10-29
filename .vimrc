@@ -53,7 +53,7 @@ set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 "bufferで複数ファイルをswitchするときに未保存のものがあっても警告を出さない
 set hidden
 " 対応括弧に'<'と'>'のペアを追加
-set matchpairs& matchpairs+=<:>
+"set matchpairs& matchpairs+=<:>
 " ESCを二回押すことでハイライトを消す
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
 ""クリップボード設定

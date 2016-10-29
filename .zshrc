@@ -27,6 +27,7 @@ case ${OSTYPE} in
         export PATH="$HOME/.rbenv/bin:$PATH"
         eval "$(rbenv init -)"
         export EDITOR=vim
+        export PGDATA=/usr/local/var/postgres
 
         # update
         alias update='brew update && brew upgrade'
