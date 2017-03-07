@@ -12,6 +12,9 @@ HISTSIZE=100000
 SAVEHIST=100000
 HISTTIMEFORMAT='%Y-%m-%dT%T%z ' # history にコマンド実行時刻を記録する
 
+# disable bang history
+setopt nobanghist
+
 # プロンプト
 # 1行表示
 # #DELIM=$'🍺 '
@@ -63,6 +66,9 @@ zle -N history-beginning-search-forward-end history-search-end
 #入力途中の履歴補完
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
+
+#履歴の共有
+setopt share_history
  
 ########################################
 # vcs_info
