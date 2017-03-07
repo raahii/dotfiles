@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
 "基本設定
 """"""""""""""""""""""""""""""
 "{{{
@@ -17,16 +17,17 @@ set fileencodings=utf-8
 set fenc=utf-8
 "タブ幅の設定
 set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set autoindent
 set expandtab
-set shiftwidth=2
+"set autoindent
 "swpファイルを作らない
 set noswapfile
 " スクロールする時に下が見えるようにする
 set scrolloff=5
 " バックアップファイルを作らない
 set nowritebackup
-" バックアップをしない
 set nobackup
 " バックスペースで各種消せるようにする
 set backspace=indent,eol,start
@@ -68,28 +69,27 @@ set splitright
 "fold
 set foldmethod=marker
 "インデントのある長い行の折り返しの見た目が美しくなる
-set breakindent
+"set breakindent
 " タブ機能を使おう！
 nnoremap <C-n> gt
 nnoremap <C-p> gT
 " 自動的に閉じ括弧を入力
 imap { {}<LEFT>
-imap [ []<LEFT>
-imap ( ()<LEFT>
+" imap [ []<LEFT>
+" imap ( ()<LEFT>
 
 " markdownの折りたたみなし
 let g:vim_markdown_folding_disabled=1
-"}}}
 
-""""""""""""""""""""""""""""""
-" コンパイル関係
-""""""""""""""""""""""""""""""
-"{{{
-command! TEX call s:TEX()
-nmap <C-F12> :TEX<CR>
-function! s:TEX()
-	:quickrun tex
-endfunction
+"閉括弧が入力された時、対応する括弧を強調する
+set showmatch
+
+" ctrl+jをescキーにする
+inoremap <C-j> <esc>
+vnoremap <C-j> <esc>
+cnoremap <C-j> <esc>
+nnoremap <C-j> <esc>
+
 "}}}
 
 """"""""""""""""""""
@@ -117,22 +117,21 @@ call dein#add('kannokanno/previm')        " markdown用
 call dein#add('tyru/open-browser.vim')    " markdown用
 call dein#add('tpope/vim-surround')       " 括弧の柔軟な操作
 call dein#add('thinca/vim-quickrun')      " コンパイル
-call dein#add('Shougo/vimproc')           " 非同期実行
+call dein#add('Shougo/vimproc', {'build' : 'make'}) "非同期実行
 call dein#add('scrooloose/nerdtree')      " ディレクトリ情報を見れる
 call dein#add('junegunn/vim-easy-align')  " アラインメント
-"call dein#add('scrooloose/syntastic.git') " シンタックスチェッカー
+call dein#add('scrooloose/syntastic.git') " シンタックスチェッカー
 call dein#add('mattn/emmet-vim')          " htmlコーディングを効率化
-" call dein#add('vim-scripts/YankRing.vim') " 過去のヤンクを参照
-"call dein#add('tpope/vim-fugitive')       " vimとgitが手を組む絵
 call dein#add('elzr/vim-json')            " jsonを綺麗に表示
 call dein#add('Shougo/neocomplete.vim')   " 候補
 call dein#add('Konfekt/FastFold')
 call dein#add('Konfekt/FoldText')         " neocompleteでエラーがでるため追加
-call dein#add('tpope/vim-rails' )         " Rails向けのコマンドを提供する
+"call dein#add('tpope/vim-rails' )         " Rails向けのコマンドを提供する
 call dein#add('tpope/vim-endwise')        " Ruby向けにendを自動挿入してくれる
 call dein#add('tomtom/tcomment_vim')      " コメントON/OFFを手軽に実行
-"call dein#add('Shougo/vimshell.vim')      " vimからshellをより手軽に
-"call dein#add('NigoroJr/rsense')          " Rubyにおける強力な補完
+call dein#add('NigoroJr/rsense')          " Rubyにおける強力な補完
+call dein#add('othree/yajs.vim')
+call dein#add('maxmellon/vim-jsx-pretty')
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
@@ -146,7 +145,6 @@ endif
 "# 文書内の"ex"などの単語がvimのコマンドと勘違いされることに対処
 "http://s25r.blogspot.jp/2010/01/blog-post.html
 autocmd FileType make set modelines=0
-
 "}}}
 
 """"""""""""""""""""
@@ -167,7 +165,7 @@ filetype plugin indent on
 "}}}
 
 """"""""""""""""""""
-" QuickRun.vimの設定
+" QuickRun
 """"""""""""""""""""
 "{{{
 let c_opt = "-std=c99 -lm -ljpeg -framework GLUT -framework OpenGL -Wno-deprecated"
@@ -208,23 +206,23 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_python_exec = '/usr/local/var/pyenv/shims/python'
 let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = {
     \ 'mode': 'passive',
-    \ 'active_filetypes': ['html', 'css', 'javascript'],
-    \ 'passive_filetypes': []
 \}
-" 'passive_filetypes': ['vim', 'nerdtree', 'python']
-"augroup AutoSyntastic
-"    autocmd!
-"    autocmd InsertLeave,TextChanged * call s:syntastic() 
-"augroup END
-"function! s:syntastic()
-"    w
-"    SyntasticCheck
-"endfunction
+    "\ 'active_filetypes': ['c', 'html', 'css', 'javascript', 'python', 'ruby', 'php'],
+" augroup AutoSyntastic autocmd!
+"     autocmd InsertLeave,TextChanged * call s:syntastic() 
+" augroup END
+" function! s:syntastic()
+"     SyntasticCheck
+" endfunction
 "}}}
 
 """"""""""""""""""""
@@ -235,23 +233,6 @@ let g:syntastic_mode_map = {
 vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-"}}}
-
-""""""""""""""""""""
-" Emmet-vim
-""""""""""""""""""""
-"{{{
-" let g:user_emmet_install_global = 0
-" autocmd FileType html,css,erb EmmetInstall
-"}}}
-
-""""""""""""""""""""
-" git
-""""""""""""""""""""
-"{{{
-" Statuslineの設定
-"set laststatus=1
-"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P 
 "}}}
 
 """"""""""""""""""""
@@ -275,20 +256,4 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 """"""""""""""""""""
 "{{{
 let g:vim_json_syntax_conceal = 0
-"}}}
-
-"""""""""""""""""""
-" rsense
-"""""""""""""""""""
-"{{{
-" NeoBundle 'marcus/rsense' :helpが正常動作しない (執筆時点)
-" NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
-"     \ 'autoload' : { 'insert' : 1, 'filetype' : 'ruby', } }
-" 補完の設定
-" if !exists('g:neocomplete#force_omni_input_patterns')
-"   let g:neocomplete#force_omni_input_patterns = {}
-" endif
-" let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
-"
-" let g:rsenseUseOmniFunc = 1
 "}}}
