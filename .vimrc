@@ -13,7 +13,7 @@ set undodir=~/.vim/undofiles
 " エンコード関係
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set fenc=utf-8
 "タブ幅の設定
 set tabstop=2
@@ -131,7 +131,9 @@ call dein#add('tpope/vim-endwise')        " Ruby向けにendを自動挿入し�
 call dein#add('tomtom/tcomment_vim')      " コメントON/OFFを手軽に実行
 call dein#add('NigoroJr/rsense')          " Rubyにおける強力な補完
 call dein#add('othree/yajs.vim')
-call dein#add('maxmellon/vim-jsx-pretty')
+call dein#add("pangloss/vim-javascript")
+call dein#add("mxw/vim-jsx")
+call dein#add('fatih/vim-go')             "Go
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
@@ -256,4 +258,14 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 """"""""""""""""""""
 "{{{
 let g:vim_json_syntax_conceal = 0
+"}}}
+
+""""""""""""""""""""
+" jsx
+""""""""""""""""""""
+"{{{
+" js 拡張子でも有効にする
+let g:jsx_ext_required = 0
+" @jsx React.DOM プラグマがある場合のみ有効にする
+let g:jsx_pragma_required = 1
 "}}}

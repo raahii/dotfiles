@@ -7,10 +7,10 @@ source $ZSH/oh-my-zsh.sh
 # set environment vars and aliases for each OS
 #----------------------------------------------
 case ${OSTYPE} in
-    #----------------------
-    # for my laptop(macOS)
-    #----------------------
-    darwin*)
+  #----------------------
+  # for my laptop(macOS)
+  #----------------------
+  darwin*)
     export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.nodebrew/current/bin:/usr/local/texlive/2016/bin/x86_64-darwin:/usr/texbin:$HOME/sh"
     #export PYTHONPATH="/Library/Python/2.7/site-packages:/usr/local/lib/python2.7/site-packages"
     export SHELL=/usr/local/bin/zsh
@@ -30,6 +30,10 @@ case ${OSTYPE} in
     export VISUAL=vim
     export PGDATA=/usr/local/var/postgres
     # export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.7-/include/ImageMagick-7/MagickWand
+    if [ -x "`which go`" ]; then
+      export GOPATH=$HOME/.go
+      export PATH=$PATH:$GOPATH/bin
+    fi
 
     # update
     alias update='brew update && brew upgrade'
@@ -80,25 +84,26 @@ case ${OSTYPE} in
     RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
 
     export PATH="$PATH:`yarn global bin`"
-
-    ;;
-    #----------------------
-    # other machine
-    #----------------------
-    linux*)
+    
+    # direnv
+    eval "$(direnv hook zsh)"
+  ;;
+  #----------------------
+  # other machine
+  #----------------------
+  linux*)
     #for linux
     alias update='sudo apt-get update && sudo apt-get upgrade'
 
     # find word
     alias findword='find . -type f -print0 | xargs -0 grep -ni --color $1'
 
-
     DELIM=$'🌍 '
     PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
     PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
     SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
     RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
-    ;;
+  ;;
 esac
 
 # global alias
