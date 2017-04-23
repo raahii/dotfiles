@@ -1,1 +1,1 @@
-for f (.zsh/peco-sources/*) source "${f}"
+/Users/naka/peco.zsh

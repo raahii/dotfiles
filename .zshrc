@@ -30,10 +30,14 @@ case ${OSTYPE} in
     export VISUAL=vim
     export PGDATA=/usr/local/var/postgres
     # export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.7-/include/ImageMagick-7/MagickWand
+
+    ## Go 環境設定
     if [ -x "`which go`" ]; then
       export GOPATH=$HOME/.go
       export PATH=$PATH:$GOPATH/bin
     fi
+
+    eval "$(direnv hook zsh)"
 
     # update
     alias update='brew update && brew upgrade'
@@ -65,7 +69,7 @@ case ${OSTYPE} in
     #git commitしたら自分を鼓舞する
     mycommit()
     {
-      git commit "$@" 1>&2 && python /Users/naka/Desktop/github/small-codes/play-with-imgcat/fetch_image.py Cartman cute\ cat pikachu LGTM | imgcat
+      git commit "$@" 1>&2 && python /Users/naka/Desktop/develop/small-codes/play-with-imgcat/fetch_image.py Cartman cute\ cat pikachu LGTM | imgcat
     }
 
     #MacVim
@@ -73,7 +77,7 @@ case ${OSTYPE} in
 
     # bookmark
     hash -d School=$HOME/Desktop/School
-    hash -d github=$HOME/Desktop/github
+    hash -d develop=$HOME/Desktop/develop
 
     #DELIM=$'🍺 '
     DELIM=$'🍣 '

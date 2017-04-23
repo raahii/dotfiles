@@ -13,7 +13,7 @@ set undodir=~/.vim/undofiles
 " エンコード関係
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 set fenc=utf-8
 "タブ幅の設定
 set tabstop=2
@@ -134,6 +134,7 @@ call dein#add('othree/yajs.vim')
 call dein#add("pangloss/vim-javascript")
 call dein#add("mxw/vim-jsx")
 call dein#add('fatih/vim-go')             "Go
+call dein#add('tpope/vim-haml') " haml
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
