@@ -1,0 +1,34 @@
+[user]
+  name = piyo56
+  email = piyo56.net@gmail.com
+[core]
+  pager = less
+  ui = auto
+  editor = vim
+  excludesfile = /Users/naka/.gitignore_global
+[push]
+  default = matching
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+[mergetool "sourcetree"]
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[commit]
+  template = /Users/naka/.stCommitMsg
+[alias]
+  # いい感じのグラフでログを表示
+  graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+  # 上の省略形
+  gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+  st = status
+  br = branch
+  # 一行log
+  lo = log --oneline
+  # Untracked filesを表示せず，not stagedと，stagedだけの状態を出力する
+  stt = status -uno
+  # 行ごとの差分じゃなくて，単語レベルでの差分を色付きで表示する
+  difff = diff --word-diff
+  # 今日一日の作業を振り返る
+  today = log --oneline --since='12 hour ago'
+  conflicts = !git ls-files -u | cut -f 2 | sort -u

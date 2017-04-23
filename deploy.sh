@@ -69,10 +69,12 @@ if [ -e $HOME/.vim ]; then
     rm -r $HOME/.vim
 fi
 
-ln -s "$HOME/dotfiles/.vimrc" "$HOME/.vimrc"
-ln -s "$HOME/dotfiles/.zshrc" "$HOME/.zshrc"
-ln -s "$HOME/dotfiles/.useful_zshrc" "$HOME/.useful_zshrc"
-ln -s "$HOME/dotfiles/.vim" "$HOME/.vim"
+ln -s $HOME/dotfiles/.vimrc $HOME
+ln -s $HOME/dotfiles/.zshrc $HOME
+ln -s $HOME/dotfiles/.useful_zshrc $HOME
+ln -s $HOME/dotfiles/.vim $HOME
+ln -s $HOME/dotfiles/.gitignore_global $HOME
+ln -s $HOME/dotfiles/.gitconfig $HOME
 
 echo -e "\n-----------------[ install dein.vim ]-----------------\n"
 # install dein.vim
