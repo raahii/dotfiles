@@ -1,0 +1,11 @@
+#for linux
+alias update='sudo apt-get update && sudo apt-get upgrade'
+
+# find word
+alias findword='find . -type f -print0 | xargs -0 grep -ni --color $1'
+
+DELIM=$'🌍 '
+PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
+PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
+SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
+RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"

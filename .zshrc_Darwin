@@ -1,0 +1,86 @@
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/.nodebrew/current/bin:/usr/local/texlive/2016/bin/x86_64-darwin:/usr/texbin:$HOME/sh"
+#export PYTHONPATH="/Library/Python/2.7/site-packages:/usr/local/lib/python2.7/site-packages"
+export SHELL=/usr/local/bin/zsh
+export XDG_CONFIG_HOME=$HOME/.config
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+export PATH="$PATH:$PYENV_ROOT/versions/anaconda3-2.5.0/bin"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export EDITOR=vim
+export VISUAL=vim
+export PGDATA=/usr/local/var/postgres
+# export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.7-/include/ImageMagick-7/MagickWand
+
+## Go 環境設定
+if [ -x "`which go`" ]; then
+  export GOPATH=$HOME/.go
+  export PATH=$PATH:$GOPATH/bin
+fi
+
+## pyenv
+if [ -d /usr/local/var/pyenv ]; then
+  export PYENV_ROOT=/usr/local/var/pyenv
+  export PATH=${PYENV_ROOT}/bin:$PATH
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  eval "$(direnv hook zsh)"
+fi
+
+## rbenv
+if [ -d ${HOME}/.rbenv ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
+# update
+alias update='brew update && brew upgrade'
+# rmtrash
+alias rm='rmtrash'
+# seal vi
+alias vi='nvim'
+# pwd copy
+alias pwdc='pwd | pbcopy'
+# yomiage
+alias yomiage="pbpaste | say"
+# tree with color and not encode misconversion
+alias tree='tree -NC'
+# vim typo
+alias im='vim'
+alias bim='vim'
+# ウィンドウ情報を回復してvimを開始
+alias vis="vim -S $HOME/.session.vim"
+alias ls="ls -FG"
+# peco kill
+alias pkill="ps aux | peco | awk '{print $2}' | xargs kill"
+
+# find word
+alias findword='find . -type f -print0 | xargs -0 grep -ni --color=auto $1'
+
+#cdしたらlsする
+cd() { builtin cd "$@" && ls -FG }
+
+#git commitしたら自分を鼓舞する
+mycommit()
+{
+  git commit "$@" 1>&2 && python /Users/naka/Desktop/develop/small-codes/play-with-imgcat/fetch_image.py Cartman cute\ cat pikachu LGTM | imgcat
+}
+
+# bookmark
+hash -d School=$HOME/Desktop/School
+hash -d develop=$HOME/Desktop/develop
+
+#DELIM=$'🍺 '
+DELIM=$'🍣 '
+#DELIM=$'⚽ '
+PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
+PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
+SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
+RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
+
+export PATH="$PATH:`yarn global bin`"
+
+# direnv
+eval "$(direnv hook zsh)"
+

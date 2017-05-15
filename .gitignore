@@ -2,3 +2,4 @@
 !/.vim/colors
 !/.vim/plugin
 .cd
+.secret_zshrc
