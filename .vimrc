@@ -91,6 +91,10 @@ vnoremap <C-j> <esc>
 cnoremap <C-j> <esc>
 nnoremap <C-j> <esc>
 
+" usキーボードの場合は入れ替える
+noremap ; :
+noremap : ;
+
 "}}}
 
 """"""""""""""""""""

@@ -12,6 +12,7 @@ export EDITOR=vim
 export VISUAL=vim
 export PGDATA=/usr/local/var/postgres
 # export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.7-/include/ImageMagick-7/MagickWand
+export HOMEBREW_BREWFILE=$HOME/dotfiles/Brewfile
 
 ## Go 環境設定
 if [ -x "`which go`" ]; then

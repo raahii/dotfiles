@@ -3,8 +3,6 @@
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-[ -f $ZDOTDIR/.zshrc_`uname` ] && . $ZDOTDIR/.zshrc_`uname`
-
 # global alias
 alias cp='cp -i'
 alias mv='mv -i'
@@ -40,6 +38,10 @@ bindkey '^jb' peco_git_recent_branches
 bindkey '^jB' peco_git_recent_all_branches
 bindkey '^jz' peco_cd_history
 bindkey '^R'  peco_select_history
+
+# 各OS毎の設定を読み込む
+[ -f $HOME/.zshrc_`uname` ] && . $HOME/.zshrc_`uname`
+[ -f $HOME/.zshrc_local ] && . $HOME/.zshrc_local
 
 # password etc
 if [ -e $HOME/.secret_zshrc ]; then
