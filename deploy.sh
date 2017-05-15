@@ -17,7 +17,7 @@ if [ "$(uname)" == 'Darwin' ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     declare -a info=($(./sh/get_linux_dist.sh))
     OS=${info[0]}
-elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then                                                                                           
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
     OS='Cygwin'
 else
     echo "Your platform ($(uname -a)) is not supported."
@@ -54,6 +54,13 @@ fi
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
+
+echo -e "\n-----------------[ install dein.vim ]-----------------\n"
+# install dein.vim
+mkdir -p $HOME/.vim/dein
+wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
+sh ./installer.sh $HOME/.vim/dein/
+
 echo -e "\n-----------------[ deploying ]-----------------\n"
 # deploy
 if [ -e $HOME/.zshrc ]; then
@@ -75,13 +82,5 @@ ln -s $HOME/dotfiles/.useful_zshrc $HOME
 ln -s $HOME/dotfiles/.vim $HOME
 ln -s $HOME/dotfiles/.gitignore_global $HOME
 ln -s $HOME/dotfiles/.gitconfig $HOME
-
-echo -e "\n-----------------[ install dein.vim ]-----------------\n"
-# install dein.vim
-mkdir -p $HOME/.vim/dein
-cd $HOME/.vim/dein/
-wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
-sh ./installer.sh $HOME/.vim/dein/
-cd $HOME
 
 echo -e "\n-----[ Finished! Please reload your machine :) ]--------\n"

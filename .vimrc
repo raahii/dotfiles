@@ -53,6 +53,7 @@ set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 "bufferで複数ファイルをswitchするときに未保存のものがあっても警告を出さない
 set hidden
+set ambiwidth=double
 " 対応括弧に'<'と'>'のペアを追加
 "set matchpairs& matchpairs+=<:>
 " ESCを二回押すことでハイライトを消す
