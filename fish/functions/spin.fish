@@ -1,0 +1,1 @@
+/Users/naka/.config/fisherman/spin/spin.fish

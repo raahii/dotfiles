@@ -3,3 +3,5 @@
 !/.vim/plugin
 .cd
 .secret_zshrc
+.zshrc_local
+.config_local.fish

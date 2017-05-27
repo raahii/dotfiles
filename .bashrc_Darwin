@@ -1,0 +1,66 @@
+## Aliases
+alias update='brew update && brew upgrade'
+alias rm='rmtrash'
+alias pwdc='pwd | pbcopy'
+alias tree='tree -NC'
+alias im='vim'
+alias bim='vim'
+alias vis="vim -S $HOME/.session.vim"
+alias ls="ls -FG"
+alias pkill="ps aux | peco | awk '{print $2}' | xargs kill"
+
+## Environment Variables
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/texlive/2016/bin/x86_64-darwin:/usr/texbin:$HOME/sh"
+export SHELL=/usr/local/bin/zsh
+export XDG_CONFIG_HOME=$HOME/.config
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export EDITOR=vim
+export VISUAL=vim
+export PGDATA=/usr/local/var/postgres
+export HOMEBREW_BREWFILE=$HOME/dotfiles/Brewfile
+
+# golang
+if [ -x "`which go`" ]; then
+  export GOPATH=$HOME/.go
+  export PATH=$PATH:$GOPATH/bin
+fi
+
+# pyenv
+if [ -d $HOME/.pyenv/ ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH=$PATH:$PYENV_ROOT/bin
+  export PATH="$PATH:$PYENV_ROOT/versions/anaconda3-2.5.0/bin"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+# rbenv
+if [ -d ${HOME}/.rbenv ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
+## nodebrew
+if [ -d ${HOME}/.nodebrew ]; then
+  export PATH="$HOME/.nodebrew/current/bin:$PATH"
+fi
+
+# yarn
+export PATH="$PATH:`yarn global bin`"
+
+# bookmark
+# hash -d School=$HOME/Desktop/School
+# hash -d develop=$HOME/Desktop/develop
+
+#cdしたらlsする
+# cd() { builtin cd "$@" && ls -FG }
+
+# #DELIM=$'🍺 '
+# DELIM=$'🍣 '
+# #DELIM=$'⚽ '
+# PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
+# PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
+# SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
+# RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
