@@ -13,8 +13,6 @@
   graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
   # 上の省略形
   gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
-  st = status
-  br = branch
   # 一行log
   lo = log --oneline
   # Untracked filesを表示せず，not stagedと，stagedだけの状態を出力する
@@ -23,4 +21,12 @@
   difff = diff --word-diff
   # 今日一日の作業を振り返る
   today = log --oneline --since='12 hour ago'
+  # コンフリクトで修正すべきファイルを表示
   conflicts = !git ls-files -u | cut -f 2 | sort -u
+
+  # alias
+  st = status
+  br = branch
+  co = checkout
+  cm = commit
+  df = diff

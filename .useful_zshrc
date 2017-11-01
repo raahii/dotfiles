@@ -15,21 +15,6 @@ HISTTIMEFORMAT='%Y-%m-%dT%T%z ' # history にコマンド実行時刻を記録�
 # disable bang history
 setopt nobanghist
 
-# プロンプト
-# 1行表示
-# #DELIM=$'🍺 '
-# DELIM=$'🍣 '
-# #DELIM=$'⚽ '
-# PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM}) "
-# #PROMPT="[%n@%m %~]%(!.#.$) "
-# ##PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.$) "
-# PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
-# SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
-# RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
-# # 2行表示
-# #PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
-# #%# "
- 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
 select-word-style default
@@ -41,9 +26,9 @@ zstyle ':zle:*' word-style unspecified
 ########################################
 # 補完
 # 補完機能を有効にする
-fpath=(/usr/local/share/zsh-completions/src $fpath)
-autoload -U compinit
-compinit -C
+# fpath=(/usr/local/share/zsh-completions/src $fpath)
+# autoload -U compinit
+# compinit -C
  
 # 補完で小文字でも大文字にマッチさせる
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

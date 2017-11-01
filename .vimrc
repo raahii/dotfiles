@@ -57,7 +57,8 @@ set ambiwidth=double
 " 対応括弧に'<'と'>'のペアを追加
 "set matchpairs& matchpairs+=<:>
 " ESCを二回押すことでハイライトを消す
-nmap <silent> <Esc><Esc> :nohlsearch<CR>
+nnoremap <Esc><Esc> :noh<CR>
+nnoremap <C-j><C-j> :noh<CR>
 ""クリップボード設定
 if has('mac')
     set clipboard=unnamed
@@ -95,6 +96,8 @@ nnoremap <C-j> <esc>
 noremap ; :
 noremap : ;
 
+autocmd BufRead,BufNewFile *.slim setfiletype slim
+
 "}}}
 
 """"""""""""""""""""
@@ -125,7 +128,7 @@ call dein#add('thinca/vim-quickrun')      " コンパイル
 call dein#add('Shougo/vimproc', {'build' : 'make'}) "非同期実行
 call dein#add('scrooloose/nerdtree')      " ディレクトリ情報を見れる
 call dein#add('junegunn/vim-easy-align')  " アラインメント
-call dein#add('scrooloose/syntastic.git') " シンタックスチェッカー
+" call dein#add('scrooloose/syntastic.git') " シンタックスチェッカー
 call dein#add('mattn/emmet-vim')          " htmlコーディングを効率化
 call dein#add('elzr/vim-json')            " jsonを綺麗に表示
 call dein#add('Shougo/neocomplete.vim')   " 候補
@@ -135,11 +138,15 @@ call dein#add('Konfekt/FoldText')         " neocompleteでエラーがでるた�
 call dein#add('tpope/vim-endwise')        " Ruby向けにendを自動挿入してくれる
 call dein#add('tomtom/tcomment_vim')      " コメントON/OFFを手軽に実行
 call dein#add('NigoroJr/rsense')          " Rubyにおける強力な補完
-call dein#add('othree/yajs.vim')
+"call dein#add('othree/yajs.vim')
 call dein#add("pangloss/vim-javascript")
-call dein#add("mxw/vim-jsx")
-call dein#add('fatih/vim-go')             "Go
-call dein#add('tpope/vim-haml') " haml
+"call dein#add("mxw/vim-jsx")
+call dein#add('fatih/vim-go')             " Go
+call dein#add('t-yuki/vim-go-coverlay')
+call dein#add('tpope/vim-haml')           " haml
+call dein#add('kchmck/vim-coffee-script') " coffee
+call dein#add('slim-template/vim-slim')   " slim
+call dein#add('rust-lang/rust.vim')       " rust
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
@@ -211,19 +218,19 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 " Syntastic
 """"""""""""""""""""
 "{{{
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_python_python_exec = '/usr/local/var/pyenv/shims/python'
-let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = {
-    \ 'mode': 'passive',
-\}
+" let g:syntastic_enable_signs=1
+" let g:syntastic_auto_loc_list=2
+" let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_python_python_exec = '/usr/local/var/pyenv/shims/python'
+" let g:syntastic_enable_signs = 1
+" let g:syntastic_error_symbol = '✗'
+" let g:syntastic_warning_symbol = '⚠'
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_mode_map = {
+"     \ 'mode': 'passive',
+" \}
     "\ 'active_filetypes': ['c', 'html', 'css', 'javascript', 'python', 'ruby', 'php'],
 " augroup AutoSyntastic autocmd!
 "     autocmd InsertLeave,TextChanged * call s:syntastic() 

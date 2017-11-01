@@ -1,7 +1,7 @@
-# zmodload zsh/zprof && zprof # zsh起動時間計測
-# oh-my-zsh setting
-export ZSH=$HOME/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
 # global alias
 alias cp='cp -i'
@@ -24,26 +24,29 @@ fi
 #補完リストが多いときに尋ねない
 LISTMAX=1000
 
-# plugin setting
-plugins=(git)
-
-#「少し凝ったzshrc」 
-. $HOME/.useful_zshrc
-
 # peco
 source ~/.zsh/peco.zsh
-#source .zsh/peco-sources
-bindkey '^jr' peco_select_rake_task
-bindkey '^jb' peco_git_recent_branches
-bindkey '^jB' peco_git_recent_all_branches
+# source .zsh/peco-sources
+# bindkey '^jr' peco_select_rake_task
+# bindkey '^jb' peco_git_recent_branches
+# bindkey '^jB' peco_git_recent_all_branches
 bindkey '^jz' peco_cd_history
 bindkey '^R'  peco_select_history
+
+# git
+# autoload -Uz vcs_info # VCSの情報を取得するzshの便利関数 vcs_infoを使う
+#
+# zstyle ':vcs_info:*' formats '[%b]'
+# zstyle ':vcs_info:*' actionformats '[%b|%a]'
+# precmd () {
+#     psvar=()
+#     LANG=en_US.UTF-8 vcs_info
+#     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+# }
+
+# バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
+# RPROMPT="%1(v|%F{green}%1v%f|)"
 
 # 各OS毎の設定を読み込む
 [ -f $HOME/.zshrc_`uname` ] && . $HOME/.zshrc_`uname`
 [ -f $HOME/.zshrc_local ] && . $HOME/.zshrc_local
-
-# password etc
-if [ -e $HOME/.secret_zshrc ]; then
-  . $HOME/.secret_zshrc
-fi

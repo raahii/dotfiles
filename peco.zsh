@@ -1,1 +1,0 @@
-/Users/naka/peco.zsh
