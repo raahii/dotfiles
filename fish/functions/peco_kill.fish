@@ -1,1 +1,0 @@
-/Users/naka/.config/fisherman/peco/functions/peco_kill.fish

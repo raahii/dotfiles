@@ -1,1 +1,0 @@
-/Users/naka/.config/fisherman/extract/functions/extract.fish

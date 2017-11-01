@@ -1,1 +1,0 @@
-/Users/naka/.config/fisherman/spin/completions/spin.fish

@@ -1,1 +1,0 @@
-/Users/naka/.config/fisherman/getopts/getopts.fish
