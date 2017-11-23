@@ -1,7 +1,65 @@
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+source ~/.zsh/shrink-path.plugin.zsh
+
+autoload -Uz colors
+colors
+
+zstyle :prompt:shrink_path fish yes
+# PROMPT='%n@%d
+# $fg[green]%n%{${reset_color}%}:$(shrink_path -f)
+PROMPT="
+$fg[green]%n%{${reset_color}%}:%d
+$ "
+
+zstyle ':completion:*' list-colors "${LS_COLORS}"
+
+## 履歴の保存先
+HISTFILE=$HOME/.zsh-history
+## メモリに展開する履歴の数
+HISTSIZE=100000
+## 保存する履歴の数
+SAVEHIST=100000
+
+## 色を使う
+setopt prompt_subst
+## ビープを鳴らさない
+setopt nobeep
+## 直前と同じコマンドをヒストリに追加しない
+setopt hist_ignore_dups
+## cd 時に自動で push
+setopt auto_pushd
+## 同じディレクトリを pushd しない
+## 出力の文字列末尾に改行コードが無い場合でも表示
+unsetopt promptcr
+## Emacsライクキーバインド設定
+bindkey -e
+## ヒストリを共有
+setopt share_history
+## 補完候補のカーソル選択を有効に
+zstyle ':completion:*:default' menu select=1
+## ディレクトリ名だけで cd
+setopt auto_cd
+## カッコの対応などを自動的に補完
+setopt auto_param_keys
+## ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
+setopt auto_param_slash
+## スペルチェック
+setopt correct
+## {a-c} を a b c に展開する機能を使えるようにする
+setopt brace_ccl
+## Ctrl+S/Ctrl+Q によるフロー制御を使わないようにする
+setopt NO_flow_control
+## コマンドラインの先頭がスペースで始まる場合ヒストリに追加しない
+setopt hist_ignore_space
+## コマンドラインでも # 以降をコメントと見なす
+setopt interactive_comments
+## ファイル名の展開でディレクトリにマッチした場合末尾に / を付加する
+setopt mark_dirs
+## history (fc -l) コマンドをヒストリリストから取り除く。
+setopt hist_no_store
+## 補完候補を詰めて表示
+setopt list_packed
+## 最後のスラッシュを自動的に削除しない
+setopt noautoremoveslash
 
 # global alias
 alias cp='cp -i'
@@ -26,26 +84,8 @@ LISTMAX=1000
 
 # peco
 source ~/.zsh/peco.zsh
-# source .zsh/peco-sources
-# bindkey '^jr' peco_select_rake_task
-# bindkey '^jb' peco_git_recent_branches
-# bindkey '^jB' peco_git_recent_all_branches
 bindkey '^jz' peco_cd_history
 bindkey '^R'  peco_select_history
-
-# git
-# autoload -Uz vcs_info # VCSの情報を取得するzshの便利関数 vcs_infoを使う
-#
-# zstyle ':vcs_info:*' formats '[%b]'
-# zstyle ':vcs_info:*' actionformats '[%b|%a]'
-# precmd () {
-#     psvar=()
-#     LANG=en_US.UTF-8 vcs_info
-#     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-# }
-
-# バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
-# RPROMPT="%1(v|%F{green}%1v%f|)"
 
 # 各OS毎の設定を読み込む
 [ -f $HOME/.zshrc_`uname` ] && . $HOME/.zshrc_`uname`

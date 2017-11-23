@@ -1,23 +1,9 @@
-## Prompt
-# source $HOME/dotfiles/zsh-git-prompt/zshrc.sh
-# DELIM=$'\U1F363\  '
-# PROMPT="%{$fg[255]%}%~ %{$reset_color%}%(!.#.${DELIM})"
-# RPROMPT="$(git_super_status)"
-# RPROMPT="%{$(git_super_status)%}%{$reset_color%}"
-# PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
-# SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
-
 ##  PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/texlive/2016/bin/x86_64-darwin:/usr/texbin:$HOME/sh:$PATH"
-#export PYTHONPATH="/Library/Python/2.7/site-packages:/usr/local/lib/python2.7/site-packages"
-# export XDG_CONFIG_HOME=$HOME/.config
-# export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export EDITOR=vim
 export VISUAL=vim
-# export PGDATA=/usr/local/var/postgres
-# export PKG_CONFIG_PATH=/usr/local/Cellar/imagemagick/6.9.7-/include/ImageMagick-7/MagickWand
 export HOMEBREW_BREWFILE=$HOME/dotfiles/Brewfile
 
 ## Go 環境設定
@@ -70,11 +56,3 @@ alias bim='vim'
 # ウィンドウ情報を回復してvimを開始
 alias vis="vim -S $HOME/.session.vim"
 alias ls="ls -FG"
-# peco kill
-alias pkill="ps aux | peco | awk '{print \$2}' | xargs kill"
-
-# find word
-alias findword='find . -type f -print0 | xargs -0 grep -ni --color=auto $1'
-
-# lsusb
-alias lsusb="system_profiler SPUSBDataType"
