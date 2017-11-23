@@ -78,9 +78,6 @@ elif [ "$OS" == 'ubuntu' ]; then
   tar xvzf $HOME/peco_linux_amd64.tar.gz
   sudo mv $HOME/peco_linux_amd64/peco /usr/local/bin
   rm -rf peco_linux_amd64 peco_linux_amd64.tar.gz
-
-  # zprezto
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
 
 echo -e ">>> deploying dotfiles"
@@ -107,42 +104,3 @@ do
 done
 
 touch $HOME/.zshrc_local
-
-# zprezto
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
-
-# delete rows for mac
-sed -i '/reattach/d' $HOME/.tmux.conf
-sed -i '/powerline/d' $HOME/.tmux.conf
-
-# # install dein.vim
-# mkdir -p $HOME/.vim/dein
-# wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
-# sh ./installer.sh $HOME/.vim/dein/
-#
-# echo -e "\n-----------------[ deploying ]-----------------\n"
-# # deploy
-# if [ -e $HOME/.zshrc ]; then
-#     rm $HOME/.zshrc 
-# fi
-# if [ -e $HOME/.vimrc ]; then
-#     rm $HOME/.vimrc 
-# fi
-# if [ -e $HOME/.useful_zshrc ]; then
-#     rm $HOME/.useful_zshrc 
-# fi
-# if [ -e $HOME/.vim ]; then
-#     rm -r $HOME/.vim
-# fi
-#
-# ln -s $HOME/dotfiles/.vimrc $HOME
-# ln -s $HOME/dotfiles/.zshrc $HOME
-# ln -s $HOME/dotfiles/.useful_zshrc $HOME
-# ln -s $HOME/dotfiles/.vim $HOME
-# ln -s $HOME/dotfiles/.gitignore_global $HOME
-# ln -s $HOME/dotfiles/.gitconfig $HOME
-#
-# echo -e "\n-----[ Finished! Please reload your machine :) ]--------\n"
