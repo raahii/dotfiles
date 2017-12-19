@@ -59,6 +59,10 @@ elif [ "$OS" == 'ubuntu' ]; then
   sudo apt-get -y install vim vim-gnome
   sudo apt-get -y install tmux
   sudo apt-get -y install wget
+  sudo apt-get -y install software-properties-common
+  sudo add-apt-repository ppa:mc3man/trusty-media
+  sudo apt-get update
+  sudo apt-get -y install ffmpeg
 fi
 
 # zshをインストール
