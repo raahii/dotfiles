@@ -147,6 +147,9 @@ call dein#add('tpope/vim-haml')           " haml
 call dein#add('kchmck/vim-coffee-script') " coffee
 call dein#add('slim-template/vim-slim')   " slim
 call dein#add('rust-lang/rust.vim')       " rust
+call dein#add('posva/vim-vue')            " vuejs
+call dein#add('nikvdp/ejs-syntax')        "ejs
+call dein#add('airblade/vim-gitgutter')   "
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
