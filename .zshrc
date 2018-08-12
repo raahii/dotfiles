@@ -90,3 +90,9 @@ bindkey '^R'  peco_select_history
 # 各OS毎の設定を読み込む
 [ -f $HOME/.zshrc_`uname` ] && . $HOME/.zshrc_`uname`
 [ -f $HOME/.zshrc_local ] && . $HOME/.zshrc_local
+
+# Docker
+alias dps='docker ps'
+alias dim='docker images'
+alias drmi='docker rmi $(docker images -aqf "dangling=true") 2> /dev/null'
+alias dc='docker-compose'
