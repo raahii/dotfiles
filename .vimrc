@@ -124,32 +124,21 @@ call dein#add('plasticboy/vim-markdown')  " markdown用
 call dein#add('kannokanno/previm')        " markdown用
 call dein#add('tyru/open-browser.vim')    " markdown用
 call dein#add('tpope/vim-surround')       " 括弧の柔軟な操作
-call dein#add('thinca/vim-quickrun')      " コンパイル
 call dein#add('Shougo/vimproc', {'build' : 'make'}) "非同期実行
 call dein#add('scrooloose/nerdtree')      " ディレクトリ情報を見れる
 call dein#add('junegunn/vim-easy-align')  " アラインメント
-" call dein#add('scrooloose/syntastic.git') " シンタックスチェッカー
 call dein#add('mattn/emmet-vim')          " htmlコーディングを効率化
 call dein#add('elzr/vim-json')            " jsonを綺麗に表示
 call dein#add('Shougo/neocomplete.vim')   " 候補
 call dein#add('Konfekt/FastFold')
 call dein#add('Konfekt/FoldText')         " neocompleteでエラーがでるため追加
-"call dein#add('tpope/vim-rails' )         " Rails向けのコマンドを提供する
-call dein#add('tpope/vim-endwise')        " Ruby向けにendを自動挿入してくれる
-call dein#add('tomtom/tcomment_vim')      " コメントON/OFFを手軽に実行
-call dein#add('NigoroJr/rsense')          " Rubyにおける強力な補完
-"call dein#add('othree/yajs.vim')
-call dein#add("pangloss/vim-javascript")
-"call dein#add("mxw/vim-jsx")
-call dein#add('fatih/vim-go')             " Go
-call dein#add('t-yuki/vim-go-coverlay')
-call dein#add('tpope/vim-haml')           " haml
-call dein#add('kchmck/vim-coffee-script') " coffee
-call dein#add('slim-template/vim-slim')   " slim
-call dein#add('rust-lang/rust.vim')       " rust
-call dein#add('posva/vim-vue')            " vuejs
-call dein#add('nikvdp/ejs-syntax')        "ejs
 call dein#add('airblade/vim-gitgutter')   "
+call dein#add('junegunn/fzf.git')
+call dein#add('tomtom/tcomment_vim')      " コメントON/OFFを手軽に実行
+call dein#add('posva/vim-vue')            " for vue.js
+call dein#add('w0rp/ale')                 " lint
+call dein#add('terryma/vim-multiple-cursors')
+call dein#add('fatih/vim-go')
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
@@ -169,7 +158,7 @@ autocmd FileType make set modelines=0
 " Unite-vim
 """"""""""""""""""""
 "{{{
-" バッファ一覧
+" バッファ一 覧
 "noremap <C-P> :Unite buffer<CR>
 " ファイル一覧
 "noremap <C-N> :Unite -buffer-name=file file<CR>
@@ -180,67 +169,6 @@ noremap <C-z> :Unite file_mru<CR>
 noremap <C-e> :NERDTreeToggle<CR>
 " Required:
 filetype plugin indent on
-"}}}
-
-""""""""""""""""""""
-" QuickRun
-""""""""""""""""""""
-"{{{
-let c_opt = "-std=c99 -lm -ljpeg -framework GLUT -framework OpenGL -Wno-deprecated"
-let cpp_opt = "-std=c++11"
-
-let g:quickrun_config = {
-\   "c/gcc" : {
-\       "cmdopt" : c_opt
-\   },
-\   "cpp/g++" : {
-\       "cmdopt" : cpp_opt
-\   },
-\   "tex" : {
-\       'command' : 'latexmk',
-\       'hook/cd/directory': '%S:h',
-\       'exec': '%c %s'
-\   },
-\   "_" : {
-\       "runner"    : 'vimproc',
-\       "runner/vimproc/updatetime" : 60,
-\       "outputter" : 'error',
-\       "outputter/error/success" : "buffer",
-\       "outputter/error/error"   : "quickfix",
-\       "outputter/buffer/split"  : ":45vs",
-\       "outputter/buffer/close_on_empty" : 1
-\   }
-\ }
-"q でquickfixを閉じれるようにする。
-au FileType qf nnoremap <silent><buffer>q :quit<CR>
-"<C-c> でquickrunを停止
-nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
-"}}}
-
-""""""""""""""""""""
-" Syntastic
-""""""""""""""""""""
-"{{{
-" let g:syntastic_enable_signs=1
-" let g:syntastic_auto_loc_list=2
-" let g:syntastic_javascript_checkers = ['jshint']
-" let g:syntastic_python_checkers = ['pylint']
-" let g:syntastic_python_python_exec = '/usr/local/var/pyenv/shims/python'
-" let g:syntastic_enable_signs = 1
-" let g:syntastic_error_symbol = '✗'
-" let g:syntastic_warning_symbol = '⚠'
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_mode_map = {
-"     \ 'mode': 'passive',
-" \}
-    "\ 'active_filetypes': ['c', 'html', 'css', 'javascript', 'python', 'ruby', 'php'],
-" augroup AutoSyntastic autocmd!
-"     autocmd InsertLeave,TextChanged * call s:syntastic() 
-" augroup END
-" function! s:syntastic()
-"     SyntasticCheck
-" endfunction
 "}}}
 
 """"""""""""""""""""
@@ -285,3 +213,42 @@ let g:jsx_ext_required = 0
 " @jsx React.DOM プラグマがある場合のみ有効にする
 let g:jsx_pragma_required = 1
 "}}}
+
+""""""""""""""""""""
+" gitgutter
+""""""""""""""""""""
+"{{{
+let g:gitgutter_sign_added = '・'
+let g:gitgutter_sign_modified = '・'
+let g:gitgutter_sign_removed = '・'
+let g:gitgutter_sign_removed_first_line = '・'
+let g:gitgutter_sign_modified_removed = '・'
+"}}}
+
+""""""""""""""""""""
+" fzf
+""""""""""""""""""""
+"{{{
+" If installed using Homebrew
+set rtp+=/usr/local/opt/fzf
+nnoremap <C-t> :FZFFileList<CR>
+command! FZFFileList call fzf#run({
+            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
+            \ 'sink': 'e'})
+"}}}
+
+""""""""""""""""""""
+" multiple cursors
+""""""""""""""""""""
+"{{{
+function! Multiple_cursors_before()
+    exe 'NeoCompleteLock'
+    echo 'Disabled autocomplete'
+endfunction
+
+function! Multiple_cursors_after()
+    exe 'NeoCompleteUnlock'
+    echo 'Enabled autocomplete'
+endfunction
+"}}}
+
