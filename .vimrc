@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""
-"基本設定
+" basic setting
 """"""""""""""""""""""""""""""
 "{{{
 " シンタックスハイライト
@@ -21,7 +21,6 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 set expandtab
-"set autoindent
 "swpファイルを作らない
 set noswapfile
 " スクロールする時に下が見えるようにする
@@ -54,8 +53,6 @@ set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 "bufferで複数ファイルをswitchするときに未保存のものがあっても警告を出さない
 set hidden
 set ambiwidth=double
-" 対応括弧に'<'と'>'のペアを追加
-"set matchpairs& matchpairs+=<:>
 " ESCを二回押すことでハイライトを消す
 nnoremap <Esc><Esc> :noh<CR>
 nnoremap <C-j><C-j> :noh<CR>
@@ -70,21 +67,21 @@ endif
 set splitright
 "fold
 set foldmethod=marker
-"インデントのある長い行の折り返しの見た目が美しくなる
-"set breakindent
 " タブ機能を使おう！
 nnoremap <C-n> gt
 nnoremap <C-p> gT
 " 自動的に閉じ括弧を入力
 imap { {}<LEFT>
-" imap [ []<LEFT>
-" imap ( ()<LEFT>
+imap [ []<LEFT>
+imap ( ()<LEFT>
 
 " markdownの折りたたみなし
 let g:vim_markdown_folding_disabled=1
 
 "閉括弧が入力された時、対応する括弧を強調する
 set showmatch
+
+set wildmenu
 
 " ctrl+jをescキーにする
 inoremap <C-j> <esc>
@@ -100,13 +97,6 @@ autocmd BufRead,BufNewFile *.slim setfiletype slim
 
 "}}}
 
-""""""""""""""""""""
-" matchit.vim
-""""""""""""""""""""
-"{{{
-source $VIMRUNTIME/macros/matchit.vim
-"}}}
-
 """"""""""
 " dein.vim
 """"""""""
@@ -120,9 +110,6 @@ call dein#begin(expand('$HOME/.vim/dein'))
 call dein#add('Shougo/dein.vim')          " dein自体をdeinで管理
 call dein#add('Shougo/neomru.vim')        " a unite dependency
 call dein#add('Shougo/unite.vim')         " unite
-call dein#add('plasticboy/vim-markdown')  " markdown用
-call dein#add('kannokanno/previm')        " markdown用
-call dein#add('tyru/open-browser.vim')    " markdown用
 call dein#add('tpope/vim-surround')       " 括弧の柔軟な操作
 call dein#add('Shougo/vimproc', {'build' : 'make'}) "非同期実行
 call dein#add('scrooloose/nerdtree')      " ディレクトリ情報を見れる
@@ -133,25 +120,34 @@ call dein#add('Shougo/neocomplete.vim')   " 候補
 call dein#add('Konfekt/FastFold')
 call dein#add('Konfekt/FoldText')         " neocompleteでエラーがでるため追加
 call dein#add('airblade/vim-gitgutter')   "
-call dein#add('junegunn/fzf.git')
 call dein#add('tomtom/tcomment_vim')      " コメントON/OFFを手軽に実行
 call dein#add('posva/vim-vue')            " for vue.js
 call dein#add('w0rp/ale')                 " lint
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('fatih/vim-go')
+call dein#add('Vimjas/vim-python-pep8-indent')
+call dein#add('dag/vim-fish ')
+
 call dein#end()
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
 
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
+" " If you want to install not installed plugins on startup.
+" if dein#check_install()
+"   call dein#install()
+" endif
 
 "# 文書内の"ex"などの単語がvimのコマンドと勘違いされることに対処
 "http://s25r.blogspot.jp/2010/01/blog-post.html
 autocmd FileType make set modelines=0
+"}}}
+
+""""""""""""""""""""
+" matchit.vim
+""""""""""""""""""""
+"{{{
+source $VIMRUNTIME/macros/matchit.vim
 "}}}
 
 """"""""""""""""""""
@@ -205,16 +201,6 @@ let g:vim_json_syntax_conceal = 0
 "}}}
 
 """"""""""""""""""""
-" jsx
-""""""""""""""""""""
-"{{{
-" js 拡張子でも有効にする
-let g:jsx_ext_required = 0
-" @jsx React.DOM プラグマがある場合のみ有効にする
-let g:jsx_pragma_required = 1
-"}}}
-
-""""""""""""""""""""
 " gitgutter
 """"""""""""""""""""
 "{{{
@@ -223,18 +209,6 @@ let g:gitgutter_sign_modified = '・'
 let g:gitgutter_sign_removed = '・'
 let g:gitgutter_sign_removed_first_line = '・'
 let g:gitgutter_sign_modified_removed = '・'
-"}}}
-
-""""""""""""""""""""
-" fzf
-""""""""""""""""""""
-"{{{
-" If installed using Homebrew
-set rtp+=/usr/local/opt/fzf
-nnoremap <C-t> :FZFFileList<CR>
-command! FZFFileList call fzf#run({
-            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
-            \ 'sink': 'e'})
 "}}}
 
 """"""""""""""""""""
