@@ -2,84 +2,67 @@
 " basic setting
 """"""""""""""""""""""""""""""
 "{{{
-" シンタックスハイライト
 syntax on
-"カラーテーマ
-set background=dark
-colorscheme gruvbox
-"undoファイルの作成
-set undofile
-set undodir=~/.vim/undofiles
-" エンコード関係
+set ttyfast
+set lazyredraw
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 set fenc=utf-8
-"タブ幅の設定
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set autoindent
 set expandtab
-"swpファイルを作らない
-set noswapfile
-" スクロールする時に下が見えるようにする
-set scrolloff=5
-" バックアップファイルを作らない
+
+" color scheme
+set background=dark
+colorscheme gruvbox
+
+" enable undo
+set undofile
+set undodir=~/.vim/undofiles
+
+set noswapfile "swpファイルを作らない
+set scrolloff=5 " スクロールする時に下が見えるようにする
 set nowritebackup
-set nobackup
-" バックスペースで各種消せるようにする
-set backspace=indent,eol,start
-" ビープ音を消す
+set nobackup " バックアップファイルを作らない
+set backspace=indent,eol,start " バックスペースで各種消せるようにする
 set vb t_vb=
-set novisualbell
-" 行番号を表示
-set number
-" 小文字の検索でも大文字も見つかるようにする
-set ignorecase
-" ただし大文字も含めた検索の場合はその通りに検索する
-set smartcase
-" インクリメンタルサーチを行う
-set incsearch
-" 検索結果をハイライト表示
-set hlsearch
-" マウスモード有効
-set mouse=a 
-" コマンド、検索パターンを1000個まで履歴に残す
-set history=1000
-"タブ、空白、改行の可視化
+set novisualbell " ビープ音を消す
+set number " 行番号を表示
+set ignorecase " 小文字の検索でも大文字も見つかるようにする
+set smartcase " ただし大文字も含めた検索の場合はその通りに検索する
+set incsearch " インクリメンタルサーチを行う
+set hlsearch " 検索結果をハイライト表示
+set mouse=a " マウスモード有効
+set history=1000 " コマンド、検索パターンを1000個まで履歴に残す
 set list
-set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
-"bufferで複数ファイルをswitchするときに未保存のものがあっても警告を出さない
-set hidden
+set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:% "タブ、空白、改行の可視化
+set hidden "bufferで複数ファイルをswitchするときに未保存のものがあっても警告を出さない
 set ambiwidth=double
+
 " ESCを二回押すことでハイライトを消す
 nnoremap <Esc><Esc> :noh<CR>
 nnoremap <C-j><C-j> :noh<CR>
-""クリップボード設定
+
+"クリップボード設定
 if has('mac')
     set clipboard=unnamed
 else
     set clipboard=unnamedplus
 endif
 
-"画面分割の際に新しいウィンドウを右側に開く
-set splitright
-"fold
-set foldmethod=marker
-" タブ機能を使おう！
+set splitright " 画面分割の際に新しいウィンドウを右側に開く
+set foldmethod=marker "fold
+
+" タブ機能
 nnoremap <C-n> gt
 nnoremap <C-p> gT
-" 自動的に閉じ括弧を入力
-imap { {}<LEFT>
-imap [ []<LEFT>
-imap ( ()<LEFT>
 
-" markdownの折りたたみなし
-let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_folding_disabled=1 " markdownの折りたたみなし
 
-"閉括弧が入力された時、対応する括弧を強調する
-set showmatch
+set showmatch "閉括弧が入力された時、対応する括弧を強調する
 
 set wildmenu
 
@@ -93,7 +76,7 @@ nnoremap <C-j> <esc>
 noremap ; :
 noremap : ;
 
-autocmd BufRead,BufNewFile *.slim setfiletype slim
+" autocmd BufRead,BufNewFile *.slim setfiletype slim
 
 "}}}
 
@@ -104,63 +87,40 @@ autocmd BufRead,BufNewFile *.slim setfiletype slim
 if &compatible
   set nocompatible
 endif
-set runtimepath^=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call dein#begin(expand('$HOME/.vim/dein')) 
-call dein#add('Shougo/dein.vim')          " dein自体をdeinで管理
-call dein#add('Shougo/neomru.vim')        " a unite dependency
-call dein#add('Shougo/unite.vim')         " unite
-call dein#add('tpope/vim-surround')       " 括弧の柔軟な操作
-call dein#add('Shougo/vimproc', {'build' : 'make'}) "非同期実行
-call dein#add('scrooloose/nerdtree')      " ディレクトリ情報を見れる
-call dein#add('junegunn/vim-easy-align')  " アラインメント
-call dein#add('mattn/emmet-vim')          " htmlコーディングを効率化
-call dein#add('elzr/vim-json')            " jsonを綺麗に表示
-call dein#add('Shougo/neocomplete.vim')   " 候補
-call dein#add('Konfekt/FastFold')
-call dein#add('Konfekt/FoldText')         " neocompleteでエラーがでるため追加
-call dein#add('airblade/vim-gitgutter')   "
-call dein#add('tomtom/tcomment_vim')      " コメントON/OFFを手軽に実行
-call dein#add('posva/vim-vue')            " for vue.js
-call dein#add('w0rp/ale')                 " lint
-call dein#add('terryma/vim-multiple-cursors')
-call dein#add('fatih/vim-go')
-call dein#add('Vimjas/vim-python-pep8-indent')
-call dein#add('dag/vim-fish ')
+" if dein.vim is not available, install it
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
-call dein#end()
-filetype plugin indent on     " required!
-filetype indent on
-syntax on
+" configuration
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  let s:toml = s:dein_dir . '/plugins.toml'
+  call dein#load_toml(s:toml, {'lazy': 0}) 
+  call dein#end()
+  call dein#save_state()
+endif
 
-" " If you want to install not installed plugins on startup.
-" if dein#check_install()
-"   call dein#install()
-" endif
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
 
 "# 文書内の"ex"などの単語がvimのコマンドと勘違いされることに対処
 "http://s25r.blogspot.jp/2010/01/blog-post.html
-autocmd FileType make set modelines=0
+" autocmd FileType make set modelines=0
 "}}}
 
 """"""""""""""""""""
-" matchit.vim
+" Nerdtree
 """"""""""""""""""""
 "{{{
-source $VIMRUNTIME/macros/matchit.vim
-"}}}
-
-""""""""""""""""""""
-" Unite-vim
-""""""""""""""""""""
-"{{{
-" バッファ一 覧
-"noremap <C-P> :Unite buffer<CR>
-" ファイル一覧
-"noremap <C-N> :Unite -buffer-name=file file<CR>
-
-" 最近使ったファイルの一覧
-noremap <C-z> :Unite file_mru<CR>
 " NERDTree
 noremap <C-e> :NERDTreeToggle<CR>
 " Required:
@@ -181,16 +141,61 @@ nmap ga <Plug>(EasyAlign)
 " NeoComplete
 """"""""""""""""""""
 "{{{
-" neocomplete用設定
+let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_ignore_case = 1
 let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_enable_camel_case_completion  =  1
+let g:neocomplcache_max_list = 20
+let g:neocomplcache_min_syntax_length = 3
+
+" Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
-let g:neocomplete#keyword_patterns._ = '\h\w*'
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+" let g:neocomplete#enable_auto_select = 1
+
+" Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" 補完ウィンドウの設定
+set completeopt=menuone
 "}}}
 
 """"""""""""""""""""
@@ -226,3 +231,12 @@ function! Multiple_cursors_after()
 endfunction
 "}}}
 
+""""""""""""""""""""
+" jedi-vim
+""""""""""""""""""""
+"{{{
+if has('python3') && !has('patch-8.1.201')
+  silent! python3 1
+endif
+autocmd FileType python setlocal completeopt-=preview
+"}}}
