@@ -35,9 +35,6 @@ if [ "$OS" == 'ubuntu' ]; then
   sudo apt-get -y install tmux
   sudo apt-get -y install wget
   sudo apt-get -y install software-properties-common
-  sudo add-apt-repository ppa:mc3man/trusty-media
-  sudo apt-get update
-  sudo apt-get -y install ffmpeg
 elif [ "$OS" == 'redhat' ]; then
   sudo yum -y update
   sudo yum -y upgrade
@@ -65,7 +62,7 @@ if [ "$OS" == 'ubuntu' ]; then
   # fish
   sudo apt-add-repository ppa:fish-shell/release-2
   sudo apt-get update
-  sudo apt-get install fish
+  sudo apt-get install -y fish
 
   # fisher
   curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
@@ -94,7 +91,7 @@ sh ./installer.sh $HOME/.vim/dein && rm ./installer.sh
 ln -s $HOME/dotfiles/.vim/colors/ $HOME/.vim/colors
 
 # symlink dotfiles
-dotfiles=(.vimrc .fishrc .fishrc_$(uname) .gitconfig .gitignore_global .tmux.conf)
+dotfiles=(.vimrc .gitconfig .gitignore_global .tmux.conf)
 
 for dotfile in "${dotfiles[@]}"
 do
@@ -104,6 +101,7 @@ do
   ln -s $HOME/dotfiles/fish/$dotfile ~/.config/fish/
 done
 
-touch ~/.config/fish/config_local.fish
+.fishrc .fishrc_$(uname) 
 
+touch ~/.config/fish/config_local.fish
 chsh -s /usr/bin/fish

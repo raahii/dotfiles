@@ -4,4 +4,4 @@
 .cd
 .secret_zshrc
 .zshrc_local
-.config_local.fish
+config_local.fish

@@ -3,10 +3,12 @@ set fish_greeting ''
 set HISTSIZE 100000
 set -x GREP_OPTIONS '--color=always'
 set -x GREP_COLOR '1;35;40'
+set fish_theme pure
 
 # global alias
 alias cp 'cp -i'
 alias mv 'mv -i'
+alias ll 'ls -al'
 alias mkdir 'mkdir -p'
 alias r 'eval $SHELL -l'
 alias sudo 'sudo -E '
@@ -24,8 +26,9 @@ set -x LESS '-i -M -R -S -W -z-4 -x4'
 . ~/.config/fish/peco.fish
 function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'
+  bind \cg peco_change_directory # Bind for peco change directory to Ctrl+F
 end
 
-# 各OS毎の設定を読み込む
+# config for each operating system
 [ -f $HOME/.config/fish/config_(uname).fish ]; and . ~/.config/fish/config_(uname).fish
 [ -f $HOME/.config/fish/config_local.fish ]; and . ~/.config/fish/config_local.fish
