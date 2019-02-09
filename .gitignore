@@ -1,5 +1,0 @@
-.vim/undofiles
-.vim/dein/*
-!.vim/dein/plugins.toml
-.cd
-config_local.fish
