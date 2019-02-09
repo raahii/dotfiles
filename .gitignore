@@ -1,7 +1,5 @@
-/.vim/*
-!/.vim/colors
-!/.vim/plugin
+.vim/undofiles
+.vim/dein/*
+!.vim/dein/plugins.toml
 .cd
-.secret_zshrc
-.zshrc_local
 config_local.fish

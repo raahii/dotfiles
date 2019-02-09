@@ -61,10 +61,9 @@ nnoremap <C-n> gt
 nnoremap <C-p> gT
 
 let g:vim_markdown_folding_disabled=1 " markdownの折りたたみなし
-
 set showmatch "閉括弧が入力された時、対応する括弧を強調する
-
 set wildmenu
+set tags=.tags
 
 " ctrl+jをescキーにする
 inoremap <C-j> <esc>
@@ -111,6 +110,9 @@ endif
 if dein#check_install()
   call dein#install()
 endif
+
+filetype plugin indent on
+syntax enable
 
 "# 文書内の"ex"などの単語がvimのコマンドと勘違いされることに対処
 "http://s25r.blogspot.jp/2010/01/blog-post.html
@@ -239,4 +241,31 @@ if has('python3') && !has('patch-8.1.201')
   silent! python3 1
 endif
 autocmd FileType python setlocal completeopt-=preview
+"}}}
+
+""""""""""""""""""""
+" vim-go
+""""""""""""""""""""
+"{{{
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
+""}}}
+
+""""""""""""""""""""
+" vim-lsp
+""""""""""""""""""""
+"{{{
+if executable('golsp')
+  augroup LspGo
+    au!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'go-lang',
+        \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd FileType go setlocal omnifunc=lsp#complete
+  augroup END
+endif
 "}}}

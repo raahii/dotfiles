@@ -1,0 +1,64 @@
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'elzr/vim-json'
+
+[[plugins]]
+repo = 'Konfekt/FastFold'
+
+[[plugins]]
+repo = 'Konfekt/FoldText'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+
+[[plugins]]
+repo = 'AndrewRadev/splitjoin.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_source = '''
+    let g:rustfmt_autosave = 0
+'''
+
+[[plugins]]
+repo = 'racer-rust/vim-racer'
+on_ft = 'rust'
+hook_source = '''
+    let g:racer_cmd = "~/.cargo/bin/racer"
+    let g:racer_experimental_completer = 1
+    let $RUST_SRC_PATH="{/Users/naka/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/ }"
+'''
