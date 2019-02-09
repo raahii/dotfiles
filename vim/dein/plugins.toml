@@ -1,12 +1,19 @@
 [[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
+
+[[plugins]]
 repo = 'scrooloose/nerdtree'
 
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
+repo = 'Shougo/deoplete.nvim'
+hook_source = 'let g:deoplete#enable_at_startup = 1'
 
 [[plugins]]
-repo = 'Shougo/vimproc'
-build = 'make'
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -37,15 +44,6 @@ repo = 'posva/vim-vue'
 
 [[plugins]]
 repo = 'fatih/vim-go'
-
-[[plugins]]
-repo = 'AndrewRadev/splitjoin.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'

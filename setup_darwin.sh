@@ -1,11 +1,8 @@
 #!/bin/bash
 
-FROM=()
-TO=()
-
 # vim
-FROM+=(vimrc vim/colors vim/dein)
-TO+=(~/.vimrc.config ~/.vim/colors ~/.vim/dein)
+FROM=(vimrc vim/colors vim/dein/plugins.toml)
+TO=(~/.vimrc ~/.vim/colors ~/.vim/dein/plugins.toml)
 
 # fish
 FROM+=(fish/config.fish fish/config_darwin.fish)
@@ -45,9 +42,10 @@ function init() {
 }
 
 function deploy() {
+  mkdir -p ~/.vim
   for((i=0; i<${#FROM[@]}; i++))
   do
-    ln -s ${FROM[i]}/${TO[i]}
+    ln -s $1/${FROM[i]} ${TO[i]}
   done
   echo "Done!"
 }

@@ -1,10 +1,20 @@
+dotfiles
+--
+
+### install
+
+```shell
+make init;and make deploy
 ```
-             __        _             _            _     __              
-            / /       (_)           | |          | |    \ \             
-           | | __   __ _  _ __ ___  | | ____ ___ | |__   | | _ __   ___ 
-           | | \ \ / /| || '_ ` _ \ | ||_  // __|| '_ \  | || '__| / __|
-         _ | |  \ V / | || | | | | || | / / \__ \| | | | | || |   | (__ 
-        (_)| |   \_/  |_||_| |_| |_|| |/___||___/|_| |_| | ||_|    \___|
-            \_\                     | |                 /_/             
-                                    |_|                                 
+
+```shell
+sudo sh -c "which fish >> /etc/shells"
+chsh -s $(which fish)
 ```
+
+### update
+
+```shell
+make clean;and git pull;and make deploy
+```
+
