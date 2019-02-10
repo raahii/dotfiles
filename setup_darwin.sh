@@ -11,8 +11,8 @@ FROM+=(fish/fishfile fish/peco.fish)
 TO+=(~/.config/fish/fishfile ~/.config/fish/peco.fish)
 
 # others
-FROM+=(gitconfig gitignore_global tmux.conf)
-TO+=(~/.gitconfig ~/.gitignore_global ~/.tmux.conf)
+FROM+=(gitconfig gitignore_global tmux.conf Brewfile)
+TO+=(~/.gitconfig ~/.gitignore_global ~/.tmux.conf ~/.Brewfile)
 
 function init() {
   # install brew
@@ -44,6 +44,7 @@ function deploy() {
   do
     ln -s $1/${FROM[i]} ${TO[i]}
   done
+  brew bunlde --global
   echo "Done!"
 }
 
