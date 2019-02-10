@@ -15,8 +15,6 @@ function peco_select_history
   end
 end
 
-
-# ghq
 function _peco_change_directory
   if [ (count $argv) ]
     peco --layout=top-down --query "$argv "|perl -pe 's/([ ()])/\\\\$1/g'|read foo
@@ -29,6 +27,7 @@ function _peco_change_directory
     commandline ''
   end
 end
+
 function peco_change_directory
   begin
     echo $HOME/.config

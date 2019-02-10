@@ -26,9 +26,18 @@ set -x LESS '-i -M -R -S -W -z-4 -x4'
 . ~/.config/fish/peco.fish
 function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'
-  bind \cg peco_change_directory # Bind for peco change directory to Ctrl+F
+  bind \cg peco_change_directory
 end
 
 # config for each operating system
 [ -f $HOME/.config/fish/config_(uname).fish ]; and . ~/.config/fish/config_(uname).fish
 [ -f $HOME/.config/fish/config_local.fish ]; and . ~/.config/fish/config_local.fish
+
+set fish_theme agnoster
+
+# go
+set -x GOPATH ~/repos
+set -x PATH $PATH $GOPATH/bin
+if not test -d $GOPATH
+  mkdir -p $GOPATH
+end
