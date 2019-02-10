@@ -4,10 +4,24 @@ build = 'make'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+hook_add = '''
+  noremap <C-e> :NERDTreeToggle<CR>
+  filetype plugin indent on
+'''
+on_i = 1
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-hook_source = 'let g:deoplete#enable_at_startup = 1'
+depends = ['roxma/nvim-yarp', 'roxma/vim-hug-neovim-rpc']
+hook_add = '''
+  let g:deoplete#enable_at_startup   = 1
+  let g:deoplete#auto_complete_delay = 0
+  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+          \ neosnippet#expandable_or_jumpable() ?
+          \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+  set completeopt=menuone
+'''
+on_i = 1
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
@@ -26,12 +40,28 @@ repo = 'junegunn/vim-easy-align'
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
+hook_source = '''
+  function! Multiple_cursors_before()
+      exe 'NeoCompleteLock'
+      echo 'Disabled autocomplete'
+  endfunction
+
+  function! Multiple_cursors_after()
+      exe 'NeoCompleteUnlock'
+      echo 'Enabled autocomplete'
+  endfunction
+'''
+on_i = 1
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
 
 [[plugins]]
 repo = 'elzr/vim-json'
+hook_source = '''
+  let g:vim_json_syntax_conceal = 0
+'''
+on_i = 1
 
 [[plugins]]
 repo = 'Konfekt/FastFold'
@@ -44,19 +74,31 @@ repo = 'posva/vim-vue'
 
 [[plugins]]
 repo = 'fatih/vim-go'
+hook_add = '''
+  let g:go_fmt_command = "goimports"
+  let g:go_highlight_types = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_function_calls = 1
+
+  " jump error line
+  map <C-n> :cnext<CR>
+  map <C-m> :cprevious<CR>
+  nnoremap <leader>a :cclose<CR>
+'''
+on_ft = ['go']
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 on_ft = 'rust'
 hook_source = '''
-    let g:rustfmt_autosave = 0
+  let g:rustfmt_autosave = 0
 '''
 
 [[plugins]]
 repo = 'racer-rust/vim-racer'
 on_ft = 'rust'
 hook_source = '''
-    let g:racer_cmd = "~/.cargo/bin/racer"
-    let g:racer_experimental_completer = 1
-    let $RUST_SRC_PATH="{/Users/naka/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/ }"
+  let g:racer_cmd = "~/.cargo/bin/racer"
+  let g:racer_experimental_completer = 1
+  let $RUST_SRC_PATH="{/Users/naka/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/ }"
 '''

@@ -1,8 +1,6 @@
 """""""""""""""""""""""""""""
 " basic setting
 """"""""""""""""""""""""""""""
-"{{{
-syntax on
 set ttyfast
 set lazyredraw
 set encoding=utf-8
@@ -16,8 +14,8 @@ set autoindent
 set expandtab
 
 " color scheme
-set background=dark
-colorscheme gruvbox
+syntax on
+color gruvbox
 
 " enable undo
 set undofile
@@ -75,14 +73,9 @@ nnoremap <C-j> <esc>
 noremap ; :
 noremap : ;
 
-" autocmd BufRead,BufNewFile *.slim setfiletype slim
-
-"}}}
-
 """"""""""
 " dein.vim
 """"""""""
-"{{{
 if &compatible
   set nocompatible
 endif
@@ -113,159 +106,3 @@ endif
 
 filetype plugin indent on
 syntax enable
-
-"# 文書内の"ex"などの単語がvimのコマンドと勘違いされることに対処
-"http://s25r.blogspot.jp/2010/01/blog-post.html
-" autocmd FileType make set modelines=0
-"}}}
-
-""""""""""""""""""""
-" Nerdtree
-""""""""""""""""""""
-"{{{
-" NERDTree
-noremap <C-e> :NERDTreeToggle<CR>
-" Required:
-filetype plugin indent on
-"}}}
-
-""""""""""""""""""""
-" vim-easy-align
-""""""""""""""""""""
-"{{{
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-"}}}
-
-""""""""""""""""""""
-" NeoComplete
-""""""""""""""""""""
-"{{{
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_enable_camel_case_completion  =  1
-let g:neocomplcache_max_list = 20
-let g:neocomplcache_min_syntax_length = 3
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-" let g:neocomplete#enable_auto_select = 1
-
-" Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" 補完ウィンドウの設定
-set completeopt=menuone
-"}}}
-
-""""""""""""""""""""
-" vim-json
-""""""""""""""""""""
-"{{{
-let g:vim_json_syntax_conceal = 0
-"}}}
-
-""""""""""""""""""""
-" gitgutter
-""""""""""""""""""""
-"{{{
-let g:gitgutter_sign_added = '・'
-let g:gitgutter_sign_modified = '・'
-let g:gitgutter_sign_removed = '・'
-let g:gitgutter_sign_removed_first_line = '・'
-let g:gitgutter_sign_modified_removed = '・'
-"}}}
-
-""""""""""""""""""""
-" multiple cursors
-""""""""""""""""""""
-"{{{
-function! Multiple_cursors_before()
-    exe 'NeoCompleteLock'
-    echo 'Disabled autocomplete'
-endfunction
-
-function! Multiple_cursors_after()
-    exe 'NeoCompleteUnlock'
-    echo 'Enabled autocomplete'
-endfunction
-"}}}
-
-""""""""""""""""""""
-" jedi-vim
-""""""""""""""""""""
-"{{{
-if has('python3') && !has('patch-8.1.201')
-  silent! python3 1
-endif
-autocmd FileType python setlocal completeopt-=preview
-"}}}
-
-""""""""""""""""""""
-" vim-go
-""""""""""""""""""""
-"{{{
-let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_function_calls = 1
-""}}}
-
-""""""""""""""""""""
-" vim-lsp
-""""""""""""""""""""
-"{{{
-if executable('golsp')
-  augroup LspGo
-    au!
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'go-lang',
-        \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd FileType go setlocal omnifunc=lsp#complete
-  augroup END
-endif
-"}}}
