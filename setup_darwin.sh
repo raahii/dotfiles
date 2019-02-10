@@ -21,16 +21,10 @@ function init() {
   fi
 
   # install packages
-  brew install git curl wget peco jq tree rmtrash
+  brew install git curl peco wget go jq tree rmtrash
 
   # install vim
   brew install vim
-
-  # install dein
-  mkdir -p ~/.vim/dein
-  wget https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
-  sh ./installer.sh ~/.vim/dein
-  rm ./installer.sh
 
   # install tmux
   brew install tmux reattach-to-user-namespace
@@ -38,6 +32,9 @@ function init() {
   # install fish
   brew install fish
   curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+
+  # make git repos dir
+  mkdir -p ~/repos
   echo "Done!"
 }
 

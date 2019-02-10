@@ -13,6 +13,3 @@ deploy:
 clean:
 	@echo '==> Remove dot files in your home directory...'
 	@$(SCRIPT) clean
-
-hello:
-	@echo 'Hello, make!'

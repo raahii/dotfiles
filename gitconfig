@@ -1,13 +1,16 @@
 [user]
   name = raahii
   email = piyo56.net@gmail.com
+
 [core]
   pager = less
   ui = auto
   editor = vim
   excludesfile = ~/.gitignore_global
+
 [push]
   default = matching
+
 [alias]
   # いい感じのグラフでログを表示
   graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
@@ -23,15 +26,18 @@
   today = log --oneline --since='12 hour ago'
   # コンフリクトで修正すべきファイルを表示
   conflicts = !git ls-files -u | cut -f 2 | sort -u
-
   # alias
   st = status
   br = branch
   co = checkout
   cm = commit
   df = diff
+
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+
+[ghq]
+  root = ~/repos/src
