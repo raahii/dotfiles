@@ -20,6 +20,6 @@ fisher
 ### update
 
 ```shell
-make clean && git pull && make deploy
+make update
 ```
 

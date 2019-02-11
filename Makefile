@@ -14,3 +14,8 @@ clean:
 	@echo '==> Remove dot files in your home directory...'
 	@$(SCRIPT) clean
 
+update:
+	@echo '==> Updating dot files in your home directory...'
+	@make clean
+	@git pull
+	@make deploy
