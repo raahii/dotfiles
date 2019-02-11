@@ -1,10 +1,9 @@
-dotfiles
---
+## .files
 
 ### install
 
 ```shell
-make init;and make deploy
+make init && make deploy
 ```
 
 ```shell
@@ -12,9 +11,15 @@ sudo sh -c "which fish >> /etc/shells"
 chsh -s $(which fish)
 ```
 
+after activated fish:
+
+```shell
+fisher
+```
+
 ### update
 
 ```shell
-make clean;and git pull;and make deploy
+make clean && git pull && make deploy
 ```
 

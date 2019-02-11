@@ -1,6 +1,6 @@
-DIR = $(shell cd $(dirname $0); pwd)
+DIR = $(shell dirname $(realpath $(MAKEFILE_LIST)))
 OS  = $(shell uname | tr '[A-Z]' '[a-z]')
-SCRIPT = $(DIR)/dotfiles/setup_$(OS).sh
+SCRIPT = $(DIR)/setup_$(OS).sh
 
 init:
 	@echo '==> Start to initialize'
@@ -8,8 +8,9 @@ init:
 
 deploy:
 	@echo '==> Start to deploy dotfiles to home directory.'
-	@$(SCRIPT) deploy $(DIR)/dotfiles
+	@$(SCRIPT) deploy $(DIR)
 
 clean:
 	@echo '==> Remove dot files in your home directory...'
 	@$(SCRIPT) clean
+

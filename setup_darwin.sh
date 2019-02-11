@@ -44,7 +44,7 @@ function deploy() {
   do
     ln -s $1/${FROM[i]} ${TO[i]}
   done
-  brew bunlde --global
+  brew bundle --global
   echo "Done!"
 }
 
