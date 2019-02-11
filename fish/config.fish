@@ -41,6 +41,6 @@ if not test -d $GOPATH
 end
 
 # config for each operating system
-[ -f $HOME/.config/fish/config_(uname).fish ]; and . ~/.config/fish/config_(uname).fish
+set -x OS (uname | tr '[A-Z]' '[a-z]')
+[ -f $HOME/.config/fish/config_$OS.fish ]; and . ~/.config/fish/config_$OS.fish
 [ -f $HOME/.config/fish/config_local.fish ]; and . ~/.config/fish/config_local.fish
-
