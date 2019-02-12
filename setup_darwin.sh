@@ -7,8 +7,8 @@ TO=(~/.vimrc ~/.vim/colors ~/.vim/dein/plugins.toml)
 # fish
 FROM+=(fish/config.fish fish/config_darwin.fish)
 TO+=(~/.config/fish/config.fish ~/.config/fish/config_darwin.fish)
-FROM+=(fish/fishfile fish/peco.fish)
-TO+=(~/.config/fish/fishfile ~/.config/fish/peco.fish)
+FROM+=(fish/fishfile fish/peco.fish fish/prompt.fish)
+TO+=(~/.config/fish/fishfile ~/.config/fish/peco.fish ~/.config/fish/functions/fish_prompt.fish)
 
 # others
 FROM+=(gitconfig gitignore_global tmux.conf Brewfile)
@@ -39,6 +39,9 @@ function init() {
 }
 
 function deploy() {
+  [ -f ~/.config/functions/fish_prompt.fish ] && \
+    mv ~/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish.old
+  
   mkdir -p ~/.vim
   for((i=0; i<${#FROM[@]}; i++))
   do

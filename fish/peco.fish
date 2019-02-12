@@ -27,9 +27,10 @@ function _peco_change_directory
     commandline ''
   end
 end
-
 function peco_change_directory
   begin
+    echo $HOME/Documents
+    echo $HOME/Desktop
     echo $HOME/.config
     ls -ad */|perl -pe "s#^#$PWD/#"|egrep -v "^$PWD/\."|head -n 5
     sort -r -t '|' -k 3 ~/.z|sed -e 's/\|.*//'

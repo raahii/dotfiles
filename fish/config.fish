@@ -26,7 +26,7 @@ set -x LESS '-i -M -R -S -W -z-4 -x4'
 . ~/.config/fish/peco.fish
 function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'
-  bind \cg peco_change_directory
+  bind \cg 'peco_change_directory (commandline -b)'
 end
 
 # make development directory
