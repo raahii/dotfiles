@@ -16,3 +16,4 @@ alias bim 'vim'
 alias ls "ls -FG"
 alias lsblk "diskutil list"
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+alias vim "nvim"

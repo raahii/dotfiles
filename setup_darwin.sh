@@ -2,7 +2,7 @@
 
 # vim
 FROM=(vimrc vim/colors vim/dein/plugins.toml)
-TO=(~/.vimrc ~/.vim/colors ~/.vim/dein/plugins.toml)
+TO=(~/.config/nvim/init.vim ~/.config/nvim/colors ~/.config/nvim/plugins.toml)
 
 # fish
 FROM+=(fish/config.fish fish/config_darwin.fish)
@@ -11,8 +11,8 @@ FROM+=(fish/fishfile fish/peco.fish fish/prompt.fish)
 TO+=(~/.config/fish/fishfile ~/.config/fish/peco.fish ~/.config/fish/functions/fish_prompt.fish)
 
 # others
-FROM+=(gitconfig gitignore_global tmux.conf Brewfile)
-TO+=(~/.gitconfig ~/.gitignore_global ~/.tmux.conf ~/.Brewfile)
+FROM+=(gitconfig gitignore_global tmux.conf Brewfile iterm2.plist)
+TO+=(~/.gitconfig ~/.gitignore_global ~/.tmux.conf ~/.Brewfile ~/com.googlecode.iterm2.plist)
 
 function init() {
   # install brew
