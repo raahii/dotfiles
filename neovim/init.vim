@@ -46,9 +46,12 @@ nnoremap <C-j><C-j> :noh<CR>
 
 "クリップボード設定
 if has('mac')
-    set clipboard=unnamed
+  " nvimでclipboard.vimのloadが遅い問題(+250ms)
+  " https://goo.gl/we3szX
+  let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
+  set clipboard=unnamed
 else
-    set clipboard=unnamedplus
+  set clipboard=unnamedplus
 endif
 
 set splitright " 画面分割の際に新しいウィンドウを右側に開く
@@ -72,6 +75,12 @@ nnoremap <C-j> <esc>
 " usキーボードの場合は入れ替える
 noremap ; :
 noremap : ;
+
+" python paths
+let g:python_host_skip_check=1
+let g:python_host_prog  = '/usr/local/bin/python2'
+let g:python3_host_skip_check=1
+let g:python3_host_prog = '/Users/naka/.pyenv/shims/python3'
 
 """"""""""
 " dein.vim
