@@ -9,7 +9,5 @@ function peco_select_history
 
   if [ $foo ]
     commandline $foo
-  else
-    commandline ''
   end
 end

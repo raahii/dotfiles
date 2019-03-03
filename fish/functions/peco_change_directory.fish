@@ -18,7 +18,5 @@ function _peco_change_directory
   end
   if [ $foo ]
     builtin cd $foo
-  else
-    commandline ''
   end
 end
