@@ -1,1 +1,6 @@
 config_local.fish
+
+# neovim
+neovim/undofiles
+neovim/dein/*
+!neovim/dein/plugins.toml

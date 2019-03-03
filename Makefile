@@ -3,19 +3,19 @@ OS  = $(shell uname | tr '[A-Z]' '[a-z]')
 SCRIPT = $(DIR)/setup_$(OS).sh
 
 init:
-	@echo '==> Start to initialize'
+	@echo '==> Start to initialize...'
 	@$(SCRIPT) init
 
 deploy:
-	@echo '==> Start to deploy dotfiles to home directory.'
+	@echo '==> Start to deploy dotfiles...'
 	@$(SCRIPT) deploy $(DIR)
 
 clean:
-	@echo '==> Remove dot files in your home directory...'
+	@echo '==> Remove dotfiles...'
 	@$(SCRIPT) clean
 
 update:
-	@echo '==> Updating dot files in your home directory...'
+	@echo '==> Update dotfiles...'
 	@make clean
 	@git pull
 	@make deploy

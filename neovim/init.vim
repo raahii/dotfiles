@@ -19,7 +19,7 @@ color gruvbox
 
 " enable undo
 set undofile
-set undodir=~/.vim/undofiles
+set undodir=~/.config/nvim/undofiles
 
 set noswapfile "swpファイルを作らない
 set scrolloff=5 " スクロールする時に下が見えるようにする
@@ -81,7 +81,7 @@ if &compatible
 endif
 
 " if dein.vim is not available, install it
-let s:dein_dir = expand('~/.vim/dein')
+let s:dein_dir = expand('~/.config/nvim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)

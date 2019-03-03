@@ -1,19 +1,5 @@
 #!/bin/bash
 
-# vim
-FROM=(vimrc vim/colors vim/dein/plugins.toml)
-TO=(~/.config/nvim/init.vim ~/.config/nvim/colors ~/.config/nvim/plugins.toml)
-
-# fish
-FROM+=(fish/config.fish fish/config_darwin.fish)
-TO+=(~/.config/fish/config.fish ~/.config/fish/config_darwin.fish)
-FROM+=(fish/fishfile fish/peco.fish fish/prompt.fish)
-TO+=(~/.config/fish/fishfile ~/.config/fish/peco.fish ~/.config/fish/functions/fish_prompt.fish)
-
-# others
-FROM+=(gitconfig gitignore_global tmux.conf Brewfile iterm2.plist)
-TO+=(~/.gitconfig ~/.gitignore_global ~/.tmux.conf ~/.Brewfile ~/com.googlecode.iterm2.plist)
-
 function init() {
   # install brew
   if type brew >/dev/null 2>&1; then
@@ -21,10 +7,11 @@ function init() {
   fi
 
   # install packages
-  brew install git curl peco wget go jq tree rmtrash
+  brew install git curl peco wget go jq tree rmtrash stow
 
   # install vim
-  brew install vim
+  pip install neovim
+  pip3 install neovim
 
   # install tmux
   brew install tmux reattach-to-user-namespace
@@ -35,6 +22,7 @@ function init() {
 
   # make git repos dir
   mkdir -p ~/repos
+
   echo "Done!"
 }
 
@@ -42,20 +30,23 @@ function deploy() {
   [ -f ~/.config/functions/fish_prompt.fish ] && \
     mv ~/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish.old
   
-  mkdir -p ~/.vim
-  for((i=0; i<${#FROM[@]}; i++))
-  do
-    ln -s $1/${FROM[i]} ${TO[i]}
-  done
+  # deploy .files with stow
+  stow --ignore ".DS_Store" -v fish -t ~/.config/fish # fish
+  stow --ignore ".DS_Store" -v neovim -t ~/.config/nvim # neovim
+  stow --ignore ".DS_Store" -v git -t ~/ # git
+  stow --ignore ".DS_Store" -v others -t ~/ # others
+
   brew bundle --global
   echo "Done!"
 }
 
 function clean() {
-  for((i=0; i<${#TO[@]}; i++))
-  do
-    unlink ${TO[i]}
-  done
+  # deploy .files with stow
+  stow --ignore ".DS_Store" -vD fish -t ~/.config/fish # fish
+  stow --ignore ".DS_Store" -vD neovim -t ~/.config/nvim # neovim
+  stow --ignore ".DS_Store" -vD git -t ~/ # git
+  stow --ignore ".DS_Store" -vD others -t ~/ # others
+
   echo "Done!"
 }
 

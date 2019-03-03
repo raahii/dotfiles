@@ -1,0 +1,108 @@
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+  noremap <C-e> :NERDTreeToggle<CR>
+  filetype plugin indent on
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+  let g:deoplete#enable_at_startup   = 1
+  let g:deoplete#auto_complete_delay = 0
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  set completeopt=menuone
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+vmap <Enter> <Plug>(EasyAlign)
+'''
+
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
+hook_source = '''
+func! Multiple_cursors_before()
+  if deoplete#is_enabled()
+    call deoplete#disable()
+    let g:deoplete_is_enable_before_multi_cursors = 1
+  else
+    let g:deoplete_is_enable_before_multi_cursors = 0
+  endif
+endfunc
+func! Multiple_cursors_after()
+  if g:deoplete_is_enable_before_multi_cursors
+    call deoplete#enable()
+  endif
+endfunc
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'elzr/vim-json'
+hook_source = '''
+  let g:vim_json_syntax_conceal = 0
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'Konfekt/FastFold'
+
+[[plugins]]
+repo = 'Konfekt/FoldText'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+hook_add = '''
+  let g:go_fmt_command = "goimports"
+  let g:go_highlight_types = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_function_calls = 1
+
+  " jump error line
+  map <C-n> :cnext<CR>
+  map <C-m> :cprevious<CR>
+  nnoremap <leader>a :cclose<CR>
+'''
+on_ft = ['go']
+
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_source = '''
+  let g:rustfmt_autosave = 0
+'''
+
+[[plugins]]
+repo = 'racer-rust/vim-racer'
+on_ft = 'rust'
+hook_source = '''
+  let g:racer_cmd = "~/.cargo/bin/racer"
+  let g:racer_experimental_completer = 1
+  let $RUST_SRC_PATH="{/Users/naka/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/ }"
+'''

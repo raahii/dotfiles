@@ -5,7 +5,7 @@
 [core]
   pager = less
   ui = auto
-  editor = vim
+  editor = nvim
   excludesfile = ~/.gitignore_global
 
 [push]
