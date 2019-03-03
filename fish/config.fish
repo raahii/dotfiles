@@ -22,25 +22,16 @@ alias dc 'docker-compose'
 # less option
 set -x LESS '-i -M -R -S -W -z-4 -x4'
 
-# peco
-. ~/.config/fish/peco.fish
-function fish_user_key_bindings
-  bind \cr 'peco_select_history (commandline -b)'
-  bind \cg 'peco_change_directory (commandline -b)'
-end
-
 # make development directory
 set -x DEV ~/repos/src/github.com/raahii
-mkdir -p $DEV
+[ -d $DEV ] && mkdir $DEV
 
 # go
 set -x GOPATH ~/repos
 set -x PATH $PATH $GOPATH/bin
-if not test -d $GOPATH
-  mkdir -p $GOPATH
-end
+[ -d $GOPATH ] && mkdir $GOPATH
 
 # config for each operating system
 set -x OS (uname | tr '[A-Z]' '[a-z]')
-[ -f $HOME/.config/fish/config_$OS.fish ]; and . ~/.config/fish/config_$OS.fish
-[ -f $HOME/.config/fish/config_local.fish ]; and . ~/.config/fish/config_local.fish
+[ -f $HOME/.config/fish/config_$OS.fish ] && . ~/.config/fish/config_$OS.fish
+[ -f $HOME/.config/fish/config_local.fish ] && . ~/.config/fish/config_local.fish

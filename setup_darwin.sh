@@ -7,7 +7,7 @@ function init() {
   fi
 
   # install packages
-  brew install git curl peco wget go jq tree rmtrash stow
+  brew install git curl peco wget go jq tree rmtrash stow ripgrep
 
   # install vim
   pip install neovim
@@ -36,7 +36,7 @@ function deploy() {
   stow --ignore ".DS_Store" -v git -t ~/ # git
   stow --ignore ".DS_Store" -v others -t ~/ # others
 
-  brew bundle --global
+  # brew bundle --global
   echo "Done!"
 }
 
