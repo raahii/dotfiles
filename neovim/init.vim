@@ -44,7 +44,7 @@ set ambiwidth=double
 nnoremap <Esc><Esc> :noh<CR>
 nnoremap <C-j><C-j> :noh<CR>
 
-"クリップボード設定
+" クリップボード設定
 if has('mac')
   " nvimでclipboard.vimのloadが遅い問題(+250ms)
   " https://goo.gl/we3szX
@@ -80,7 +80,7 @@ noremap : ;
 let g:python_host_skip_check=1
 let g:python_host_prog  = '/usr/local/bin/python2'
 let g:python3_host_skip_check=1
-let g:python3_host_prog = '/Users/naka/.pyenv/shims/python3'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 """"""""""
 " dein.vim
@@ -111,7 +111,6 @@ endif
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
-  call :UpdateRemotePlugins
 endif
 
 filetype plugin indent on
