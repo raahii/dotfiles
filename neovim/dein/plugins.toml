@@ -89,6 +89,7 @@ hook_add = '''
   let g:go_highlight_types = 1
   let g:go_highlight_fields = 1
   let g:go_highlight_function_calls = 1
+  let g:go_def_mode='gopls'
 
   " jump error line
   map <C-n> :cnext<CR>
@@ -130,3 +131,9 @@ repo = 'zchee/deoplete-go'
 on_source = 'deoplete.nvim'
 build = 'make'
 on_i = 1
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'

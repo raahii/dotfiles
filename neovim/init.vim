@@ -113,5 +113,14 @@ if dein#check_install()
   call dein#install()
 endif
 
+" lsp
+if executable('go-langserver')
+  au User lsp_setup call lsp#register_server({
+      \ 'name': 'go-langserver',
+      \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
+      \ 'whitelist': ['go'],
+      \ })
+endif
+
 filetype plugin indent on
 syntax enable
