@@ -6,12 +6,12 @@
 make init && make deploy
 ```
 
+### use fish as default shell
+
 ```shell
 sudo sh -c "which fish >> /etc/shells"
 chsh -s $(which fish)
 ```
-
-after activated fish:
 
 ```shell
 fisher

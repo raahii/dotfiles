@@ -10,6 +10,7 @@ function init() {
   brew install git curl peco wget go jq tree rmtrash stow ripgrep
 
   # install vim
+  brew install neovim python@2 python@3
   pip install neovim
   pip3 install neovim
 
