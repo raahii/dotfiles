@@ -22,4 +22,10 @@ fisher
 ```shell
 make update
 ```
+---
 
+### try deploying
+
+```shell
+docker build -f ./test/Dockerfile.ubuntu  . -t dotfiles-ubuntu
+```

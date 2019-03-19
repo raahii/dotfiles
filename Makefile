@@ -9,6 +9,8 @@ init:
 
 deploy:
 	@echo '==> Deploying dotfiles...'
+	@mkdir -p ${HOME}/.config/fish
+	@mkdir -p ${HOME}/.config/nvim
 	@$(SCRIPT) deploy $(DIR)
 	@echo 'Done'
 

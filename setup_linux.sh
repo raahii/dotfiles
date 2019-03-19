@@ -13,9 +13,55 @@ function install_ripgrep() {
   popd
 }
 
+function install_peco() {
+  TMPDIR=$(mktemp -d)
+  pushd $TMPDIR
+  wget "https://github.com/peco/peco/releases/download/v0.5.3/peco_linux_amd64.tar.gz"
+  tar xvzf peco_linux_amd64.tar.gz
+  cd peco_linux_amd64/
+  mkdir -p ~/bin
+  mv peco ~/bin/
+  popd
+}
+
 function init() {
+  # basic packages
   sudo apt-get -y update
+  sudo apt-get -y install wget curl golang jq tree stow git tmux locales
+
+  # update locales
+  locale-gen en_US.UTF-8
+  LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 sudo dpkg-reconfigure locales
   
+  # install python2 python3
+  sudo apt-get install -y software-properties-common
+  sudo apt-get install -y python-dev python-pip python3-dev python3-pip
+  pip2 install -U pip && pip2 install neovim
+  pip3 install -U pip && pip3 install neovim
+
+  # install node
+  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+  npm update -g npm
+  npm install -g neovim
+
+  # install neovim
+  sudo add-apt-repository ppa:neovim-ppa/stable -y
+  sudo apt-get update
+  sudo apt-get install -y neovim
+
+  # install ripgrep, peco
+  install_ripgrep
+  install_peco
+
+  # install fish
+  sudo apt-add-repository ppa:fish-shell/release-2 -y
+  sudo apt-get update
+  sudo apt-get install -y fish
+
+  # make git repos dir
+  mkdir -p ~/repos/{bin,pkg,src}
+
   # # Change directory names to English
   # env LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update
 
@@ -26,26 +72,6 @@ function init() {
   # # Remove Ubuntu Web Apps
   # yes | sudo apt-get remove unity-webapps-common xul-ext-unity xul-ext-websites-integration
   
-  # basic packages
-  sudo apt-get -y install wget curl golang jq tree stow git tmux
-  
-  # neovim
-  sudo apt-get install -y software-properties-common
-  sudo apt-get install -y python-dev python-pip python3-dev python3-pip
-  sudo add-apt-repository ppa:neovim-ppa/stable -y
-  sudo apt-get update
-  sudo apt-get install -y neovim
-
-  # ripgrep
-  install_ripgrep
-
-  # fish
-  sudo apt-add-repository ppa:fish-shell/release-2 -y
-  sudo apt-get update
-  sudo apt-get install -y fish
-
-  # make git repos dir
-  mkdir -p ~/repos
 }
 
 function deploy() {

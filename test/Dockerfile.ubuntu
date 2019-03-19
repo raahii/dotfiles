@@ -12,5 +12,5 @@ RUN touch /etc/apt/apt.conf.d/99fixbadproxy \
 RUN apt-get install -y --reinstall build-essential
 RUN apt-get install -y git sudo
 
-ADD . ~/dotfiles
-WORKDIR ~/dotfiles
+ADD . /root/dotfiles
+WORKDIR /root/dotfiles
