@@ -23,7 +23,7 @@ set -x LESS '-i -M -R -S -W -z-4 -x4'
 
 # make development directory
 set -x DEV ~/repos/src/github.com/raahii
-[ -d $DEV ] && mkdir $DEV
+[ -d $DEV ]; and mkdir $DEV
 
 # path
 set -x PATH ~/bin $PATH
@@ -31,7 +31,7 @@ set -x PATH ~/bin $PATH
 # go
 set -x GOPATH ~/repos
 set -x PATH $PATH $GOPATH/bin
-[ -d $GOPATH ] && mkdir $GOPATH
+[ -d $GOPATH ]; and mkdir $GOPATH
 
 # aliases
 alias vim 'nvim'
@@ -43,6 +43,6 @@ alias fv 'find . | grep -v "/\." | peco | xargs -o nvim'
 
 # config for each operating system
 set -x OS (uname | tr '[A-Z]' '[a-z]')
-[ -f $HOME/.config/fish/config_$OS.fish ] && . ~/.config/fish/config_$OS.fish
-[ -f $HOME/.config/fish/config_local.fish ] && . ~/.config/fish/config_local.fish
+[ -f $HOME/.config/fish/config_$OS.fish ]; and . ~/.config/fish/config_$OS.fish
+[ -f $HOME/.config/fish/config_local.fish ]; and . ~/.config/fish/config_local.fish
 

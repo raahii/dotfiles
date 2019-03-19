@@ -38,9 +38,11 @@ function fish_prompt
   set -l last_status $status
   set -l home_escaped (echo -n $HOME | sed 's/\//\\\\\//g')
   set -l pwd (echo -n $PWD | sed "s/^$home_escaped/~/")
-
-  _print_in_color "\n"$pwd blue
-
+  set -l host (hostname|cut -d . -f 1)
+  
+  _print_in_color "\n"$pwd green
+  _print_in_color " on " white
+  _print_in_color $host blue
   __fish_git_prompt " %s"
 
   _print_in_color "\n❯ " (_prompt_color_for_status $last_status)
