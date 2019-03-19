@@ -23,8 +23,6 @@ function init() {
 
   # make git repos dir
   mkdir -p ~/repos
-
-  echo "Done!"
 }
 
 function deploy() {
@@ -38,7 +36,6 @@ function deploy() {
   stow --ignore ".DS_Store" -v others -t ~/ # others
 
   # brew bundle --global
-  echo "Done!"
 }
 
 function clean() {
@@ -47,8 +44,6 @@ function clean() {
   stow --ignore ".DS_Store" -vD neovim -t ~/.config/nvim # neovim
   stow --ignore ".DS_Store" -vD git -t ~/ # git
   stow --ignore ".DS_Store" -vD others -t ~/ # others
-
-  echo "Done!"
 }
 
 if [ "$1" = "init" ]; then

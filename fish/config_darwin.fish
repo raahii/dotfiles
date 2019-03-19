@@ -13,10 +13,3 @@ alias tree 'tree -NC'                       # tree with color
 alias ls "ls -FG"
 alias lsblk "diskutil list"
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
-
-alias vim 'nvim'
-alias  vi 'nvim'
-alias  im 'nvim'
-alias bim 'nvim'
-
-alias fv 'find . | grep -v "/\." | peco | xargs -o nvim'
