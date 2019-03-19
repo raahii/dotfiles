@@ -22,7 +22,7 @@ function init() {
   curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
   # make git repos dir
-  mkdir -p ~/repos
+  mkdir -p ~/repos/{bin,pkg,src}
 }
 
 function deploy() {

@@ -137,3 +137,11 @@ repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
+
+
+[[plugins]]
+repo = 'kamykn/spelunker.vim'
+hook_add = '''
+  set nospell
+  let g:enable_spelunker_vim = 1
+'''
