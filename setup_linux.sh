@@ -31,7 +31,7 @@ function init() {
 
   # update locales
   locale-gen en_US.UTF-8
-  LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LC_CTYPE=en_US.UTF-8 sudo dpkg-reconfigure locales
+  export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LC_CTYPE=en_US.UTF-8
   
   # install python2 python3
   sudo apt-get install -y software-properties-common
@@ -58,6 +58,7 @@ function init() {
   sudo apt-add-repository ppa:fish-shell/release-2 -y
   sudo apt-get update
   sudo apt-get install -y fish
+  curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
   # make git repos dir
   mkdir -p ~/repos/{bin,pkg,src}
