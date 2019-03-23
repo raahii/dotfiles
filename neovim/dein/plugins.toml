@@ -2,8 +2,7 @@
 repo = 'Shougo/vimproc'
 build = 'make'
 
-[[plugins]]
-repo = 'scrooloose/nerdtree'
+[[plugins]] repo = 'scrooloose/nerdtree'
 hook_add = '''
   noremap <C-e> :NERDTreeToggle<CR>
   filetype plugin indent on
@@ -90,11 +89,6 @@ hook_add = '''
   let g:go_highlight_fields = 1
   let g:go_highlight_function_calls = 1
   let g:go_def_mode='gopls'
-
-  " jump error line
-  map <C-n> :cnext<CR>
-  map <C-m> :cprevious<CR>
-  nnoremap <leader>a :cclose<CR>
 '''
 on_ft = ['go']
 
@@ -127,6 +121,13 @@ repo = 'mhartington/nvim-typescript'
 on_i = 1
 
 [[plugins]]
+repo = 'kamykn/spelunker.vim'
+hook_add = '''
+  set nospell
+  let g:enable_spelunker_vim = 1
+'''
+
+[[plugins]]
 repo = 'zchee/deoplete-go'
 on_source = 'deoplete.nvim'
 build = 'make'
@@ -137,11 +138,34 @@ repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+  let g:lsp_diagnostics_enabled = 0
 
+  " debug
+  let g:lsp_log_verbose = 1
+  let g:lsp_log_file = expand('~/vim-lsp.log')
+  let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
+  augroup LspGo
+    au!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'go-lang',
+        \ 'cmd': {server_info->['gopls']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd FileType go setlocal omnifunc=lsp#complete
+    autocmd FileType go nmap <buffer> gd <plug>(lsp-definition)
+    autocmd FileType go nmap <buffer> ,n <plug>(lsp-next-error)
+    autocmd FileType go nmap <buffer> ,p <plug>(lsp-previous-error)
+  augroup END
+'''
 
 [[plugins]]
-repo = 'kamykn/spelunker.vim'
-hook_add = '''
-  set nospell
-  let g:enable_spelunker_vim = 1
-'''
+repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = 'natebosch/vim-lsc'
+hook_add = 'let g:lsp_async_completion = 1'
