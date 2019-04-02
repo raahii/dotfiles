@@ -1,6 +1,7 @@
 """""""""""""""""""""""""""""
 " basic setting
 """"""""""""""""""""""""""""""
+set bg=dark
 set ttyfast
 set lazyredraw
 set encoding=utf-8
