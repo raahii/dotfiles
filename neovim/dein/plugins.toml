@@ -11,20 +11,13 @@ on_i = 1
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+on_event = 'InsertEnter'
 hook_add = '''
   let g:deoplete#enable_at_startup   = 1
-  let g:deoplete#auto_complete_delay = 0
-  let g:deoplete#enable_smart_case = 1
   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
   set completeopt=menuone
 '''
 on_i = 1
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -35,8 +28,6 @@ repo = 'tomtom/tcomment_vim'
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 hook_add = '''
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
 '''
 
 [[plugins]]
@@ -82,15 +73,18 @@ on_ft = ['js','vue']
 on_i = 1
 
 [[plugins]]
-repo = 'fatih/vim-go'
+repo = 'autozimu/LanguageClient-neovim'
+build = 'bash install.sh'
+rev = 'next'
 hook_add = '''
-  let g:go_fmt_command = "goimports"
-  let g:go_highlight_types = 1
-  let g:go_highlight_fields = 1
-  let g:go_highlight_function_calls = 1
-  let g:go_def_mode='gopls'
+  set hidden
+  let g:LanguageClient_serverCommands = {
+      \ 'go': ['golsp']
+      \ }
+  let g:LanguageClient_loadSettings = 1
+  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 '''
-on_ft = ['go']
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'
@@ -134,38 +128,15 @@ build = 'make'
 on_i = 1
 
 [[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
+repo = 'fatih/vim-go'
 hook_add = '''
-  let g:lsp_diagnostics_enabled = 0
-
-  " debug
-  let g:lsp_log_verbose = 1
-  let g:lsp_log_file = expand('~/vim-lsp.log')
-  let g:asyncomplete_log_file = expand('~/asyncomplete.log')
-
-  augroup LspGo
-    au!
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'go-lang',
-        \ 'cmd': {server_info->['gopls']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd FileType go setlocal omnifunc=lsp#complete
-    autocmd FileType go nmap <buffer> gd <plug>(lsp-definition)
-    autocmd FileType go nmap <buffer> ,n <plug>(lsp-next-error)
-    autocmd FileType go nmap <buffer> ,p <plug>(lsp-previous-error)
-  augroup END
+  let g:go_fmt_command = "goimports"
+  let g:go_highlight_types = 1
+  let g:go_highlight_fields = 1
+  let g:go_highlight_function_calls = 1
+  
+  " disable functions for LSP
+  let g:go_def_mapping_enabled = 0
+  let g:go_doc_keywordprg_enabled = 0
 '''
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
-
-[[plugins]]
-repo = 'natebosch/vim-lsc'
-hook_add = 'let g:lsp_async_completion = 1'
+on_ft = ['go']

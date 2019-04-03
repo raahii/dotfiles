@@ -115,15 +115,6 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
-" go-pls
-if executable('gopls')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'gopls',
-    \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-    \ 'whitelist': ['go'],
-    \ })
-endif
-
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
