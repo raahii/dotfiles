@@ -42,7 +42,14 @@ function fish_prompt
   
   _print_in_color "\n"$pwd green
   _print_in_color " on " white
-  _print_in_color $host blue
+  switch $host
+    case 'nakahi-laptop'
+      _print_in_color $host blue
+    case 'nakahira-lab'
+      _print_in_color $host yellow
+    case '*'
+      _print_in_color $host red
+  end
   __fish_git_prompt " %s"
 
   _print_in_color "\n❯ " (_prompt_color_for_status $last_status)
