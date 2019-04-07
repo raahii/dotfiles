@@ -39,7 +39,7 @@ alias  vi 'nvim'
 alias  im 'nvim'
 alias bim 'nvim'
 
-alias fv 'find . | grep -v "/\." | peco | xargs -o nvim'
+alias pv 'find . | grep -v "/\." | peco | xargs -o nvim'
 
 # config for each operating system
 set -x OS (uname | tr '[A-Z]' '[a-z]')

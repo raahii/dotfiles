@@ -1,8 +1,6 @@
 """""""""""""""""""""""""""""
 " basic setting
-""""""""""""""""""""""""""""""
-set bg=dark
-set ttyfast
+"""""""""""""""""""""""""""""" set bg=dark set ttyfast
 set lazyredraw
 set encoding=utf-8
 set fileencoding=utf-8
@@ -123,3 +121,16 @@ endif
 
 filetype plugin indent on
 syntax enable
+
+"""""""""
+" LSP
+"""""""""
+" Go
+" [2019.04.07] goplsはまだ早い．．．
+" if executable('gopls')
+"   au User lsp_setup call lsp#register_server({
+"     \ 'name': 'gopls',
+"     \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+"     \ 'whitelist': ['go'],
+"     \ })
+" endif
