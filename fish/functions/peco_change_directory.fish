@@ -3,10 +3,9 @@ function peco_change_directory
     echo $HOME/Documents
     echo $HOME/Desktop
     echo $HOME/.config
-    # ls -ad */|perl -pe "s#^#$PWD/#"|egrep -v "^$PWD/\."|head -n 5
-    sort -r -t '|' -k 3 $Z_DATA | sed -e 's/\|.*//'
+    sort -r -t '|' -k 3 $Z_DATA | sed -e 's/|.*//'
     ghq list -p
-  end | sed -e 's/\/$//' | awk '!a[$0]++' | _peco_change_directory $argv
+  end | awk '!a[$0]++' | _peco_change_directory $argv
 end
 
 function _peco_change_directory

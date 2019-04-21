@@ -1,7 +1,6 @@
 # config
 set fish_greeting ''
 set HISTSIZE 100000
-set -x GREP_OPTIONS '--color=always'
 set -x GREP_COLOR '1;35;40'
 
 # global alias
