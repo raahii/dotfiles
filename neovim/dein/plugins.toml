@@ -148,31 +148,43 @@ hook_add = '''
   highlight clear ALEWarningSign
 
   let g:ale_linters = {
-  \   'go': ['golint', 'go vet'],
+    \ 'go': ['golint', 'go vet'],
+    \ 'python': ['flake8'],
   \}
 
   let g:ale_fixers = {
   \ 'go': ['gofmt', 'goimports'],
+  \ 'python': ['autopep8', 'black', 'isort'],
   \}
   let g:ale_fix_on_save = 1
 
-  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-  nmap <silent> <C-j> <Plug>(ale_next_wrap)
+  " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  " nmap <silent> <C-j> <Plug>(ale_next_wrap)
 '''
 on_i = 1
 
-# [[plugins]]
-# repo = 'autozimu/LanguageClient-neovim'
-# build = 'bash install.sh'
-# rev = 'next'
-# hook_add = '''
-#   set hidden
-#   let g:LanguageClient_serverCommands = {
-#       \ 'go': ['gopls']
-#       \ }
-#   let g:LanguageClient_loadSettings = 1
-#   nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-#   nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-#   autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
-# '''
-# on_i = 1
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+build = 'bash install.sh'
+rev = 'next'
+hook_add = '''
+  set hidden
+  let g:LanguageClient_diagnosticsEnable = 0
+  let g:LanguageClient_serverCommands = {
+    \ 'go': ['gopls'],
+    \ 'python': ['/usr/local/bin/pyls'],
+  \ }
+  let g:LanguageClient_loadSettings = 1
+  nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <silent> <C-]> :call LanguageClient#textDocument_definition()<CR>
+  autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install -all'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'

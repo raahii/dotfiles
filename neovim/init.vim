@@ -109,7 +109,8 @@ endif
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
   let s:toml = s:dein_dir . '/plugins.toml'
-  call dein#load_toml(s:toml, {'lazy': 0}) 
+  call dein#load_toml(s:dein_dir . '/plugins.toml', {'lazy': 0})
+  " call dein#load_toml(s:dein_dir . '/plugins_lazy.toml', {'lazy': 1})
   call dein#end()
   call dein#save_state()
 endif
@@ -126,11 +127,19 @@ syntax enable
 " LSP
 """""""""
 " Go
-" [2019.04.07] goplsはまだ早い．．．
-" if executable('gopls')
-"   au User lsp_setup call lsp#register_server({
-"     \ 'name': 'gopls',
-"     \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-"     \ 'whitelist': ['go'],
-"     \ })
-" endif
+if executable('gopls')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'gopls',
+    \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+    \ 'whitelist': ['go'],
+    \ })
+endif
+
+" Python
+if executable('pyls')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'pyls',
+    \ 'cmd': {server_info->['pyls']},
+    \ 'whitelist': ['python'],
+    \ })
+endif
