@@ -7,7 +7,7 @@ set -x HOMEBREW_BREWFILE $HOME/dotfiles/Brewfile
 
 # alias
 alias update 'brew update;and brew upgrade' # update
-alias rmt 'rmtrash'                          # rmtrash
+alias rm 'trash'                            # trash
 alias pwdc 'pwd | pbcopy'                   # pwd copy
 alias tree 'tree -NC'                       # tree with color
 alias ls "ls -FG"

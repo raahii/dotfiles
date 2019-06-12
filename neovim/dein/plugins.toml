@@ -149,12 +149,14 @@ hook_add = '''
 
   let g:ale_linters = {
     \ 'go': ['golint', 'go vet'],
-    \ 'python': ['flake8'],
+    \ 'python': ['flake8', 'mypy'],
   \}
+
+  let g:ale_python_mypy_options = '--ignore-missing-imports'
 
   let g:ale_fixers = {
   \ 'go': ['gofmt', 'goimports'],
-  \ 'python': ['autopep8', 'black', 'isort'],
+  \ 'python': ['black', 'isort'],
   \}
   let g:ale_fix_on_save = 1
 
@@ -188,3 +190,28 @@ build = './install -all'
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
+hook_add = '''
+  noremap <Space>f :Files<CR>
+  noremap <Space>r :Rg<CR>
+'''
+
+
+[[plugins]]
+repo = 'wakatime/vim-wakatime'
+on_i = 1
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_i = 1
+
+[[plugins]]
+repo = 'tyru/open-browser-github.vim'
+on_i = 1
+
+[[plugins]]
+repo =  'plasticboy/vim-markdown'
+on_i = 1
+
+[[plugin,>s]]
+repo = 'kannokanno/previm'
+on_i = 1

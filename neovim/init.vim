@@ -1,6 +1,8 @@
 """""""""""""""""""""""""""""
 " basic setting
-"""""""""""""""""""""""""""""" set bg=dark set ttyfast
+""""""""""""""""""""""""""""""
+set bg=dark 
+set ttyfast
 set lazyredraw
 set encoding=utf-8
 set fileencoding=utf-8
@@ -38,10 +40,12 @@ set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:% "タブ、空白、改行の可視化
 set hidden "bufferで複数ファイルをswitchするときに未保存のものがあっても警告を出さない
 set ambiwidth=double
-
-" ESCを二回押すことでハイライトを消す
-nnoremap <Esc><Esc> :noh<CR>
-nnoremap <C-j><C-j> :noh<CR>
+set splitright " 画面分割の際に新しいウィンドウを右側に開く
+set foldmethod=marker "fold
+let g:vim_markdown_folding_disabled=1 " markdownの折りたたみなし
+set showmatch "閉括弧が入力された時、対応する括弧を強調する
+set wildmenu
+set tags=.tags
 
 " クリップボード設定
 if has('mac')
@@ -53,18 +57,6 @@ else
   set clipboard=unnamedplus
 endif
 
-set splitright " 画面分割の際に新しいウィンドウを右側に開く
-set foldmethod=marker "fold
-
-" タブ機能
-nnoremap <C-n> gt
-nnoremap <C-p> gT
-
-let g:vim_markdown_folding_disabled=1 " markdownの折りたたみなし
-set showmatch "閉括弧が入力された時、対応する括弧を強調する
-set wildmenu
-set tags=.tags
-
 " ctrl+jをescキーにする
 inoremap <C-j> <esc>
 vnoremap <C-j> <esc>
@@ -74,6 +66,17 @@ nnoremap <C-j> <esc>
 " usキーボードの場合は入れ替える
 noremap ; :
 noremap : ;
+
+" ESCを二回押すことでハイライトを消す
+nnoremap <Esc><Esc> :noh<CR>
+nnoremap <C-j><C-j> :noh<CR>
+
+" タブ機能
+nnoremap <C-n> gt
+nnoremap <C-p> gT
+
+" set leader key
+let mapleader = "\<Space>"
 
 " python paths
 if has('nvim')
