@@ -191,10 +191,9 @@ build = './install -all'
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
 hook_add = '''
-  noremap <Space>f :Files<CR>
-  noremap <Space>r :Rg<CR>
+  noremap <Leader>f :Files<CR>
+  noremap <Leader>r :Rg<CR>
 '''
-
 
 [[plugins]]
 repo = 'wakatime/vim-wakatime'
@@ -209,9 +208,17 @@ repo = 'tyru/open-browser-github.vim'
 on_i = 1
 
 [[plugins]]
-repo =  'plasticboy/vim-markdown'
-on_i = 1
-
-[[plugin,>s]]
 repo = 'kannokanno/previm'
 on_i = 1
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+on_i = 1
+
+[[plugins]]
+repo = 'tyru/operator-camelize.vim'
+on_i = 1
+hook_add = '''
+  noremap <Leader>c <Plug>(operator-camelize)
+  noremap <Leader>C <Plug>(operator-decamelize)
+'''
