@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""
 " basic setting
 """"""""""""""""""""""""""""""
-set bg=dark 
+set bg=dark
 set ttyfast
 set lazyredraw
 set encoding=utf-8
@@ -47,7 +47,7 @@ set showmatch "閉括弧が入力された時、対応する括弧を強調す�
 set wildmenu
 set tags=.tags
 
-" クリップボード設定
+" clipboard settings
 if has('mac')
   " nvimでclipboard.vimのloadが遅い問題(+250ms)
   " https://goo.gl/we3szX
@@ -57,23 +57,19 @@ else
   set clipboard=unnamedplus
 endif
 
-" ctrl+jをescキーにする
+" treat ctrl-j as esc
 inoremap <C-j> <esc>
 vnoremap <C-j> <esc>
 cnoremap <C-j> <esc>
 nnoremap <C-j> <esc>
 
-" usキーボードの場合は入れ替える
+" swap ; and :
 noremap ; :
 noremap : ;
 
-" ESCを二回押すことでハイライトを消す
+" turn highlight off with esc twice
 nnoremap <Esc><Esc> :noh<CR>
 nnoremap <C-j><C-j> :noh<CR>
-
-" タブ機能
-nnoremap <C-n> gt
-nnoremap <C-p> gT
 
 " set leader key
 let mapleader = "\<Space>"
@@ -90,6 +86,21 @@ if has('nvim')
     let g:python3_host_prog = '/usr/bin/python3'
   endif
 endif
+
+" window keymap
+nnoremap <Leader>i :split<Return><C-w>w
+nnoremap <Leader>s :vsplit<Return><C-w>w
+map <Leader>h <C-w>h
+map <Leader>k <C-w>k
+map <Leader>j <C-w>j
+map <Leader>l <C-w>l
+
+" tab keymap
+nnoremap <C-n> gt
+nnoremap <C-p> gT
+nnoremap <Tab> :tabnext<Return>
+nnoremap <S-Tab> :tabprev<Return>
+
 
 """"""""""
 " dein.vim
