@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""
 " basic setting
 """"""""""""""""""""""""""""""
-set bg=dark
+set background=dark
 set ttyfast
 set lazyredraw
 set encoding=utf-8
@@ -88,8 +88,8 @@ if has('nvim')
 endif
 
 " window keymap
-nnoremap <Leader>i :split<Return><C-w>w
-nnoremap <Leader>s :vsplit<Return><C-w>w
+nnoremap <Leader>i :split<Return>
+nnoremap <Leader>s :vsplit<Return>
 map <Leader>h <C-w>h
 map <Leader>k <C-w>k
 map <Leader>j <C-w>j
