@@ -101,6 +101,15 @@ nnoremap <C-p> gT
 nnoremap <Tab> :tabnext<Return>
 nnoremap <S-Tab> :tabprev<Return>
 
+" auto reloading file
+augroup checktime
+  autocmd!
+  if !has("gui_running")
+    "silent! necessary otherwise throws errors when using command
+    "line window.
+    autocmd BufEnter,FocusGained,BufEnter,FocusLost,WinLeave * checktime
+  endif
+augroup END
 
 """"""""""
 " dein.vim
