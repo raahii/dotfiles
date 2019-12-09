@@ -40,8 +40,15 @@ alias bim 'nvim'
 
 alias pv 'find . | grep -v "/\." | peco | xargs -o nvim'
 
+# rsync ignore
+if test -f $HOME/.rsyncignore
+  alias rsync "rsync --exclude-from $HOME/.rsyncignore"
+end
+
 # config for each operating system
 set -x OS (uname | tr '[A-Z]' '[a-z]')
 [ -f $HOME/.config/fish/config_$OS.fish ]; and . ~/.config/fish/config_$OS.fish
 [ -f $HOME/.config/fish/config_local.fish ]; and . ~/.config/fish/config_local.fish
 
+# Created by `userpath` on 2019-11-18 14:05:33
+set PATH $PATH /Users/naka/.local/bin
