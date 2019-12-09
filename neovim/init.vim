@@ -49,9 +49,6 @@ set tags=.tags
 
 " clipboard settings
 if has('mac')
-  " nvimでclipboard.vimのloadが遅い問題(+250ms)
-  " https://goo.gl/we3szX
-  let g:clipboard = {'copy': {'+': 'pbcopy', '*': 'pbcopy'}, 'paste': {'+': 'pbpaste', '*': 'pbpaste'}, 'name': 'pbcopy', 'cache_enabled': 0}
   set clipboard=unnamed
 else
   set clipboard=unnamedplus
@@ -88,32 +85,14 @@ if has('nvim')
 endif
 
 " window keymap
-nnoremap <Leader>i :split<Return>
-nnoremap <Leader>s :vsplit<Return>
+" nnoremap <Leader>i :split<Return>
+" nnoremap <Leader>s :vsplit<Return>
 map <Leader>h <C-w>h
 map <Leader>k <C-w>k
 map <Leader>j <C-w>j
 map <Leader>l <C-w>l
 
-" tab keymap
-nnoremap <C-n> gt
-nnoremap <C-p> gT
-nnoremap <Tab> :tabnext<Return>
-nnoremap <S-Tab> :tabprev<Return>
-
-" auto reloading file
-augroup checktime
-  autocmd!
-  if !has("gui_running")
-    "silent! necessary otherwise throws errors when using command
-    "line window.
-    autocmd BufEnter,FocusGained,BufEnter,FocusLost,WinLeave * checktime
-  endif
-augroup END
-
-""""""""""
-" dein.vim
-""""""""""
+" dein
 if &compatible
   set nocompatible
 endif
@@ -145,24 +124,3 @@ endif
 
 filetype plugin indent on
 syntax enable
-
-"""""""""
-" LSP
-"""""""""
-" Go
-if executable('gopls')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'gopls',
-    \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-    \ 'whitelist': ['go'],
-    \ })
-endif
-
-" Python
-if executable('pyls')
-  au User lsp_setup call lsp#register_server({
-    \ 'name': 'pyls',
-    \ 'cmd': {server_info->['pyls']},
-    \ 'whitelist': ['python'],
-    \ })
-endif
