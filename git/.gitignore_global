@@ -20,9 +20,16 @@ cscope.po.out
 # ignore env file
 .envrc
 
-# ide
+# editor
 .idea
+.vscode
 
 # tmux log
 tmux-client-22922.log
 tmux-server-22924.log
+
+# python
+__pycache__
+*.pyc
+.mypy_cache
+.python-version
