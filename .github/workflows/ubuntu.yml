@@ -11,8 +11,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - name: Install tools
-        run: make init
-
-      - name: Deploy dotfiles
-        run: make deploy
+      - name: Setup dotfiles
+        run: bash setup.sh
