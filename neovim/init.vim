@@ -5,6 +5,8 @@ set background=dark
 set ttyfast
 set lazyredraw
 set encoding=utf-8
+set modifiable
+set write
 set fileencoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 set fenc=utf-8
@@ -68,6 +70,13 @@ noremap : ;
 nnoremap <Esc><Esc> :noh<CR>
 nnoremap <C-j><C-j> :noh<CR>
 
+" don't move cursor when highlighting word on cursor
+nnoremap <silent><expr> * v:count ? '*': ':sil exe "keepj norm! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+nnoremap <silent><expr> # v:count ? '#': ':sil exe "keepj norm! #" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
+
+" turn off IME when exiting normal mode
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+
 " set leader key
 let mapleader = "\<Space>"
 
@@ -92,35 +101,12 @@ map <Leader>k <C-w>k
 map <Leader>j <C-w>j
 map <Leader>l <C-w>l
 
-" dein
-if &compatible
-  set nocompatible
+" load plugins
+let s:plug_dir = expand('~/.config/nvim/plugged')
+if !isdirectory(s:plug_dir)
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" if dein.vim is not available, install it
-let s:dein_dir = expand('~/.config/nvim/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
-
-" configuration
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-  let s:toml = s:dein_dir . '/plugins.toml'
-  call dein#load_toml(s:dein_dir . '/plugins.toml', {'lazy': 0})
-  " call dein#load_toml(s:dein_dir . '/plugins_lazy.toml', {'lazy': 1})
-  call dein#end()
-  call dein#save_state()
-endif
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-filetype plugin indent on
-syntax enable
+source ~/.config/nvim/plugins.vim
