@@ -11,15 +11,16 @@ function init() {
 
   # install vim
   brew install neovim python@2 python@3
+  pip install -U pip
   pip install neovim
-  pip3 install neovim
+  python3 -m pip install -U pip
+  python3 -m pip install neovim
 
   # install tmux
   brew install tmux reattach-to-user-namespace
   
   # install fish
   brew install fish
-  curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
   # make git repos dir
   mkdir -p ~/repos/{bin,pkg,src}

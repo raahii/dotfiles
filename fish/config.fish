@@ -1,3 +1,10 @@
+# install fisher
+if not functions -q fisher
+  echo "installing fisher..."
+  curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+  fish -c fisher
+end
+
 # config
 set fish_greeting ''
 set HISTSIZE 100000

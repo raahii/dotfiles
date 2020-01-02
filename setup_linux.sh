@@ -21,8 +21,10 @@ function init() {
   # install python2 python3
   sudo apt-get install -y software-properties-common
   sudo apt-get install -y python-dev python-pip python3-dev python3-pip
-  pip2 install -U pip && pip2 install neovim
-  pip3 install -U pip && pip3 install neovim
+  pip install -U pip
+  pip install neovim
+  python3 -m pip3 install -U pip
+  python3 -m pip3 install neovim
 
   # install node
   curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
@@ -41,7 +43,6 @@ function init() {
   sudo apt-add-repository ppa:fish-shell/release-2 -y
   sudo apt-get update
   sudo apt-get install -y fish
-  curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
   # make ghq (git repos) dir
   mkdir -p ~/repos/{bin,pkg,src}
