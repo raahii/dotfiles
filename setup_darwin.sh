@@ -49,7 +49,7 @@ function clean() {
 if [ "$1" = "init" ]; then
   init
 elif [ "$1" = "deploy" ]; then
-  deploy $2
+  deploy "$2"
 elif [ "$1" = "clean" ]; then
   clean
 fi

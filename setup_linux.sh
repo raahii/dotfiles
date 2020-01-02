@@ -1,33 +1,18 @@
 #!/bin/bash
-
-function install_ripgrep() {
-  REPO="https://github.com/BurntSushi/ripgrep/releases/download/"
-  RG_LATEST=$(curl -sSL "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" | jq --raw-output .tag_name)
-  RELEASE="${RG_LATEST}/ripgrep-${RG_LATEST}-x86_64-unknown-linux-musl.tar.gz"
-
+function install_go() {
   TMPDIR=$(mktemp -d)
-  pushd $TMPDIR
-  wget -O - ${REPO}${RELEASE} | tar zxf - --strip-component=1
-  mkdir -p ~/bin
-  mv rg ~/bin/
-  popd
-}
+  wget https://dl.google.com/go/go1.13.3.linux-amd64.tar.gz --directory-prefix $TMPDIR
+  sudo tar -xvf $TMPDIR/go1.13.3.linux-amd64.tar.gz -C /usr/local
 
-function install_peco() {
-  TMPDIR=$(mktemp -d)
-  pushd $TMPDIR
-  wget "https://github.com/peco/peco/releases/download/v0.5.3/peco_linux_amd64.tar.gz"
-  tar xvzf peco_linux_amd64.tar.gz
-  cd peco_linux_amd64/
-  mkdir -p ~/bin
-  mv peco ~/bin/
-  popd
+  export GOROOT=/usr/local/go
+  export GOPATH=~/repos
+  export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 }
 
 function init() {
   # basic packages
   sudo apt-get -y update
-  sudo apt-get -y install wget curl golang jq tree stow git tmux locales
+  sudo apt-get -y install wget curl jq tree stow git tmux locales
 
   # update locales
   locale-gen en_US.UTF-8
@@ -49,10 +34,8 @@ function init() {
   sudo add-apt-repository ppa:neovim-ppa/stable -y
   sudo apt-get update
   sudo apt-get install -y neovim
-
-  # install ripgrep, peco
-  install_ripgrep
-  install_peco
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   # install fish
   sudo apt-add-repository ppa:fish-shell/release-2 -y
@@ -60,19 +43,13 @@ function init() {
   sudo apt-get install -y fish
   curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
-  # make git repos dir
+  # make ghq (git repos) dir
   mkdir -p ~/repos/{bin,pkg,src}
 
-  # # Change directory names to English
-  # env LANGUAGE=C LC_MESSAGES=C xdg-user-dirs-gtk-update
-
-  # # Prevent text garbling
-  # gsettings set org.gnome.gedit.preferences.encodings auto-detected "['UTF-8','CURRENT','SHIFT_JIS','EUC-JP','ISO-2022-JP','UTF-16']"
-  # gsettings set org.gnome.gedit.preferences.encodings shown-in-menu "['UTF-8','SHIFT_JIS','EUC-JP','ISO-2022-JP','UTF-16']"
-  
-  # # Remove Ubuntu Web Apps
-  # yes | sudo apt-get remove unity-webapps-common xul-ext-unity xul-ext-websites-integration
-  
+  # install peco, ghq
+  install_go
+  GOPATH=~/repos go get -u -v github.com/peco/peco
+  GOPATH=~/repos go get -u -v github.com/motemen/ghq
 }
 
 function deploy() {
@@ -101,7 +78,7 @@ function clean() {
 if [ "$1" = "init" ]; then
   init
 elif [ "$1" = "deploy" ]; then
-  deploy $2
+  deploy "$2"
 elif [ "$1" = "clean" ]; then
   clean
 fi
