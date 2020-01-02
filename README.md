@@ -8,8 +8,6 @@
   <a href="https://github.com/tmux/tmux"><img src="https://img.shields.io/badge/built%20with-tmux-blue.svg" alt="tmux"></a>
 </p>
 
----
-
 ## Setup
 
 ```shell
