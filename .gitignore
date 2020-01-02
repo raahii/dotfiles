@@ -1,4 +1,9 @@
+# fish
 config_local.fish
+fish/functions/*
+!fish/functions/fish_prompt.fish
+!fish/functions/fish_user_key_bindings.fish
+!fish/functions/peco_*.fish
 
 # neovim
 neovim/undofiles

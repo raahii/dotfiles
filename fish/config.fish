@@ -31,12 +31,6 @@ set -x LESS '-i -M -R -S -W -z-4 -x4'
 set -x DEV ~/repos/src/github.com/raahii
 [ -d $DEV ]; and mkdir $DEV
 
-# path
-set -x PATH ~/bin $PATH
-
-# Created by `userpath` on 2019-11-18 14:05:33
-set PATH $PATH /Users/naka/.local/bin
-
 # go
 set -x GOPATH ~/repos
 set -x PATH $PATH $GOPATH/bin

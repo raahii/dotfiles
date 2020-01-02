@@ -13,7 +13,7 @@
 ```shell
 git clone https://github.com/raahii/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-bash ./setup.sh
+make init && make deploy && fish
 ```
 
 ## Test with Docker
@@ -22,7 +22,6 @@ bash ./setup.sh
 cd ~/dotfiles
 docker build -f docker/Dockerfile.ubuntu . -t dotfiles-ubuntu
 docker run -it -v (pwd):/root/dotfiles dotfiles-ubuntu /bin/bash
-bash setup.sh
 ```
 
 ## Acknowledgements
