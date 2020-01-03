@@ -1,4 +1,4 @@
-## .files
+# .files
 
 <p align="left">
   <a href="https://github.com/raahii/dotfiles/actions?query=workflow%3AUbuntu"><img src=https://github.com/raahii/dotfiles/workflows/Ubuntu/badge.svg alt="Build Status"></a>

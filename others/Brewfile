@@ -1,38 +1,30 @@
-tap "homebrew/cask"
-tap "homebrew/core"
-tap "homebrew/science"
-tap "homebrew/services"
-tap "homebrew/versions"
 brew "coreutils"
+brew "arp-scan"
+brew "awscli"
 brew "ctags"
 brew "curl"
-brew "go"
 brew "direnv"
-brew "jpeg"
-brew "ghq"
-brew "git"
-brew "hub"
+brew "ffmpeg"
+brew "fzf"
 brew "jq"
-brew "macvim", link: false
-brew "peco"
-brew "reattach-to-user-namespace"
+brew "nkf"
 brew "rename"
-brew "rmtrash"
+brew "stow"
 brew "tree"
-brew "vim"
+brew "vifm"
 brew "watch"
-brew "wget"
-brew "atton-/customs/tmux", args: ["HEAD"]
+brew "jpeg"
+brew "hub"
+
+brew "macvim", link: false
+cask "alfred"
+cask "karabiner-elements"
+cask "macvim"
+cask "skitch"
+cask "slack"
+cask "vlc"
+
+mas "Be Focused", id: 973134470
 mas "Bear", id: 1091189122
-mas "Gifted", id: 771955779
-mas "Keynote", id: 409183694
-mas "Leawo Blu-ray Player", id: 961975824
-mas "LINE", id: 539883307
-mas "Memory Optimizer Pro", id: 975804897
-mas "Slack", id: 803453959
-mas "Speedtest", id: 1153157709
-mas "The Unarchiver", id: 425424353
-mas "Todoist", id: 585829637
-mas "Trello", id: 1278508951
-mas "TweetDeck", id: 485812721
-mas "Xcode", id: 497799835
+mas "GIF Brewery 3", id: 1081413713
+mas "Reeder", id: 880001334
