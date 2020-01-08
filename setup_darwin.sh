@@ -31,20 +31,18 @@ function deploy() {
     mv ~/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish.old
   
   # deploy .files with stow
-  stow --ignore ".DS_Store" -v fish -t ~/.config/fish # fish
-  stow --ignore ".DS_Store" -v neovim -t ~/.config/nvim # neovim
-  stow --ignore ".DS_Store" -v git -t ~/ # git
-  stow --ignore ".DS_Store" -v others -t ~/ # others
-
-  # brew bundle --global
+  stow --ignore ".DS_Store" -v -t ~/.config/fish fish
+  stow --ignore ".DS_Store" -v -t ~/.config/nvim neovim
+  stow --ignore ".DS_Store" -v -t ~/ git
+  stow --ignore ".DS_Store" -v -t ~/ others
 }
 
 function clean() {
-  # deploy .files with stow
-  stow --ignore ".DS_Store" -vD fish -t ~/.config/fish # fish
-  stow --ignore ".DS_Store" -vD neovim -t ~/.config/nvim # neovim
-  stow --ignore ".DS_Store" -vD git -t ~/ # git
-  stow --ignore ".DS_Store" -vD others -t ~/ # others
+  # clean .files with stow
+  stow --ignore ".DS_Store" -vD -t ~/.config/fish fish
+  stow --ignore ".DS_Store" -vD -t ~/.config/nvim neovim
+  stow --ignore ".DS_Store" -vD -t ~/ git
+  stow --ignore ".DS_Store" -vD -t ~/ others
 }
 
 if [ "$1" = "init" ]; then
