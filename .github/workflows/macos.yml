@@ -12,5 +12,11 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Setup dotfiles
-        run: make init && make deploy
+        run: make init
+
+      - name: Deploy dotfiles
+        run: make deploy
+
+      - name: Clean dotfiles
+        run: make clean
 
