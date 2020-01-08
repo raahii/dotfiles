@@ -1,84 +1,5 @@
-"""""""""""""""""""""""""""""
-" basic setting
-""""""""""""""""""""""""""""""
-set background=dark
-set ttyfast
-set lazyredraw
-set encoding=utf-8
-set modifiable
-set write
-set fileencoding=utf-8
-set fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
-set fenc=utf-8
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set autoindent
-set expandtab
-
-" color scheme
-syntax on
-color gruvbox
-
-" enable undo
-set undofile
-set undodir=~/.config/nvim/undofiles
-
-set noswapfile "swpファイルを作らない
-set scrolloff=5 " スクロールする時に下が見えるようにする
-set nowritebackup
-set nobackup " バックアップファイルを作らない
-set backspace=indent,eol,start " バックスペースで各種消せるようにする
-set vb t_vb=
-set novisualbell " ビープ音を消す
-set number " 行番号を表示
-set ignorecase " 小文字の検索でも大文字も見つかるようにする
-set smartcase " ただし大文字も含めた検索の場合はその通りに検索する
-set incsearch " インクリメンタルサーチを行う
-set hlsearch " 検索結果をハイライト表示
-set mouse=a " マウスモード有効
-set history=1000 " コマンド、検索パターンを1000個まで履歴に残す
-set list
-set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:% "タブ、空白、改行の可視化
-set hidden "bufferで複数ファイルをswitchするときに未保存のものがあっても警告を出さない
-set ambiwidth=double
-set splitright " 画面分割の際に新しいウィンドウを右側に開く
-set foldmethod=marker "fold
-let g:vim_markdown_folding_disabled=1 " markdownの折りたたみなし
-set showmatch "閉括弧が入力された時、対応する括弧を強調する
-set wildmenu
-set tags=.tags
-
-" clipboard settings
-if has('mac')
-  set clipboard=unnamed
-else
-  set clipboard=unnamedplus
-endif
-
-" treat ctrl-j as esc
-inoremap <C-j> <esc>
-vnoremap <C-j> <esc>
-cnoremap <C-j> <esc>
-nnoremap <C-j> <esc>
-
-" swap ; and :
-noremap ; :
-noremap : ;
-
-" turn highlight off with esc twice
-nnoremap <Esc><Esc> :noh<CR>
-nnoremap <C-j><C-j> :noh<CR>
-
-" don't move cursor when highlighting word on cursor
-nnoremap <silent><expr> * v:count ? '*': ':sil exe "keepj norm! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
-nnoremap <silent><expr> # v:count ? '#': ':sil exe "keepj norm! #" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
-
-" turn off IME when exiting normal mode
-inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
-
-" set leader key
-let mapleader = "\<Space>"
+filetype plugin indent on
+syntax enable
 
 " python paths
 if has('nvim')
@@ -93,20 +14,6 @@ if has('nvim')
   endif
 endif
 
-" window keymap
-" nnoremap <Leader>i :split<Return>
-" nnoremap <Leader>s :vsplit<Return>
-map <Leader>h <C-w>h
-map <Leader>k <C-w>k
-map <Leader>j <C-w>j
-map <Leader>l <C-w>l
-
-" load plugins
-let s:plug_dir = expand('~/.config/nvim/plugged')
-if !isdirectory(s:plug_dir)
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
+source ~/.config/nvim/basics.vim
+source ~/.config/nvim/keymaps.vim
 source ~/.config/nvim/plugins.vim

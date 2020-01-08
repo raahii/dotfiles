@@ -1,50 +1,33 @@
-call plug#begin('~/.config/nvim/plugged')
+"automatic install vim-plug
+let s:plug_dir = expand('~/.config/nvim/plugged')
+if !isdirectory(s:plug_dir)
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" plugins and settings
+call plug#begin(s:plug_dir)
+
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" Filer
+Plug 'vifm/vifm.vim'
 Plug 'scrooloose/nerdtree'
 " configs for nerdtree {{{
 noremap <C-e> :NERDTreeToggle<CR>
 filetype plugin indent on
 " }}}
+
+" Language Server Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " configs for coc.nvim {{{
 set updatetime=300 " You will have bad experience for diagnostic messages when it's default 4000.
 set shortmess+=c " don't give |ins-completion-menu| messages.
-" set signcolumn=yes " always show signcolumns
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <silent> <Leader>p <Plug>(coc-diagnostic-prev)
+nmap <silent> <Leader>n <Plug>(coc-diagnostic-next)
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -54,15 +37,18 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
+" Remap keys for gotos
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <leader>rn <Plug>(coc-rename)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>ac  <Plug>(coc-codeaction) " Remap for do codeAction of current line
+nmap <leader>qf  <Plug>(coc-fix-current) " Fix autofix problem of current line
+
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>n <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>o  <Plug>(coc-format-selected)
-nmap <leader>o  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -71,25 +57,6 @@ augroup mygroup
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-" nmap <silent> <C-d> <Plug>(coc-range-select)
-" xmap <silent> <C-d> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -119,41 +86,10 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>h  :<C-u>CocListResume<CR>
 "}}}
-Plug 'dense-analysis/ale'
-" configs for ale {{{
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_completion_enabled = 0
-let g:ale_lint_on_enter = 1
 
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-
-let g:ale_linters = {
-  \ 'sh': ['shellcheck'],
-  \ 'go': ['golint', 'go vet'],
-  \ 'python': ['flake8', 'mypy'],
-\}
-
-let g:ale_python_mypy_options = '--ignore-missing-imports --'
-
-let g:ale_fixers = {
-  \ 'sh': ['shfmt'],
-  \ 'go': ['gofmt', 'goimports'],
-  \ 'python': ['black', 'isort'],
-  \ 'javascript': ['prettier'],
-  \ 'typescript': ['prettier'],
-  \ 'vue': ['prettier'],
-\}
-let g:ale_fix_on_save = 1
-
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
-" }}}
+" File / Line Fuzzy Searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " configs for fzf.vim {{{
@@ -161,6 +97,8 @@ noremap <Leader>gf :GFiles<CR>
 noremap <Leader>ff :Files<CR>
 noremap <Leader>r :Rg<CR>
 " }}}
+
+" Operaion Supports
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
 Plug 'preservim/nerdcommenter'
@@ -169,6 +107,9 @@ noremap gcc :NERDCommenterToggle<CR>
 " }}}
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mattn/emmet-vim'
+
+" Languages
+Plug 'cespare/vim-toml'
 Plug 'posva/vim-vue'
 " configs for vim-vue {{{
 let g:ft = ''
@@ -191,7 +132,8 @@ function! NERDCommenter_after()
   endif
 endfunction
 "}}}
-Plug 'tyru/open-browser.vim'
+
+" Status line
 Plug 'vim-airline/vim-airline'
 " configs for vim-airline {{{
 set noshowmode
@@ -200,8 +142,14 @@ set laststatus=2
 let g:airline_theme='angr'
 "}}}
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vifm/vifm.vim'
+
+" Github
+Plug 'tyru/open-browser.vim'
+Plug 'k0kubun/vim-open-github'
+
+" Coding Tracker
 Plug 'wakatime/vim-wakatime', { 'on': [] }
+
 call plug#end()
 
 " load asynchronously after start-up
