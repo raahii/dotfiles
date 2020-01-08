@@ -1,5 +1,10 @@
-" basic setting
+" appearance
+syntax on
 set background=dark
+color gruvbox
+highlight Folded ctermbg=Green ctermfg=Black
+
+" basics
 set ttyfast
 set lazyredraw
 set encoding=utf-8
@@ -13,15 +18,8 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 set expandtab
-
-" color scheme
-syntax on
-color gruvbox
-
-" enable undo
 set undofile
 set undodir=~/.config/nvim/undofiles
-
 set noswapfile "swpファイルを作らない
 set scrolloff=5 " スクロールする時に下が見えるようにする
 set nowritebackup
@@ -47,7 +45,7 @@ set showmatch "閉括弧が入力された時、対応する括弧を強調す�
 set wildmenu
 set tags=.tags
 
-" clipboard settings
+" clipboard
 if has('mac')
   set clipboard=unnamed
 else

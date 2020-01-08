@@ -4,14 +4,25 @@
   "suggest.preferCompleteThanJumpPlaceholder": true,
   "suggest.timeout": 5000,
   "suggest.defaultSortMethod": "alphabetical",
-  "diagnostic.enable": false,
-  "diagnostic.displayByAle": true,
 
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "filetypes": ["go"]
-    }
+  "diagnostic.enable": true,
+
+  "coc.preferences.formatOnSaveFiletypes": ["python", "go"],
+
+  "list.source.mru.ignoreGitIgnore": true,
+
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.formatting.provider": "black",
+  "python.analysis.diagnosticEnabled": true,
+  "python.jediEnabled": true,
+
+  "go.enable": true,
+  "go.goplsOptions": {
+    "completeUnimported": true,
+    "completionDocumentation": true
   }
 }
