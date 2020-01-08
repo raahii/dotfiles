@@ -58,23 +58,21 @@ function deploy() {
     mv ~/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish.old
   
   # deploy .files with stow
-  stow -v -t ~/.config/fish fish
-  stow -v -t ~/.config/nvim neovim
-  stow -v -t ~/ git
-  stow -v -t ~/ others
+  stow -v -t ~/.config/fish -S fish
+  stow -v -t ~/.config/nvim -S neovim
+  stow -v -t ~/ -S git -S others
 
-  # delete rows for mac
-  if grep -q "reattach" "$HOME/.tmux.conf"; then
-    sed -i '/reattach/d' $HOME/.tmux.conf
-  fi
+  # # delete rows for mac
+  # if grep -q "reattach" "others/.tmux.conf"; then
+  #   sed -i '/reattach/d' others/.tmux.conf
+  # fi
 }
 
 function clean() {
   # clean .files with stow
-  stow -vD -t ~/.config/fish fish
-  stow -vD -t ~/.config/nvim neovim
-  stow -vD -t ~/ git
-  stow -vD -t ~/ others
+  stow -v -t ~/.config/fish -D fish
+  stow -v -t ~/.config/nvim -D neovim
+  stow -v -t ~/ -D git -D others
 }
 
 
