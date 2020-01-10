@@ -1,8 +1,8 @@
 #!/bin/bash
 function install_go() {
   TMPDIR=$(mktemp -d)
-  wget https://dl.google.com/go/go1.13.3.linux-amd64.tar.gz --directory-prefix $TMPDIR
-  sudo tar -xvf $TMPDIR/go1.13.3.linux-amd64.tar.gz -C /usr/local
+  wget https://dl.google.com/go/go1.13.3.linux-amd64.tar.gz --directory-prefix "$TMPDIR"
+  sudo tar -xvf "$TMPDIR/go1.13.3.linux-amd64.tar.gz" -C /usr/local
 
   export GOROOT=/usr/local/go
   export GOPATH=~/repos
@@ -17,7 +17,7 @@ function init() {
   # update locales
   locale-gen en_US.UTF-8
   export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LC_CTYPE=en_US.UTF-8
-  
+
   # install python2 python3
   sudo apt-get install -y software-properties-common
   sudo apt-get install -y python-dev python-pip python3-dev python3-pip
@@ -54,9 +54,9 @@ function init() {
 }
 
 function deploy() {
-  [ -f ~/.config/functions/fish_prompt.fish ] && \
+  [ -f ~/.config/functions/fish_prompt.fish ] &&
     mv ~/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish.old
-  
+
   # deploy .files with stow
   stow -v -t ~/.config/fish -S fish
   stow -v -t ~/.config/nvim -S neovim
@@ -74,7 +74,6 @@ function clean() {
   stow -v -t ~/.config/nvim -D neovim
   stow -v -t ~/ -D git -D others
 }
-
 
 if [ "$1" = "init" ]; then
   init

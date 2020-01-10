@@ -18,7 +18,7 @@ function init() {
 
   # install tmux
   brew install tmux reattach-to-user-namespace
-  
+
   # install fish
   brew install fish
 
@@ -27,9 +27,9 @@ function init() {
 }
 
 function deploy() {
-  [ -f ~/.config/functions/fish_prompt.fish ] && \
+  [ -f ~/.config/functions/fish_prompt.fish ] &&
     mv ~/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish.old
-  
+
   # deploy .files with stow
   stow --ignore ".DS_Store" -v -t ~/.config/fish -S fish
   stow --ignore ".DS_Store" -v -t ~/.config/nvim -S neovim
