@@ -29,3 +29,6 @@ nnoremap <silent><expr> # v:count ? '#': ':sil exe "keepj norm! #" <Bar> call wi
 
 " turn off IME when exiting normal mode
 inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+
+" reaload init.vim
+nnoremap <silent> <leader>c :source ~/.config/nvim/init.vim<CR>

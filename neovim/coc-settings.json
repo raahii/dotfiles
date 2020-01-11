@@ -1,28 +1,83 @@
 {
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [],
+
   "suggest.noselect": true,
+  "suggest.defaultSortMethod": "alphabetical",
   "suggest.triggerAfterInsertEnter": true,
   "suggest.preferCompleteThanJumpPlaceholder": true,
+  "suggest.echodocSupport": true,
+  "suggest.minTriggerInputLength": 2,
+  "suggest.triggerCompletionWait": 50,
   "suggest.timeout": 5000,
-  "suggest.defaultSortMethod": "alphabetical",
 
   "diagnostic.enable": true,
-
-  "coc.preferences.formatOnSaveFiletypes": ["python", "go"],
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.refreshAfterSave": true,
+  "diagnostic.refreshOnInsertMode": false,
+  "diagnostic.enableSign": true,
+  "diagnostic.hintSign": "⚑",
+  "diagnostic.infoSign": "⚑",
+  "diagnostic.warningSign": "⚑",
+  "diagnostic.errorSign": "⚑",
 
   "list.source.mru.ignoreGitIgnore": true,
 
+  "python.pythonPath": "python",
+  "python.analysis.diagnosticEnabled": true,
   "python.linting.enabled": true,
   "python.linting.lintOnSave": true,
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
-  "python.formatting.provider": "black",
-  "python.analysis.diagnosticEnabled": true,
   "python.jediEnabled": true,
 
-  "go.enable": true,
   "go.goplsOptions": {
+    "usePlaceholders": true,
     "completeUnimported": true,
-    "completionDocumentation": true
+    "caseSensitiveCompletion": true
+  },
+
+  "docker.enable": true,
+
+  "yaml.validate": true,
+  "yaml.hover": true,
+
+  "diagnostic-languageserver.enable": true,
+  "diagnostic-languageserver.filetypes": {
+     "sh": "shellcheck",
+     "dockerfile": "hadolint"
+   },
+
+  "languageserver": {
+    "bash": {
+        "command": "bash-language-server",
+        "args": ["start"],
+        "filetypes": ["sh"],
+        "ignoredRootPaths": ["~"]
+    },
+    "vim": {
+      "command": "vim-language-server",
+      "filetypes": ["vim"],
+      "args": ["--stdio"],
+      "initializationOptions": {
+        "iskeyword": "@,48-57,_,192-255,-#",
+        "vimruntime": "",
+        "runtimepath": "",
+        "diagnostic": {
+          "enable": true
+        },
+        "indexes": {
+          "runtimepath": true,
+          "gap": 100,
+          "count": 3,
+          "projectRootPatterns" : ["strange-root-pattern", ".git", "autoload", "plugin"]
+        },
+        "suggest": {
+          "fromVimruntime": true,
+          "fromRuntimepath": false
+        }
+      }
+    }
   }
 }
