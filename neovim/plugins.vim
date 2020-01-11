@@ -5,7 +5,6 @@ if !isdirectory(s:plug_dir)
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-let g:plug_window='botright new'
 
 " plugins and settings
 call plug#begin(s:plug_dir)
@@ -32,6 +31,7 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
   Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile'}
   Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
 " configs for coc.nvim {{{
 set hidden
 set updatetime=300
@@ -80,10 +80,12 @@ nnoremap <silent> <leader>rn <Plug>(coc-rename)
 nnoremap <silent> <leader>m :<C-u>CocList mru<cr>
 nnoremap <silent> <leader><leader> :<C-u>CocList<cr>
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " statuline config
+set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "}}}
 
@@ -97,6 +99,9 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
+let g:ale_disable_lsp = 1
+let g:ale_set_quickfix = 0
+let g:ale_set_loclist = 0
 
 let g:ale_fixers = {
   \ 'go': ['gofmt', 'goimports'],
@@ -164,11 +169,7 @@ set laststatus=2
 let g:airline_theme='angr'
 "}}}
 
-" github
-Plug 'tyru/open-browser.vim'
-  Plug 'k0kubun/vim-open-github'
-
-" coding Tracker
+" coding tracker
 Plug 'wakatime/vim-wakatime', { 'on': [] }
 
 call plug#end()
