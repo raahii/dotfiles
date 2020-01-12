@@ -33,3 +33,6 @@ __pycache__
 *.pyc
 .mypy_cache
 .python-version
+
+# go
+.go-version

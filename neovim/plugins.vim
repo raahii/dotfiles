@@ -32,16 +32,15 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
   Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 " configs for coc.nvim {{{
 set hidden
-set updatetime=300
+set updatetime=200
 set shortmess+=c
 
 " show diagnostic information with hover
 augroup mygroup
   autocmd!
-  " setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -49,6 +48,7 @@ augroup end
 " use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -72,8 +72,8 @@ nnoremap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gi <Plug>(coc-implementation)
 nnoremap <silent> gr <Plug>(coc-references)
-nnoremap <silent> <Leader>p <Plug>(coc-diagnostic-prev)
-nnoremap <silent> <Leader>n <Plug>(coc-diagnostic-next)
+nnoremap <silent> <leader>p <Plug>(coc-diagnostic-prev)
+nnoremap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nnoremap <silent> <leader>ac <Plug>(coc-codeaction)
 nnoremap <silent> <leader>qf <Plug>(coc-fix-current)
 nnoremap <silent> <leader>rn <Plug>(coc-rename)
@@ -132,6 +132,12 @@ Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mattn/emmet-vim'
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" configs for snippets {{{
+let g:UltiSnipsExpandTrigger="<c-k>"
+" }}}
 
 " languages
 Plug 'cespare/vim-toml'
