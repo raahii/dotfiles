@@ -25,10 +25,12 @@ alias  vi 'nvim'
 alias  im 'nvim'
 alias bim 'nvim'
 
-# languages, pyenv, rbenv...
-. ~/.config/fish/config_langs.fish
-
 # config for each operating system
 set -x OS (uname | tr '[A-Z]' '[a-z]')
 [ -f $HOME/.config/fish/config_$OS.fish ]; and . ~/.config/fish/config_$OS.fish
+
+# languages, pyenv, rbenv...
+. ~/.config/fish/config_langs.fish
+
+# local config
 [ -f $HOME/.config/fish/config_local.fish ]; and . ~/.config/fish/config_local.fish

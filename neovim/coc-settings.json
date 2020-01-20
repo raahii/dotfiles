@@ -1,5 +1,4 @@
 {
-  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [],
 
   "suggest.noselect": true,
@@ -10,6 +9,7 @@
   "suggest.minTriggerInputLength": 2,
   "suggest.triggerCompletionWait": 50,
   "suggest.timeout": 5000,
+  "suggest.removeDuplicateItems": true,
 
   "diagnostic.enable": true,
   "diagnostic.checkCurrentLine": true,
@@ -21,7 +21,7 @@
 
   "list.source.mru.ignoreGitIgnore": true,
 
-  "python.pythonPath": "python",
+  "python.pythonPath": "/usr/bin/python3",
   "python.analysis.diagnosticEnabled": true,
   "python.linting.enabled": true,
   "python.linting.lintOnSave": true,
@@ -41,43 +41,13 @@
   "yaml.validate": true,
   "yaml.hover": true,
 
+  "vimlsp.diagnostic.enable": true,
+
   "git.enableGutters": false,
 
   "diagnostic-languageserver.enable": true,
   "diagnostic-languageserver.filetypes": {
      "sh": "shellcheck",
      "dockerfile": "hadolint"
-   },
-
-  "languageserver": {
-    "bash": {
-        "command": "bash-language-server",
-        "args": ["start"],
-        "filetypes": ["sh"],
-        "ignoredRootPaths": ["~"]
-    },
-    "vim": {
-      "command": "vim-language-server",
-      "filetypes": ["vim"],
-      "args": ["--stdio"],
-      "initializationOptions": {
-        "iskeyword": "@,48-57,_,192-255,-#",
-        "vimruntime": "",
-        "runtimepath": "",
-        "diagnostic": {
-          "enable": true
-        },
-        "indexes": {
-          "runtimepath": true,
-          "gap": 100,
-          "count": 3,
-          "projectRootPatterns" : ["strange-root-pattern", ".git", "autoload", "plugin"]
-        },
-        "suggest": {
-          "fromVimruntime": true,
-          "fromRuntimepath": false
-        }
-      }
-    }
-  }
+   }
 }

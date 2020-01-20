@@ -21,18 +21,20 @@ filetype plugin indent on
 " }}}
 
 " language server client
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile && yarn build'}
 " configs for coc.nvim {{{
 set hidden
 set updatetime=200
@@ -47,10 +49,10 @@ augroup end
 
 " use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -68,21 +70,22 @@ endfunction
 
 " keymaps
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
-nnoremap <silent> <leader>p <Plug>(coc-diagnostic-prev)
-nnoremap <silent> <leader>n <Plug>(coc-diagnostic-next)
-nnoremap <silent> <leader>ac <Plug>(coc-codeaction)
-nnoremap <silent> <leader>qf <Plug>(coc-fix-current)
-nnoremap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>p <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>ac <Plug>(coc-codeaction)
+nmap <silent> <leader>qf <Plug>(coc-fix-current)
+nmap <silent> <leader>rn <Plug>(coc-rename)
 nnoremap <silent> <leader>m :<C-u>CocList mru<cr>
-nnoremap <silent> <leader><leader> :<C-u>CocList<cr>
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader><leader> :<C-u>CocList<cr>
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
+let g:coc_snippet_next = '<tab>'
 
 " statuline config
 set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
@@ -182,8 +185,8 @@ call plug#end()
 
 " load asynchronously after start-up
 augroup load_us_insert
-    autocmd!
-    autocmd InsertEnter * call plug#load(
-      \ 'vim-wakatime',
-      \ )| autocmd! load_us_insert
+  autocmd!
+  autocmd InsertEnter * call plug#load(
+    \ 'vim-wakatime',
+    \ )| autocmd! load_us_insert
 augroup END
