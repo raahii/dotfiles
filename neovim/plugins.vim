@@ -35,6 +35,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile && yarn build'}
 " configs for coc.nvim {{{
 set hidden
 set updatetime=200
@@ -113,6 +114,7 @@ let g:ale_fixers = {
   \ 'html': ['prettier'],
   \ 'javascript': ['prettier'],
   \ 'yaml': ['prettier'],
+  \ 'java': ['google_java_format'],
 \}
 
 highlight clear ALEErrorSign

@@ -42,3 +42,11 @@ end
 if [ -e "$HOME/.cargo" ]
   set -x PATH "$HOME/.cargo/bin" $PATH
 end
+
+# java
+if [ -e "$HOME/.jenv" ]
+  set -x  PATH $HOME/.jenv/bin $PATH
+  eval (jenv init - | source)
+  eval (jenv enable-plugin export | source)
+  jenv add (/usr/libexec/java_home) > /dev/null &
+end
