@@ -51,5 +51,6 @@
   "diagnostic-languageserver.filetypes": {
      "sh": "shellcheck",
      "dockerfile": "hadolint"
-   }
+  },
+  "java.errors.incompleteClasspath.severity": "ignore"
 }

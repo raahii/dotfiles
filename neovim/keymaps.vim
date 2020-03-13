@@ -23,6 +23,10 @@ map <Leader>k <C-w>k
 map <Leader>j <C-w>j
 map <Leader>l <C-w>l
 
+" tab keymap
+nnoremap <C-n> :tabnext<CR>
+nnoremap <C-p> :tabprev<CR>
+
 " don't move cursor when highlighting word on cursor
 nnoremap <silent><expr> * v:count ? '*': ':sil exe "keepj norm! *" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
 nnoremap <silent><expr> # v:count ? '#': ':sil exe "keepj norm! #" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'

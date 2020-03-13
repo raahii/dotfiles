@@ -135,7 +135,6 @@ noremap <Leader>r :Rg<CR>
 " operaion supports
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'mattn/emmet-vim'
 
 Plug 'SirVer/ultisnips'
