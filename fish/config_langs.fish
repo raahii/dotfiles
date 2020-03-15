@@ -34,8 +34,9 @@ if [ -e "$HOME/.rbenv" ]
 end
 
 # node
-if [ -e "$HOME/.nodebrew" ]
-  set -x PATH "~/.nodebrew/current/bin" $PATH
+if [ -e "$HOME/.nodenv" ]
+  set -Ux fish_user_paths $HOME/.nodenv/bin $fish_user_paths
+  eval (nodenv init - | source)
 end
 
 # rust
