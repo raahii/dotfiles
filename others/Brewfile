@@ -1,30 +1,70 @@
-brew "coreutils"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "homebrew/services"
+
 brew "arp-scan"
+brew "eigen"
+brew "openblas"
+brew "gettext", link: true
+brew "pcre"
+brew "readline"
+brew "python"
 brew "awscli"
+brew "binutils"
+brew "boost"
+brew "boost-python"
+brew "libpng"
+brew "cmake"
+
+brew "cloc"
+brew "coreutils"
+brew "cpulimit"
 brew "ctags"
 brew "curl"
+brew "go"
 brew "direnv"
-brew "ffmpeg"
-brew "fzf"
-brew "jq"
-brew "nkf"
-brew "rename"
-brew "stow"
-brew "tree"
-brew "vifm"
-brew "watch"
 brew "jpeg"
+brew "ghostscript"
+brew "ffmpeg"
+brew "fish"
+brew "fzf"
+brew "git"
+brew "git-lfs"
+brew "grep"
 brew "hub"
+brew "jq"
+brew "ruby", link: true
+brew "mas"
+brew "neovim"
+brew "nkf"
+brew "atton-/customs/tmux"
+brew "wget"
+brew "watch"
+brew "tree"
+brew "stow"
+brew "shellcheck"
+brew "ripgrep"
+brew "rust"
+brew "rename"
+brew "reattach-to-user-namespace"
+brew "node"
+brew "hadolint"
 
-brew "macvim", link: false
 cask "alfred"
-cask "karabiner-elements"
+cask "openinterminal"
 cask "macvim"
-cask "skitch"
-cask "slack"
-cask "vlc"
+cask "karabiner-elements"
+cask "java"
+cask "flux"
+cask "coteditor"
+cask "bettertouchtool"
 
-mas "Be Focused", id: 973134470
 mas "Bear", id: 1091189122
-mas "GIF Brewery 3", id: 1081413713
+mas "Dato", id: 1470584107
+mas "Focus To-Do", id: 1258530160
 mas "Reeder", id: 880001334
+mas "Slack", id: 803453959
+mas "Speedtest", id: 1153157709
+mas "The Unarchiver", id: 425424353
