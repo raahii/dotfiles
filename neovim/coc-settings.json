@@ -43,8 +43,6 @@
 
   "vimlsp.diagnostic.enable": true,
 
-  "java.home": "/Library/Java/JavaVirtualMachines/openjdk-13.0.2.jdk/Contents/Home",
-
   "git.enableGutters": false,
 
   "diagnostic-languageserver.enable": true,

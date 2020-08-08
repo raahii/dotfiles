@@ -35,7 +35,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile && yarn build'}
 " configs for coc.nvim {{{
 set hidden
 set updatetime=200
@@ -70,8 +69,8 @@ function! s:show_documentation()
 endfunction
 
 " keymaps
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-nmap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> <A-Space> :call <SID>show_documentation()<CR>
+nmap <silent> <D-b> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -114,7 +113,6 @@ let g:ale_fixers = {
   \ 'html': ['prettier'],
   \ 'javascript': ['prettier'],
   \ 'yaml': ['prettier'],
-  \ 'java': ['google_java_format'],
 \}
 
 highlight clear ALEErrorSign
@@ -168,6 +166,7 @@ function! NERDCommenter_after()
   endif
 endfunction
 "}}}
+Plug 'udalov/kotlin-vim'
 
 " status line
 Plug 'vim-airline/vim-airline'
