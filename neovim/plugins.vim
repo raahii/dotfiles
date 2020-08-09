@@ -69,8 +69,7 @@ function! s:show_documentation()
 endfunction
 
 " keymaps
-nnoremap <silent> <A-Space> :call <SID>show_documentation()<CR>
-nmap <silent> <D-b> <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -79,10 +78,12 @@ nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>ac <Plug>(coc-codeaction)
 nmap <silent> <leader>qf <Plug>(coc-fix-current)
 nmap <silent> <leader>rn <Plug>(coc-rename)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <silent> <leader>m :<C-u>CocList mru<cr>
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
 nnoremap <silent> <leader><leader> :<C-u>CocList<cr>
+nnoremap <silent> <leader>o :CocCommand git.browserOpen<CR>
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:coc_snippet_next = '<tab>'
@@ -90,6 +91,12 @@ let g:coc_snippet_next = '<tab>'
 " statuline config
 set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"}}}
+
+Plug 'bfredl/nvim-miniyank'
+"{{{
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
 "}}}
 
 " formatting without blocking

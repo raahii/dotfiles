@@ -31,12 +31,14 @@
   today = log --oneline --since='12 hour ago'
   # コンフリクトで修正すべきファイルを表示
   conflicts = !git ls-files -u | cut -f 2 | sort -u
-  # alias
+  start = !fish -c 'git init && git commit --allow-empty -m "Initialize."'
+  # short name
   st = status
   br = branch
   co = checkout
   cm = commit
   df = diff
+
 
 [filter "lfs"]
   process = git-lfs filter-process
