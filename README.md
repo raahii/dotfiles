@@ -16,6 +16,13 @@ cd ~/dotfiles
 make init && make deploy && fish
 ```
 
+(for MacOS) Optional:
+
+```shell
+softwareupdate -i -a
+```
+
+
 ## Test with Docker
 
 ```shell
