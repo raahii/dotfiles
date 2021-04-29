@@ -1,5 +1,11 @@
 # fish
 config_local.fish
+fish/functions/*
+!fish/functions/fish_prompt.fish
+!fish/functions/fish_user_key_bindings.fish
+!fish/functions/peco_change_directory.fish
+!fish/functions/peco_ripgrep_vim.fish
+!fish/functions/peco_select_history.fish
 
 # neovim
 neovim/undofiles

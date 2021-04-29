@@ -8,8 +8,11 @@ function init() {
 
   # install basic packages
   brew install \
-    git curl peco wget go jq tree stow ripgrep \
+    git curl peco wget go jq tree stow ripgrep mas \
     neovim tmux fish reattach-to-user-namespace
+
+  # install fisher
+  fish -c 'curl -sL https://git.io/fisher | source && fisher update'
 
   # make git repos dir
   mkdir -p ~/repos/{bin,pkg,src}
@@ -19,11 +22,12 @@ function deploy() {
   [ -f ~/.config/functions/fish_prompt.fish ] &&
     mv ~/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish.old
 
+  [ -f ~/.config/karabiner/karabiner.json ] &&
+    mv -f ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json.bak
+
   # deploy .files with stow
   stow --ignore ".DS_Store" -v -t ~/.config/fish -S fish
   stow --ignore ".DS_Store" -v -t ~/.config/nvim -S neovim
-  [ -f ~/.config/karabiner/karabiner.json ] &&
-    mv -f ~/.config/karabiner/karabiner.json ~/.config/karabiner/karabiner.json.bak
   stow --ignore ".DS_Store" -v -t ~/.config/karabiner -S karabiner
   stow --ignore ".DS_Store" -v -t ~/.config/iterm2 -S iterm
   stow --ignore ".DS_Store" -v -t ~/ -S git

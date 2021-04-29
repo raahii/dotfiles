@@ -3,7 +3,7 @@ set -x HOMEBREW_NO_ANALYTICS 1
 set -x HOMEBREW_CASK_OPTS "--appdir=/Applications"
 set -x EDITOR nvim
 set -x HOMEBREW_BREWFILE $HOME/dotfiles/Brewfile
-set -x PATH /Library/Developer/CommandLineTools/ $PATH
+set -x PATH /opt/homebrew/bin /Library/Developer/CommandLineTools $PATH
 
 # aliases
 alias rm 'trash'                            # trash
