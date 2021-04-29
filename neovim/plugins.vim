@@ -14,7 +14,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " filer
 Plug 'vifm/vifm.vim'
 Plug 'scrooloose/nerdtree'
-" configs for nerdtree {{{
+" configs of nerdtree {{{
 noremap <C-e> :NERDTreeToggle<CR>
 filetype plugin indent on
 " let NERDTreeShowHidden=1
@@ -35,8 +35,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'fannheyward/coc-react-refactor', {'do': 'yarn install --frozen-lockfile && yarn build'}
-" configs for coc.nvim {{{
+  Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'annheyward/coc-react-refactor', {'do': 'yarn install --frozen-lockfile && yarn build'}
+" configs of coc.nvim {{{
 set hidden
 set updatetime=200
 set shortmess+=c
@@ -96,14 +100,14 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "}}}
 
 Plug 'bfredl/nvim-miniyank'
-"l{{{
+"configs of nvim-miniyank{{{
 map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
 "}}}
 
 " formatting without blocking
 Plug 'dense-analysis/ale'
-" configs for ale {{{
+" configs of ale {{{
 let g:ale_linters_explicit = 1
 let g:ale_lint_on_save = 0
 let g:ale_lint_on_enter = 0
@@ -134,10 +138,10 @@ let g:ale_sign_error = '⚑'
 let g:ale_sign_warning = '⚑'
 " }}}
 
-" fuzzy Searching
+" fuzzy searching
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" configs for fzf.vim {{{
+" configs of fzf.vim {{{
 noremap <Leader>gf :GFiles<CR>
 noremap <Leader>f :Files<CR>
 noremap <Leader>r :Rg<CR>
@@ -150,7 +154,7 @@ Plug 'mattn/emmet-vim'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" configs for snippets {{{
+" configs of snippets {{{
 let g:UltiSnipsExpandTrigger="<c-k>"
 " }}}
 
@@ -158,7 +162,7 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 Plug 'cespare/vim-toml'
 Plug 'ekalinin/dockerfile.vim'
 Plug 'posva/vim-vue'
-" configs for vim-vue {{{
+" configs of vim-vue {{{
 let g:ft = ''
 function! NERDCommenter_before()
   if &ft == 'vue'
@@ -180,28 +184,16 @@ function! NERDCommenter_after()
 endfunction
 "}}}
 Plug 'udalov/kotlin-vim'
+Plug 'hashivim/vim-terraform'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
 " status line
 Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-" configs for vim-airline {{{
+" configs of vim-airline {{{
 set noshowmode
 set cmdheight=1
 set laststatus=2
 let g:airline_theme='angr'
 "}}}
-
-" coding tracker
-Plug 'wakatime/vim-wakatime', { 'on': [] }
-
-call plug#end()
-
-" load asynchronously after start-up
-augroup load_us_insert
-  autocmd!
-  autocmd InsertEnter * call plug#load(
-    \ 'vim-wakatime',
-    \ )| autocmd! load_us_insert
-augroup END

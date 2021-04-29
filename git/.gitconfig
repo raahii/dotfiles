@@ -1,6 +1,5 @@
-[user]
-  name = raahii
-  email = piyo56.net@gmail.com
+[include]
+  path = .gitconfig.local
 
 [core]
   pager = less
@@ -9,12 +8,16 @@
   excludesfile = ~/.gitignore_global
 
 [pager]
-    log = diff-highlight | less
-    show = diff-highlight | less
-    diff = diff-highlight | less
+  log = diff-highlight | less
+  show = diff-highlight | less
+  diff = diff-highlight | less
 
 [push]
-	default = current
+  default = current
+
+[pull]
+  rebase = false
+  ff = only
 
 [alias]
   # いい感じのグラフでログを表示
@@ -38,6 +41,9 @@
   co = checkout
   cm = commit
   df = diff
+  fa = fetch --all
+  pushf = push --force-with-lease
+  amend = !git add -A && git commit --no-edit --amend
 
 
 [filter "lfs"]
@@ -48,3 +54,4 @@
 
 [ghq]
   root = ~/repos/src
+
