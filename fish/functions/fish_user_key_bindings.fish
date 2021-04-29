@@ -3,3 +3,5 @@ function fish_user_key_bindings
   bind \cg peco_change_directory
   bind \ch peco_ripgrep_vim
 end
+
+fzf_key_bindings

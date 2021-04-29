@@ -22,7 +22,7 @@ end
 # python
 if [ -e "$HOME/.pyenv" ]
   set -x PYENV_ROOT "$HOME/.pyenv"
-  set -x PATH $HOME/.pyenv/shims $PATH
+  set -x PATH $PYENV_ROOT/bin $PATH
   eval (pyenv init - --no-rehash | source)
 end
 
@@ -36,7 +36,7 @@ end
 # node
 if [ -e "$HOME/.nodenv" ]
   set -Ux fish_user_paths $HOME/.nodenv/bin $fish_user_paths
-  eval (nodenv init - | source)
+  status --is-interactive; and source (nodenv init -|psub)
 end
 
 # rust

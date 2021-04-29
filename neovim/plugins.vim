@@ -24,17 +24,18 @@ filetype plugin indent on
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
   Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'fannheyward/coc-react-refactor', {'do': 'yarn install --frozen-lockfile && yarn build'}
 " configs for coc.nvim {{{
 set hidden
 set updatetime=200
@@ -84,6 +85,7 @@ nnoremap <silent> <leader>e  :<C-u>CocList extensions<cr>
 nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
 nnoremap <silent> <leader><leader> :<C-u>CocList<cr>
 nnoremap <silent> <leader>o :CocCommand git.browserOpen<CR>
+noremap <silent> <leader>o :CocCommand git.browserOpen<CR>
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:coc_snippet_next = '<tab>'
@@ -94,7 +96,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "}}}
 
 Plug 'bfredl/nvim-miniyank'
-"{{{
+"l{{{
 map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
 "}}}
@@ -119,6 +121,10 @@ let g:ale_fixers = {
   \ 'sh': ['shfmt'],
   \ 'html': ['prettier'],
   \ 'javascript': ['prettier'],
+  \ 'javascriptreact': ['prettier'],
+  \ 'typescript': ['prettier'],
+  \ 'typescriptreact': ['prettier'],
+  \ 'vue': ['eslint'],
   \ 'yaml': ['prettier'],
 \}
 
@@ -174,6 +180,8 @@ function! NERDCommenter_after()
 endfunction
 "}}}
 Plug 'udalov/kotlin-vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 " status line
 Plug 'vim-airline/vim-airline'
