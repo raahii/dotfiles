@@ -8,13 +8,23 @@ function init() {
 
   # install basic packages
   brew install \
-    git curl peco wget go jq tree stow ripgrep mas \
-    neovim tmux fish reattach-to-user-namespace
+    git curl wget peco ghq jq tree stow ripgrep mas \
+    neovim tmux fish reattach-to-user-namespace \
+    go node
 
-  # install fisher
+  # use python3.9 as default
+  brew install python@3.9
+  echo 'export PATH=/opt/homebrew/opt/python@3.9/libexec/bin:$PATH' >> ~/.zshrc
+  
+  # setup neovim package
+  /opt/homebrew/bin/python3 -m pip install -U pip neovim
+  npm install -g yarn neovim
+  sudo gem install neovim
+
+  # fisher
   fish -c 'curl -sL https://git.io/fisher | source && fisher update'
 
-  # make git repos dir
+  # create $GOPATH
   mkdir -p ~/repos/{bin,pkg,src}
 }
 

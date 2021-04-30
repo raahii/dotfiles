@@ -21,9 +21,15 @@
 
   "list.source.mru.ignoreGitIgnore": true,
 
-  "jedi.startupMessage": true,
+  "python.pythonPath": "/usr/bin/python3",
+  "python.analysis.diagnosticEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.jediEnabled": true,
 
-  "go.checkForUpdates": true,
   "go.goplsOptions": {
     "usePlaceholders": true,
     "completeUnimported": true,
@@ -34,6 +40,8 @@
 
   "yaml.validate": true,
   "yaml.hover": true,
+
+  "vimlsp.diagnostic.enable": true,
 
   "git.enableGutters": false,
 
@@ -80,10 +88,6 @@
       "securities": {
         "warning": "warning"
       }
-    },
-    "kotlin": {
-      "command": "/Users/naka/repos/src/github.com/fwcd/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
-      "filetypes": ["kotlin"]
     }
   }
 }

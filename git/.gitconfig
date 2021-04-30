@@ -1,6 +1,3 @@
-[include]
-  path = .gitconfig.local
-
 [core]
   pager = less
   ui = auto
@@ -54,4 +51,7 @@
 
 [ghq]
   root = ~/repos/src
+
+[include]
+  path = .gitconfig.local
 

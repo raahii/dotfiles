@@ -21,7 +21,7 @@ filetype plugin indent on
 " }}}
 
 " language server client
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
@@ -39,25 +39,30 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'annheyward/coc-react-refactor', {'do': 'yarn install --frozen-lockfile && yarn build'}
 " configs of coc.nvim {{{
+set encoding=utf-8
 set hidden
-set updatetime=200
+set nobackup
+set nowritebackup
+set updatetime=300
 set shortmess+=c
 
-" show diagnostic information with hover
-augroup mygroup
-  autocmd!
-  " update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
-" use tab for trigger completion with characters ahead and navigate.
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-  \ coc#refresh()
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -65,13 +70,39 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
+
+" show diagnostic information with hover
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" " Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " keymaps
 nmap <silent> gd <Plug>(coc-definition)
@@ -91,12 +122,11 @@ nnoremap <silent> <leader><leader> :<C-u>CocList<cr>
 nnoremap <silent> <leader>o :CocCommand git.browserOpen<CR>
 noremap <silent> <leader>o :CocCommand git.browserOpen<CR>
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
 let g:coc_snippet_next = '<tab>'
-
-" statuline config
-set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+ 
+" " statuline config
+" set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "}}}
 
 Plug 'bfredl/nvim-miniyank'
@@ -197,3 +227,6 @@ set cmdheight=1
 set laststatus=2
 let g:airline_theme='angr'
 "}}}
+
+call plug#end()
+
