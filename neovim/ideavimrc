@@ -1,0 +1,16 @@
+filetype plugin indent on
+syntax enable
+
+source ~/.config/nvim/basics.vim
+source ~/.config/nvim/keymaps.vim
+
+" enable multi cursor
+set multiple-cursors
+
+" disable bell sound
+set visualbell
+set noerrorbells
+set hlsearch
+
+" surround vim
+set surround

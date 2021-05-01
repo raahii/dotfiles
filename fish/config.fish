@@ -12,6 +12,7 @@ set HISTSIZE 10000
 set -x GREP_COLOR '1;35;40'
 set -x LESS '-i -M -R -S -W -z-4 -x4'
 set -x PATH ~/.local/bin $PATH
+set -x PATH /opt/homebrew/bin $PATH
 
 # global aliases
 alias cp 'cp -i'

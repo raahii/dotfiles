@@ -28,12 +28,17 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
-  "python.jediEnabled": true,
+  "python.jediEnabled": false,
 
   "go.goplsOptions": {
     "usePlaceholders": true,
     "completeUnimported": true,
-    "caseSensitiveCompletion": true
+    "caseSensitiveCompletion": true,
+    "initializationOptions": {
+      "gocodeCompletionEnabled": true,
+      "diagnosticsEnabled": true,
+      "lintTool": "golint"
+    }
   },
 
   "docker.enable": true,
@@ -42,7 +47,6 @@
   "yaml.hover": true,
 
   "vimlsp.diagnostic.enable": true,
-
   "git.enableGutters": false,
 
   "diagnostic-languageserver.enable": true,
@@ -50,6 +54,12 @@
      "sh": "shellcheck",
      "dockerfile": "hadolint"
   },
+
+  "tsserver.formatOnType": false,
+
+  "eslint.packageManager": "yarn",
+  "eslint.autoFixOnSave": false,
+
   "languageserver": {
     "dls": {
       "command": "diagnostic-languageserver",
