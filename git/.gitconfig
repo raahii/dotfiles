@@ -3,6 +3,8 @@
   ui = auto
   editor = nvim
   excludesfile = ~/.gitignore_global
+  ignorecase = false
+  autocrlf = input
 
 [pager]
   log = diff-highlight | less
@@ -38,10 +40,9 @@
   co = checkout
   cm = commit
   df = diff
-  fa = fetch --all
+  fa = fetch --all -p
   pushf = push --force-with-lease
   amend = !git add -A && git commit --no-edit --amend
-
 
 [filter "lfs"]
   process = git-lfs filter-process
@@ -54,4 +55,3 @@
 
 [include]
   path = .gitconfig.local
-

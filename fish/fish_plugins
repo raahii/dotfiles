@@ -2,3 +2,5 @@ fisherman/getopts
 fisherman/spin
 fisherman/z
 reitzig/sdkman-for-fish
+franciscolourenco/done
+evanlucas/fish-kubectl-completions

@@ -32,7 +32,7 @@ nnoremap <silent><expr> * v:count ? '*': ':sil exe "keepj norm! *" <Bar> call wi
 nnoremap <silent><expr> # v:count ? '#': ':sil exe "keepj norm! #" <Bar> call winrestview(' . string(winsaveview()) . ')<CR>'
 
 " turn off IME when exiting normal mode
-inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+" inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 " reaload init.vim
 nnoremap <silent> <leader>s :source ~/.config/nvim/init.vim<CR>

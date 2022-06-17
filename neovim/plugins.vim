@@ -39,6 +39,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lock
   Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile && yarn build'}
   Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile && yarn build'}
+  Plug 'weirongxu/coc-kotlin', {'do': 'yarn install --frozen-lockfile && yarn build'}
 " configs of coc.nvim {{{
 set encoding=utf-8
 set hidden

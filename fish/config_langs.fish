@@ -21,9 +21,9 @@ end
 
 # python
 if [ -e "$HOME/.pyenv" ]
-  set -x PYENV_ROOT "$HOME/.pyenv"
+  set -x PYENV_ROOT $HOME/.pyenv
   set -x PATH $PYENV_ROOT/bin $PATH
-  eval (pyenv init - --no-rehash | source)
+  status is-interactive; and pyenv init --path | source
 end
 
 # ruby
@@ -35,7 +35,7 @@ end
 
 # node
 if [ -e "$HOME/.nodenv" ]
-  set -Ux fish_user_paths $HOME/.nodenv/bin $fish_user_paths
+  set -x fish_user_paths $HOME/.nodenv/bin $fish_user_paths
   status --is-interactive; and source (nodenv init -|psub)
 end
 
