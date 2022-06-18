@@ -11,17 +11,19 @@
 ## Setup
 
 ```shell
-git clone https://github.com/raahii/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-make init && make deploy && fish
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/raahii/dotfiles/master/setup.sh)"
 ```
 
-(for MacOS) Optional:
+After fish shell is avaialble:
+```shell
+fisher update
+```
+
+For MacOS:
 
 ```shell
 softwareupdate -i -a
 ```
-
 
 ## Test with Docker
 
