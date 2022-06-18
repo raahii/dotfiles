@@ -1,6 +1,7 @@
-# direnv
-if type direnv > /dev/null 2>&1
-  eval (direnv hook fish)
+# anyenv
+if type anyenv > /dev/null 2>&1
+  set -x PATH $HOME/.anyenv/bin $PATH
+  status --is-interactive; and source (anyenv init -|psub)
 end
 
 # golang
@@ -23,7 +24,7 @@ end
 if [ -e "$HOME/.pyenv" ]
   set -x PYENV_ROOT $HOME/.pyenv
   set -x PATH $PYENV_ROOT/bin $PATH
-  status is-interactive; and pyenv init --path | source
+  status is-login; and pyenv init --path | source
 end
 
 # ruby
@@ -44,10 +45,8 @@ if [ -e "$HOME/.cargo" ]
   set -x PATH "$HOME/.cargo/bin" $PATH
 end
 
-# java
-if [ -e "$HOME/.jenv" ]
-  set -x  PATH $HOME/.jenv/bin $PATH
-  eval (jenv init - | source)
-  eval (jenv enable-plugin export | source)
-  jenv add (/usr/libexec/java_home) > /dev/null &
+# direnv
+if type direnv > /dev/null 2>&1
+  eval (direnv hook fish)
 end
+

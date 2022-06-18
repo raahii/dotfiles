@@ -1,4 +1,10 @@
 #!/bin/bash
+
+## *DEPRECATED*
+##
+## This setup script has not been maintained since 2020
+## because there's no opportunity to use a linux machine.
+
 function install_go() {
   TMPDIR=$(mktemp -d)
   wget https://dl.google.com/go/go1.13.3.linux-amd64.tar.gz --directory-prefix "$TMPDIR"
