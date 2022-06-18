@@ -27,6 +27,9 @@ alias  vi 'nvim'
 alias  im 'nvim'
 alias bim 'nvim'
 
+# common env vars
+set -x EDITOR nvim
+
 # config for each operating system
 set -x OS (uname | tr '[A-Z]' '[a-z]')
 [ -f $HOME/.config/fish/config_$OS.fish ]; and . ~/.config/fish/config_$OS.fish

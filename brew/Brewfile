@@ -24,6 +24,7 @@ cask "gitkraken"
 cask "coteditor"
 cask "java"
 cask "font-ricty-diminished"
+cask "bluesnooze"
 
 mas "Bear", id: 1091189122
 mas "Dato", id: 1470584107

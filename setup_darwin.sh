@@ -1,12 +1,17 @@
 #!/bin/bash
 
 function init() {
+  # install brew
+  if type brew >/dev/null 2>&1; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+
   # install basic packages
   brew install \
-    curl wget jq tree \
-    fish peco ghq stow ripgrep mas \   # fish
-    neovim anyenv go node node-build \ # neovim
-    tmux reattach-to-user-namespace    # tmux
+    git curl wget jq tree \
+    fish peco ghq stow ripgrep mas \
+    neovim pyenv nodenv go node node-build \
+    tmux reattach-to-user-namespace
 
   # install fish plugins with fisher
   curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish |
@@ -16,24 +21,22 @@ function init() {
   echo $(which fish) | sudo tee -a /etc/shell
   chsh -s $(which fish)
 
-  # anyenv
-  anyenv install --force-init
-
-  # python
-  anyenv install pyenv
+  # python for vim
   PYTHON_LATEST=$(pyenv install -l | grep -E '^\s*\d+\.\d+\.\d+$' | tail -n 1 | xargs echo)
   pyenv install $PYTHON_LATEST
   pyenv global $PYTHON_LATEST
+  python -m pip install -U pip pynim neovim
 
-  # node
-  anyenv install nodenv
+  # node for vim
   NODE_LATEST=$(nodenv install -l | grep -E '^\s*\d+\.\d+\.\d+$' | tail -n 1 | xargs echo)
   nodenv install $NODE_LATEST
   nodenv global $NODE_LATEST
+  npm install -g neovim
 
   # create directories
-  mkdir -p ~/repos/{bin,pkg,src} # go path
-  mkdir -p ~/.local/bin          # binary path
+  mkdir -p ~/repos/{bin,pkg,src} # golang / ghq
+  mkdir -p ~/.config/karabiner   # karabiner
+  mkdir -p ~/.local/bin          # binaries
 }
 
 function deploy() {

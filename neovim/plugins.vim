@@ -21,25 +21,25 @@ filetype plugin indent on
 " }}}
 
 " language server client
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
-  Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile && yarn build'}
-  Plug 'weirongxu/coc-kotlin', {'do': 'yarn install --frozen-lockfile && yarn build'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile' }
+  Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'weirongxu/coc-kotlin', {'do': 'yarn install --frozen-lockfile'}
 " configs of coc.nvim {{{
 set encoding=utf-8
 set hidden

@@ -6,6 +6,12 @@
   ignorecase = false
   autocrlf = input
 
+[include]
+  path = .gitconfig.local
+
+[init]
+  defaultBranch = main
+
 [pager]
   log = diff-highlight | less
   show = diff-highlight | less
@@ -52,6 +58,3 @@
 
 [ghq]
   root = ~/repos/src
-
-[include]
-  path = .gitconfig.local

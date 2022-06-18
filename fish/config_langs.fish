@@ -1,9 +1,3 @@
-# anyenv
-if type anyenv > /dev/null 2>&1
-  set -x PATH $HOME/.anyenv/bin $PATH
-  status --is-interactive; and source (anyenv init -|psub)
-end
-
 # golang
 if type go > /dev/null 2>&1
   set -x GO111MODULE on
@@ -49,4 +43,3 @@ end
 if type direnv > /dev/null 2>&1
   eval (direnv hook fish)
 end
-
