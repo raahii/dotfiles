@@ -5,7 +5,6 @@
 </p>
 
 
-
 ## Setup
 
 ```shell
@@ -18,8 +17,6 @@ For macOS:
 softwareupdate -i -a
 ```
 
-
-
 ## Update
 
 Brewfile:
@@ -27,18 +24,6 @@ Brewfile:
 ```sh
 brew bundle dump --file ~/dotfiles/brew/Brewfile
 ```
-
-
-
-## Test with Docker
-
-```shell
-cd ~/dotfiles
-docker build -f docker/Dockerfile.ubuntu . -t dotfiles-ubuntu
-docker run -it -v (pwd):/root/dotfiles dotfiles-ubuntu /bin/bash
-```
-
-
 
 ## Acknowledgements
 

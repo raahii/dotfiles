@@ -24,7 +24,7 @@ filetype plugin indent on
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
   Plug 'josa42/coc-go', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile' }
+  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
   Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
   Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
@@ -221,7 +221,7 @@ Plug 'peitalin/vim-jsx-typescript'
 
 " status line
 Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 " configs of vim-airline {{{
 set noshowmode
 set cmdheight=1

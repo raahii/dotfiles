@@ -1,11 +1,11 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [],
+  "coc.source.buffer.ignoreGitignore": true,
 
   "suggest.noselect": false,
   "suggest.defaultSortMethod": "alphabetical",
   "suggest.triggerAfterInsertEnter": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
-  "suggest.echodocSupport": true,
   "suggest.minTriggerInputLength": 2,
   "suggest.triggerCompletionWait": 50,
   "suggest.timeout": 5000,
@@ -18,17 +18,6 @@
   "diagnostic.infoSign": "⚑",
   "diagnostic.warningSign": "⚑",
   "diagnostic.errorSign": "⚑",
-
-  "list.source.mru.ignoreGitIgnore": true,
-
-  "python.pythonPath": "/usr/bin/python3",
-  "python.analysis.diagnosticEnabled": true,
-  "python.linting.enabled": true,
-  "python.linting.lintOnSave": true,
-  "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": true,
-  "python.linting.mypyEnabled": true,
-  "python.jediEnabled": false,
 
   "go.goplsOptions": {
     "usePlaceholders": true,
@@ -83,6 +72,9 @@
                 "message": [3]
               }
             ]
+          },
+          "securities": {
+            "warning": "warning"
           }
         },
         "formatters": {},
@@ -90,9 +82,6 @@
           "go": "golint"
         },
         "formatFiletypes": {}
-      },
-      "securities": {
-        "warning": "warning"
       }
     }
   }
