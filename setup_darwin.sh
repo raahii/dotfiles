@@ -10,7 +10,7 @@ function init() {
   brew install \
     git curl wget jq tree \
     fish peco ghq stow ripgrep mas \
-    neovim pyenv nodenv go node node-build \
+    neovim pyenv nodenv node-build rbenv ruby-build go \
     tmux reattach-to-user-namespace
 
   # install fish plugins with fisher
@@ -21,16 +21,22 @@ function init() {
   echo $(which fish) | sudo tee -a /etc/shell
   chsh -s $(which fish)
 
-  # python for vim
+  # python
   PYTHON_LATEST=$(pyenv install -l | grep -E '^\s*\d+\.\d+\.\d+$' | tail -n 1 | xargs echo)
   pyenv install $PYTHON_LATEST
   pyenv global $PYTHON_LATEST
   python -m pip install -U pip pynim neovim
 
-  # node for vim
+  # node
   NODE_LATEST=$(nodenv install -l | grep -E '^\s*\d+\.\d+\.\d+$' | tail -n 1 | xargs echo)
   nodenv install $NODE_LATEST
   nodenv global $NODE_LATEST
+  npm install -g neovim
+
+  # ruby
+  RUBY_LATEST=$(rbenv install -l | grep -E '^\s*\d+\.\d+\.\d+$' | tail -n 1 | xargs echo)
+  rbenv install $RUBY_LATEST
+  rbenv global $RUBY_LATEST
   npm install -g neovim
 
   # create directories
@@ -52,6 +58,7 @@ function deploy() {
   _stow -t ~/.config/karabiner -S karabiner
   _stow -t ~/.config/iterm2 -S iterm
   _stow -t ~/ -S git
+  _stow -t ~/ -S idea
   _stow -t ~/ -S others
 }
 
@@ -62,6 +69,7 @@ function clean() {
   _stow -t ~/.config/karabiner -D karabiner
   _stow -t ~/.config/iterm2 -D iterm
   _stow -t ~/ -D git
+  _stow -t ~/ -D idea
   _stow -t ~/ -D others
 }
 
