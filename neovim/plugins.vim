@@ -30,7 +30,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'iamcco/coc-diagnostic', {'do': 'yarn install --frozen-lockfile'}
   Plug 'josa42/coc-docker', {'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-  Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
   Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
   Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
@@ -122,7 +121,6 @@ nnoremap <silent> <leader>e  :<C-u>CocList extensions<cr>
 nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
 nnoremap <silent> <leader><leader> :<C-u>CocList<cr>
 nnoremap <silent> <leader>o :CocCommand git.browserOpen<CR>
-noremap <silent> <leader>o :CocCommand git.browserOpen<CR>
 
 let g:coc_snippet_next = '<tab>'
  
@@ -162,7 +160,11 @@ let g:ale_fixers = {
   \ 'typescriptreact': ['prettier'],
   \ 'vue': ['eslint'],
   \ 'yaml': ['prettier'],
-  \ 'sql': ['sql-formatter'],
+  \ 'sql': [
+  \   { buffer -> {
+  \       'command': 'sql-formatter -l mysql'
+  \   }},
+  \ ]
 \}
 
 highlight clear ALEErrorSign
@@ -231,11 +233,11 @@ set laststatus=2
 let g:airline_theme='angr'
 "}}}
 
+" Github
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
+" configs of Github {{{
+nnoremap <silent> <leader>o :'<,'>OpenGithubFile<CR>
+" }}}
+
 call plug#end()
-
-" Custom formatter for ALE
-function! FormatSQL(buffer) abort
-    return {'command': 'sql-formatter -l mysql'}
-endfunction
-
-execute ale#fix#registry#Add('sql-formatter', 'FormatSQL', ['sql'], 'sql-formatter')
