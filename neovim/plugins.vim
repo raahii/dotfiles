@@ -34,7 +34,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
   Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-  " Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
   Plug 'neoclide/coc-tslint-plugin', {'do': 'yarn install --frozen-lockfile'}
   Plug 'fannheyward/coc-styled-components', {'do': 'yarn install --frozen-lockfile'}
@@ -194,34 +193,7 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 " }}}
 
 " languages
-Plug 'cespare/vim-toml'
-Plug 'ekalinin/dockerfile.vim'
-Plug 'posva/vim-vue'
-" configs of vim-vue {{{
-let g:ft = ''
-function! NERDCommenter_before()
-  if &ft == 'vue'
-    let g:ft = 'vue'
-    let stack = synstack(line('.'), col('.'))
-    if len(stack) > 0
-      let syn = synIDattr((stack)[0], 'name')
-      if len(syn) > 0
-        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
-      endif
-    endif
-  endif
-endfunction
-function! NERDCommenter_after()
-  if g:ft == 'vue'
-    setf vue
-    let g:ft = ''
-  endif
-endfunction
-"}}}
-Plug 'udalov/kotlin-vim'
-Plug 'hashivim/vim-terraform'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax highlight
 
 " status line
 Plug 'vim-airline/vim-airline'
@@ -241,3 +213,32 @@ nnoremap <silent> <leader>o :'<,'>OpenGithubFile<CR>
 " }}}
 
 call plug#end()
+
+" configs for nvim-treesitter
+"{{{
+lua<<EOF
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = {
+      "go",
+      "python",
+      "java",
+      "kotlin",
+      "html",
+      "css",
+      "javascript",
+      "typescript",
+      "tsx",
+      "vue",
+      "sql",
+      "yaml",
+      "toml",
+      "json",
+      "dockerfile",
+      "markdown",
+      "fish"
+    },
+    sync_install = false,
+    auto_install = true,
+  }
+EOF
+"}}}
